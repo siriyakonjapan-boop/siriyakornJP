@@ -1,0 +1,3677 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Pet Care</title>
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap"
+rel="stylesheet">
+
+<style>
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    font-family:"Prompt",sans-serif;
+}
+
+html{
+    background:#eeeeee;
+}
+
+body{
+    background:#eeeeee;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+    padding:20px;
+}
+
+/* ================= PHONE SCREEN ================= */
+
+.app{
+    width:100%;
+    max-width:430px;
+    height:min(900px, calc(100vh - 40px));
+    min-height:600px;
+    background:#fffaf5;
+    position:relative;
+    overflow:hidden;
+
+    border:8px solid #222;
+    border-radius:38px;
+
+    box-shadow:
+        0 20px 50px rgba(0,0,0,.25),
+        0 5px 15px rgba(0,0,0,.12);
+}
+
+/* Dynamic Island */
+
+.app::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:50%;
+    transform:translateX(-50%);
+    width:110px;
+    height:25px;
+    background:#222;
+    border-radius:0 0 18px 18px;
+    z-index:999;
+}
+
+/* ================= CONTENT ================= */
+
+.content{
+    width:100%;
+    height:100%;
+    overflow-y:auto;
+    padding:30px 18px 90px;
+    border-radius:30px;
+    scrollbar-width:none;
+}
+
+.content::-webkit-scrollbar{
+    display:none;
+}
+
+.page{
+    display:none;
+}
+
+.page.active{
+    display:block;
+}
+
+/* ================= HEADER ================= */
+
+.header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:18px;
+}
+
+.greeting{
+    font-size:23px;
+    font-weight:700;
+    color:#d97706;
+}
+
+.avatar{
+    width:48px;
+    height:48px;
+    border-radius:50%;
+    overflow:hidden;
+    background:#fed7aa;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.avatar img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+/* ================= SEARCH ================= */
+
+.search-box{
+    background:white;
+    border-radius:25px;
+    padding:5px 15px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:10px;
+    box-shadow:0 3px 12px rgba(0,0,0,.04);
+}
+
+.search-box > i{
+    color:#a1a1aa;
+    font-size:16px;
+}
+
+.search-box input{
+    width:auto;
+    border:none;
+    outline:none;
+    padding:10px 0;
+    margin:0;
+    flex:1;
+    font-size:13px;
+    background:transparent;
+}
+
+.search-box input::placeholder{
+    color:#a1a1aa;
+}
+
+.clear-search{
+    border:none;
+    background:none;
+    color:#a1a1aa;
+    cursor:pointer;
+    font-size:15px;
+    padding:5px;
+}
+
+.search-results{
+    display:none;
+    background:white;
+    border-radius:15px;
+    margin-bottom:15px;
+    box-shadow:0 4px 15px rgba(0,0,0,.07);
+    overflow:hidden;
+}
+
+.search-result{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:13px 15px;
+    border-bottom:1px solid #f1f1f1;
+    cursor:pointer;
+}
+
+.search-result:last-child{
+    border-bottom:none;
+}
+
+.search-result:hover{
+    background:#fff7ed;
+}
+
+.search-result-icon{
+    width:40px;
+    height:40px;
+    border-radius:12px;
+    background:#fff7ed;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#ea580c;
+    font-size:18px;
+    flex-shrink:0;
+}
+
+.search-result-info{
+    flex:1;
+}
+
+.search-result-info strong{
+    display:block;
+    font-size:13px;
+    color:#333;
+}
+
+.search-result-info span{
+    display:block;
+    font-size:11px;
+    color:#71717a;
+    margin-top:2px;
+}
+
+.no-result{
+    padding:20px;
+    text-align:center;
+    color:#71717a;
+    font-size:12px;
+}
+
+/* ================= SECTION ================= */
+
+.section-title{
+    font-size:18px;
+    font-weight:700;
+    color:#444;
+    margin:18px 0 12px;
+}
+
+/* ================= SERVICES ================= */
+
+.services{
+    display:flex;
+    gap:12px;
+    overflow-x:auto;
+    overflow-y:hidden;
+    padding:3px 3px 12px;
+    scrollbar-width:none;
+    -webkit-overflow-scrolling:touch;
+    touch-action:pan-x;
+    cursor:grab;
+}
+
+.services::-webkit-scrollbar{
+    display:none;
+}
+
+.services.dragging{
+    cursor:grabbing;
+}
+
+.service{
+    flex:0 0 92px;
+    width:92px;
+    height:105px;
+    background:white;
+    border-radius:18px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    gap:8px;
+    box-shadow:0 4px 14px rgba(0,0,0,.05);
+    cursor:pointer;
+    user-select:none;
+    transition:.15s;
+}
+
+.service:active{
+    transform:scale(.95);
+}
+
+.service-icon{
+    width:48px;
+    height:48px;
+    border-radius:50%;
+    background:#fef3c7;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:#d97706;
+    font-size:21px;
+}
+
+.service span{
+    font-size:11px;
+    text-align:center;
+}
+
+/* ================= CARD ================= */
+
+.card{
+    background:white;
+    border-radius:18px;
+    padding:16px;
+    margin-bottom:12px;
+    box-shadow:0 4px 15px rgba(0,0,0,.04);
+}
+
+.branch-card{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.branch-info h3{
+    font-size:15px;
+}
+
+.branch-info p{
+    font-size:12px;
+    color:#71717a;
+    margin-top:4px;
+}
+
+.arrow{
+    color:#ea580c;
+    font-size:18px;
+}
+
+/* ================= PET ================= */
+
+.pet-info{
+    display:flex;
+    gap:13px;
+    align-items:center;
+}
+
+.pet-avatar{
+    width:55px;
+    height:55px;
+    border-radius:50%;
+    overflow:hidden;
+    background:#fef3c7;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:28px;
+    flex-shrink:0;
+}
+
+.pet-avatar img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.pet-real-img{
+    width:55px;
+    height:55px;
+    border-radius:50%;
+    object-fit:cover;
+    object-position:center;
+    flex-shrink:0;
+    background:#fef3c7;
+}
+
+.pet-profile-img{
+    width:80px;
+    height:80px;
+    border-radius:50%;
+    object-fit:cover;
+    object-position:center;
+    flex-shrink:0;
+    background:#fef3c7;
+}
+
+.emergency-pet-img{
+    width:70px;
+    height:70px;
+    border-radius:15px;
+    object-fit:cover;
+    object-position:center;
+    flex-shrink:0;
+    background:#fef3c7;
+}
+
+.pet-details{
+    flex:1;
+}
+
+.pet-details h3{
+    font-size:16px;
+}
+
+.pet-details p{
+    color:#71717a;
+    font-size:12px;
+    margin-top:3px;
+}
+
+/* ================= BUTTON ================= */
+
+.btn{
+    border:none;
+    border-radius:12px;
+    padding:11px 15px;
+    cursor:pointer;
+    font-weight:600;
+}
+
+.btn-orange{
+    background:#ea580c;
+    color:white;
+}
+
+.btn-light{
+    background:#ffedd5;
+    color:#c2410c;
+}
+
+.btn-green{
+    background:#dcfce7;
+    color:#15803d;
+}
+
+.full{
+    width:100%;
+}
+
+/* ================= EMERGENCY ================= */
+
+.emergency{
+    background:#fff1f2;
+    border:1px solid #fecdd3;
+    display:flex;
+    align-items:center;
+    gap:13px;
+    cursor:pointer;
+}
+
+.emergency-icon{
+    width:53px;
+    height:53px;
+    border-radius:15px;
+    background:#ef4444;
+    color:white;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:23px;
+    flex-shrink:0;
+}
+
+.emergency strong{
+    color:#dc2626;
+}
+
+.emergency p{
+    font-size:12px;
+    color:#71717a;
+}
+
+/* ================= REFILL ================= */
+
+.refill{
+    background:#fff7ed;
+    border:1px solid #fed7aa;
+}
+
+.refill-head{
+    display:flex;
+    gap:12px;
+    align-items:center;
+}
+
+.refill-icon{
+    width:50px;
+    height:50px;
+    border-radius:14px;
+    background:#fb923c;
+    color:white;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:22px;
+    flex-shrink:0;
+}
+
+.refill p{
+    font-size:13px;
+    color:#52525b;
+    margin-top:10px;
+}
+
+.warning{
+    color:#ea580c;
+    font-weight:700;
+}
+
+/* ================= PAGE HEADER ================= */
+
+.page-header{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    font-size:21px;
+    font-weight:700;
+    margin-bottom:18px;
+}
+
+.back{
+    cursor:pointer;
+    color:#444;
+}
+
+/* ================= LIST ================= */
+
+.list{
+    background:white;
+    border-radius:17px;
+    padding:15px;
+    margin-bottom:12px;
+    box-shadow:0 3px 12px rgba(0,0,0,.04);
+}
+
+.list h3{
+    font-size:15px;
+}
+
+.list p{
+    font-size:12px;
+    color:#71717a;
+    margin-top:5px;
+}
+
+.price{
+    color:#ea580c !important;
+    font-size:15px !important;
+    font-weight:700;
+}
+
+/* ================= FOOD FILTER ================= */
+
+.food-filter{
+    display:flex;
+    gap:8px;
+    overflow-x:auto;
+    overflow-y:hidden;
+    white-space:nowrap;
+    padding:3px 3px 12px;
+    scrollbar-width:none;
+    -ms-overflow-style:none;
+    -webkit-overflow-scrolling:touch;
+    touch-action:pan-x;
+    cursor:grab;
+    user-select:none;
+}
+
+.food-filter::-webkit-scrollbar{
+    display:none;
+}
+
+.food-filter.dragging{
+    cursor:grabbing;
+}
+
+.food-filter button{
+    flex:0 0 auto;
+    white-space:nowrap;
+    border:1px solid #fed7aa;
+    background:white;
+    padding:8px 13px;
+    border-radius:10px;
+    cursor:pointer;
+    font-size:12px;
+}
+
+.food-filter button.active{
+    background:#ea580c;
+    color:white;
+    border-color:#ea580c;
+}
+
+/* ================= FOOD ================= */
+
+.food-card{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:10px;
+}
+
+.food-icon{
+    width:52px;
+    height:52px;
+    border-radius:14px;
+    background:#fff7ed;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:28px;
+    flex-shrink:0;
+}
+
+.food-info{
+    flex:1;
+}
+
+.food-info h3{
+    font-size:14px;
+}
+
+.food-info p{
+    font-size:11px;
+    line-height:1.5;
+}
+
+.food-category{
+    display:inline-block;
+    margin-top:5px;
+    padding:3px 7px;
+    border-radius:7px;
+    background:#fef3c7;
+    color:#92400e;
+    font-size:9px;
+}
+
+/* ================= HEALTH ================= */
+
+.health-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+}
+
+.health-box{
+    background:#fafafa;
+    padding:11px;
+    border-radius:11px;
+    font-size:12px;
+}
+
+.health-box small{
+    color:#71717a;
+}
+
+.health-box strong{
+    display:block;
+    margin-top:4px;
+    font-size:13px;
+}
+
+input,
+select{
+    width:100%;
+    padding:11px;
+    border:1px solid #e4e4e7;
+    border-radius:10px;
+    margin-top:7px;
+    margin-bottom:12px;
+    background:white;
+    outline:none;
+}
+
+input:focus,
+select:focus{
+    border-color:#fb923c;
+}
+
+/* ================= HOSPITAL ================= */
+
+.hospital{
+    background:white;
+    border-radius:16px;
+    padding:15px;
+    margin-bottom:12px;
+    box-shadow:0 3px 12px rgba(0,0,0,.04);
+}
+
+.hospital h3{
+    font-size:15px;
+}
+
+.hospital p{
+    font-size:12px;
+    color:#71717a;
+    margin-top:4px;
+}
+
+.hospital-buttons{
+    display:flex;
+    gap:8px;
+    margin-top:11px;
+}
+
+.hospital-buttons button{
+    flex:1;
+}
+
+/* ================= BOTTOM NAV ================= */
+
+.bottom-nav{
+    position:absolute;
+    left:0;
+    bottom:0;
+    width:100%;
+    height:75px;
+    background:white;
+    display:flex;
+    justify-content:space-around;
+    align-items:center;
+    border-top:1px solid #eee;
+    z-index:100;
+    border-radius:0 0 30px 30px;
+}
+
+.nav{
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:4px;
+    color:#a1a1aa;
+    font-size:11px;
+    cursor:pointer;
+}
+
+.nav i{
+    font-size:19px;
+}
+
+.nav.active{
+    color:#ea580c;
+    font-weight:600;
+}
+
+/* ================= BADGE ================= */
+
+.badge{
+    display:inline-block;
+    padding:4px 8px;
+    border-radius:8px;
+    font-size:10px;
+}
+
+.badge-green{
+    background:#dcfce7;
+    color:#15803d;
+}
+
+.badge-orange{
+    background:#ffedd5;
+    color:#c2410c;
+}
+
+/* ================= PROFILE ================= */
+
+.profile-head{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    background:white;
+    padding:18px;
+    border-radius:18px;
+    margin-bottom:15px;
+}
+
+.profile-photo{
+    width:65px;
+    height:65px;
+    border-radius:50%;
+    overflow:hidden;
+    background:#fed7aa;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.profile-photo img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+/* ================= CART ================= */
+
+.cart-box{
+    background:#fff7ed;
+    border:1px solid #fed7aa;
+    position:sticky;
+    bottom:5px;
+    z-index:10;
+}
+
+.cart-total{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.cart-price{
+    color:#ea580c;
+    font-size:18px;
+    font-weight:700;
+}
+
+/* ================= MOBILE ================= */
+
+@media (max-width:600px){
+
+    body{
+        padding:0;
+        background:#fffaf5;
+    }
+
+    .app{
+        width:100%;
+        max-width:none;
+        height:100dvh;
+        min-height:100dvh;
+
+        border:none;
+        border-radius:0;
+        box-shadow:none;
+    }
+
+    .app::before{
+        display:none;
+    }
+
+    .content{
+        border-radius:0;
+    }
+
+    .bottom-nav{
+        border-radius:0;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+<div class="content">
+
+<!-- =====================================================
+     HOME
+===================================================== -->
+
+<div id="home" class="page active">
+
+<div class="header">
+
+<div class="greeting">
+สวัสดีคุณรวีพร! 🐾
+</div>
+
+<div class="avatar">
+
+<img
+src="https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=200&q=80"
+alt="Buddy">
+
+</div>
+
+</div>
+
+
+<!-- SEARCH -->
+
+<div class="search-box">
+
+<i class="fa-solid fa-magnifying-glass"></i>
+
+<input
+type="text"
+id="searchInput"
+placeholder="ค้นหาบริการ หรือสาขาใกล้บ้าน..."
+autocomplete="off"
+oninput="searchPetCare()"
+>
+
+<button
+class="clear-search"
+id="clearSearch"
+onclick="clearSearch()"
+style="display:none;">
+
+<i class="fa-solid fa-xmark"></i>
+
+</button>
+
+</div>
+
+<div id="searchResults" class="search-results"></div>
+
+
+<!-- SERVICES -->
+
+<div class="section-title">
+บริการทั้งหมด
+</div>
+
+<div class="services" id="serviceSlider">
+
+<div class="service" onclick="openPage('booking')">
+<div class="service-icon">
+<i class="fa-solid fa-shower"></i>
+</div>
+<span>อาบน้ำตัดขน</span>
+</div>
+
+<div class="service" onclick="openPage('booking')">
+<div class="service-icon">
+<i class="fa-solid fa-scissors"></i>
+</div>
+<span>ตัดเล็บเช็ดหู</span>
+</div>
+
+<div class="service" onclick="openPage('booking')">
+<div class="service-icon">
+<i class="fa-solid fa-spa"></i>
+</div>
+<span>สปาสัตว์เลี้ยง</span>
+</div>
+
+<div class="service" onclick="openPage('booking')">
+<div class="service-icon">
+<i class="fa-solid fa-hotel"></i>
+</div>
+<span>ฝากเลี้ยง</span>
+</div>
+
+<div class="service" onclick="openPage('extra')">
+<div class="service-icon">
+<i class="fa-solid fa-plus"></i>
+</div>
+<span>บริการเสริม</span>
+</div>
+
+</div>
+
+
+<!-- BRANCH -->
+
+<div class="section-title">
+สาขาใกล้บ้าน
+</div>
+
+<div class="card branch-card"
+onclick="openPage('branches')">
+
+<div class="branch-info">
+
+<h3>
+Pet Care สาขาพิษณุโลก
+</h3>
+
+<p>
+📍 ห่างจากคุณประมาณ 2.3 กม.
+</p>
+
+<p>
+🕐 เปิด 09:00 - 20:00 น.
+</p>
+
+</div>
+
+<div class="arrow">
+<i class="fa-solid fa-chevron-right"></i>
+</div>
+
+</div>
+
+
+<!-- EXTRA -->
+
+<div class="section-title">
+บริการเสริม
+</div>
+
+<div class="card branch-card"
+onclick="openPage('extra')">
+
+<div class="branch-info">
+
+<h3>
+✨ บริการเสริมสำหรับสัตว์เลี้ยง
+</h3>
+
+<p>
+รับส่งสัตว์เลี้ยง • ฝากเลี้ยง • จำหน่ายอุปกรณ์
+</p>
+
+</div>
+
+<div class="arrow">
+<i class="fa-solid fa-chevron-right"></i>
+</div>
+
+</div>
+
+
+<!-- BOOKING -->
+
+<div class="section-title">
+คิวจองของคุณ
+</div>
+
+<div class="card">
+
+<div class="pet-info">
+
+<img
+class="pet-real-img"
+src="https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=300&q=80"
+alt="Buddy">
+
+<div class="pet-details">
+
+<h3>
+Buddy (บัดดี้)
+</h3>
+
+<p>
+สุนัข • อาบน้ำตัดขน
+</p>
+
+<p>
+🕐 พุธ 25 ต.ค. 14:00
+</p>
+
+<p>
+📍 สาขาพิษณุโลก
+</p>
+
+</div>
+
+</div>
+
+<hr style="border:none;border-top:1px solid #eee;margin:14px 0;">
+
+<button
+class="btn btn-orange full"
+onclick="openPage('booking-detail')">
+
+ดูรายละเอียดคิว
+
+</button>
+
+</div>
+
+
+<!-- EMERGENCY -->
+
+<div class="section-title">
+บริการฉุกเฉิน
+</div>
+
+<div class="card emergency"
+onclick="openPage('emergency')">
+
+<div class="emergency-icon">
+
+<i class="fa-solid fa-triangle-exclamation"></i>
+
+</div>
+
+<div>
+
+<strong>
+🚨 Emergency Pet
+</strong>
+
+<p>
+ค้นหาโรงพยาบาลสัตว์ใกล้ที่สุด
+</p>
+
+</div>
+
+</div>
+
+
+<!-- REFILL -->
+
+<div class="section-title">
+ระบบดูแลอัจฉริยะ
+</div>
+
+<div class="card refill">
+
+<div class="refill-head">
+
+<div class="refill-icon">
+
+<i class="fa-solid fa-cart-shopping"></i>
+
+</div>
+
+<div>
+
+<strong>
+🛒 Auto Refill อาหาร
+</strong>
+
+<p style="margin:2px 0 0;">
+ระบบคาดการณ์อาหารหมด
+</p>
+
+</div>
+
+</div>
+
+<p>
+
+🔔 อาหารของ <b>Milo</b>
+คาดว่าจะหมดใน
+
+<span class="warning">
+5 วัน
+</span>
+
+<br><br>
+
+อาหาร:
+<b>อาหารเม็ดแมว สูตรควบคุมก้อนขน</b>
+
+<br>
+
+ราคา:
+<b>฿219</b>
+
+</p>
+
+<button
+class="btn btn-orange full"
+onclick="refillFood()">
+
+<i class="fa-solid fa-cart-plus"></i>
+
+&nbsp;
+
+สั่งซ้ำทันที
+
+</button>
+
+</div>
+
+
+<!-- HEALTH -->
+
+<div class="section-title">
+สุขภาพสัตว์เลี้ยง
+</div>
+
+<div class="card"
+onclick="openPage('health')"
+style="cursor:pointer;">
+
+<div class="pet-info">
+
+<img
+class="pet-real-img"
+src="https://images.unsplash.com/photo-1574158622682-e40e69881006?auto=format&fit=crop&w=300&q=80"
+alt="Milo">
+
+<div class="pet-details">
+
+<h3>
+Milo
+</h3>
+
+<p>
+ดูโปรไฟล์สุขภาพสัตว์เลี้ยง
+</p>
+
+</div>
+
+<div style="margin-left:auto;color:#ea580c;">
+
+<i class="fa-solid fa-chevron-right"></i>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- =====================================================
+     BOOKING
+===================================================== -->
+
+<div id="booking" class="page">
+
+<div class="page-header">
+
+<span class="back"
+onclick="openPage('home')">
+
+<i class="fa-solid fa-arrow-left"></i>
+
+</span>
+
+จองคิว
+
+</div>
+
+<div class="card">
+
+<label>
+เลือกสัตว์เลี้ยง
+</label>
+
+<select>
+
+<option>Buddy - สุนัข</option>
+<option>Milo - แมว</option>
+
+</select>
+
+
+<label>
+เลือกบริการ
+</label>
+
+<select id="bookingService">
+
+<option>อาบน้ำตัดขน</option>
+<option>ตัดเล็บเช็ดหู</option>
+<option>สปาสัตว์เลี้ยง</option>
+<option>ฝากเลี้ยง</option>
+
+</select>
+
+
+<label>
+วันที่
+</label>
+
+<input type="date">
+
+
+<label>
+เวลา
+</label>
+
+<select>
+
+<option>10:00 น.</option>
+<option>12:00 น.</option>
+<option>14:00 น.</option>
+<option>16:00 น.</option>
+
+</select>
+
+
+<button
+class="btn btn-orange full"
+onclick="confirmBooking()">
+
+ยืนยันการจอง
+
+</button>
+
+</div>
+
+</div>
+
+
+<!-- =====================================================
+     BOOKING DETAIL
+===================================================== -->
+
+<div id="booking-detail" class="page">
+
+<div class="page-header">
+
+<span class="back"
+onclick="openPage('home')">
+
+<i class="fa-solid fa-arrow-left"></i>
+
+</span>
+
+รายละเอียดคิว
+
+</div>
+
+<div class="card">
+
+<div class="pet-info">
+
+<img
+class="pet-profile-img"
+src="https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=300&q=80"
+alt="Buddy">
+
+<div class="pet-details">
+
+<h3>
+Buddy
+</h3>
+
+<p>
+สุนัข
+</p>
+
+</div>
+
+</div>
+
+<br>
+
+<div class="health-box">
+
+บริการ
+
+<strong>
+อาบน้ำตัดขน
+</strong>
+
+</div>
+
+<br>
+
+<div class="health-box">
+
+วันและเวลา
+
+<strong>
+พุธ 25 ต.ค. เวลา 14:00 น.
+</strong>
+
+</div>
+
+<br>
+
+<div class="health-box">
+
+สาขา
+
+<strong>
+Pet Care สาขาพิษณุโลก
+</strong>
+
+</div>
+
+<br>
+
+<span class="badge badge-green">
+ยืนยันการจองแล้ว
+</span>
+
+</div>
+
+<button
+class="btn btn-light full"
+onclick="cancelBooking()">
+
+ยกเลิกการจอง
+
+</button>
+
+</div>
+
+
+<!-- =====================================================
+     HISTORY
+===================================================== -->
+
+<div id="history" class="page">
+
+<div class="page-header">
+ประวัติการใช้บริการ
+</div>
+
+<div class="list">
+
+<h3>
+🐶 Buddy
+</h3>
+
+<p>
+อาบน้ำตัดขน
+</p>
+
+<p>
+25 สิงหาคม 2569 • 14:00 น.
+</p>
+
+<span class="badge badge-green">
+ใช้บริการแล้ว
+</span>
+
+</div>
+
+
+<div class="list">
+
+<h3>
+🐱 Milo
+</h3>
+
+<p>
+ตัดเล็บเช็ดหู
+</p>
+
+<p>
+12 สิงหาคม 2569 • 16:00 น.
+</p>
+
+<span class="badge badge-green">
+ใช้บริการแล้ว
+</span>
+
+</div>
+
+
+<div class="list">
+
+<h3>
+🐶 Buddy
+</h3>
+
+<p>
+สปาสัตว์เลี้ยง
+</p>
+
+<p>
+30 กรกฎาคม 2569 • 13:00 น.
+</p>
+
+<span class="badge badge-green">
+ใช้บริการแล้ว
+</span>
+
+</div>
+
+</div>
+
+
+<!-- =====================================================
+     ACCOUNT
+===================================================== -->
+
+<div id="account" class="page">
+
+<div class="page-header">
+บัญชีของฉัน
+</div>
+
+<div class="profile-head">
+
+<div class="profile-photo">
+
+<img
+src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=200&q=80"
+alt="คุณรวีพร">
+
+</div>
+
+<div>
+
+<h3>
+คุณรวีพร
+</h3>
+
+<p style="font-size:12px;color:#71717a;">
+สมาชิก Pet Care
+</p>
+
+</div>
+
+</div>
+
+
+<div class="list">
+
+<h3>
+👤 ข้อมูลส่วนตัว
+</h3>
+
+<div class="health-box" style="margin-top:10px;">
+
+ชื่อ
+
+<strong>
+คุณรวีพร
+</strong>
+
+</div>
+
+
+<div class="health-box" style="margin-top:8px;">
+
+เบอร์โทรศัพท์
+
+<strong>
+08X-XXX-XXXX
+</strong>
+
+</div>
+
+
+<button
+class="btn btn-light full"
+onclick="editAccount()">
+
+แก้ไขข้อมูล
+
+</button>
+
+</div>
+
+
+<div class="list"
+onclick="openPage('health')"
+style="cursor:pointer;">
+
+<h3>
+🐾 สัตว์เลี้ยงของฉัน
+</h3>
+
+<p>
+Milo • แมวเปอร์เซีย
+</p>
+
+<p>
+Buddy • สุนัข
+</p>
+
+</div>
+
+
+<div class="list">
+
+<h3>
+⚙️ การตั้งค่า
+</h3>
+
+<p>
+🔔 การแจ้งเตือน
+</p>
+
+<p>
+🔒 ความเป็นส่วนตัว
+</p>
+
+<p>
+❓ ศูนย์ช่วยเหลือ
+</p>
+
+</div>
+
+</div>
+
+
+<!-- =====================================================
+     FOOD
+===================================================== -->
+
+<div id="food" class="page">
+
+<div class="page-header">
+
+<span class="back"
+onclick="openPage('home')">
+
+<i class="fa-solid fa-arrow-left"></i>
+
+</span>
+
+อาหารสัตว์
+
+</div>
+
+<p style="font-size:13px;color:#71717a;margin-bottom:12px;">
+
+เลือกประเภทอาหารที่ต้องการ
+
+</p>
+
+
+<div class="food-filter">
+
+<button class="active"
+onclick="filterFood('all',this)">
+ทั้งหมด
+</button>
+
+<button onclick="filterFood('dry',this)">
+🥩 อาหารเม็ด
+</button>
+
+<button onclick="filterFood('wet',this)">
+🥣 อาหารเปียก
+</button>
+
+<button onclick="filterFood('treat',this)">
+🦴 ขนม
+</button>
+
+<button onclick="filterFood('baby',this)">
+🍼 ลูกสัตว์
+</button>
+
+<button onclick="filterFood('special',this)">
+🩺 สูตรเฉพาะ
+</button>
+
+<button onclick="filterFood('rabbit',this)">
+🌿 กระต่าย
+</button>
+
+</div>
+
+
+<!-- DRY -->
+
+<div class="list food-item" data-type="dry">
+
+<div class="food-card">
+
+<div class="food-icon">
+🥩
+</div>
+
+<div class="food-info">
+
+<h3>
+อาหารเม็ดสุนัข สูตรบำรุงขน
+</h3>
+
+<span class="food-category">
+สุนัข
+</span>
+
+<p>
+ช่วยดูแลขนและผิวหนัง
+</p>
+
+<p class="price">
+฿189 / 1 กก.
+</p>
+
+</div>
+
+<button
+class="btn btn-orange"
+onclick="addCart(189)">
+
+เพิ่ม
+
+</button>
+
+</div>
+
+</div>
+
+
+<div class="list food-item" data-type="dry">
+
+<div class="food-card">
+
+<div class="food-icon">
+🐱
+</div>
+
+<div class="food-info">
+
+<h3>
+อาหารเม็ดแมว สูตรควบคุมก้อนขน
+</h3>
+
+<span class="food-category">
+แมว
+</span>
+
+<p>
+ช่วยดูแลระบบทางเดินอาหารและลดก้อนขน
+</p>
+
+<p class="price">
+฿219 / 1 กก.
+</p>
+
+</div>
+
+<button
+class="btn btn-orange"
+onclick="addCart(219)">
+
+เพิ่ม
+
+</button>
+
+</div>
+
+</div>
+
+
+<!-- WET -->
+
+<div class="list food-item" data-type="wet">
+
+<div class="food-card">
+
+<div class="food-icon">
+🥣
+</div>
+
+<div class="food-info">
+
+<h3>
+อาหารเปียกแมว รสไก่
+</h3>
+
+<span class="food-category">
+แมว
+</span>
+
+<p>
+เนื้อนุ่ม เพิ่มความน่ากิน
+</p>
+
+<p class="price">
+฿35 / ซอง
+</p>
+
+</div>
+
+<button
+class="btn btn-orange"
+onclick="addCart(35)">
+
+เพิ่ม
+
+</button>
+
+</div>
+
+</div>
+
+
+<div class="list food-item" data-type="wet">
+
+<div class="food-card">
+
+<div class="food-icon">
+🥣
+</div>
+
+<div class="food-info">
+
+<h3>
+อาหารเปียกสุนัข รสเนื้อ
+</h3>
+
+<span class="food-category">
+สุนัข
+</span>
+
+<p>
+อาหารเปียกเนื้อนุ่ม รสชาติถูกใจสุนัข
+</p>
+
+<p class="price">
+฿39 / ซอง
+</p>
+
+</div>
+
+<button
+class="btn btn-orange"
+onclick="addCart(39)">
+
+เพิ่ม
+
+</button>
+
+</div>
+
+</div>
+
+
+<!-- TREAT -->
+
+<div class="list food-item" data-type="treat">
+
+<div class="food-card">
+
+<div class="food-icon">
+🦴
+</div>
+
+<div class="food-info">
+
+<h3>
+ขนมสุนัข รสไก่
+</h3>
+
+<span class="food-category">
+ขนมสุนัข
+</span>
+
+<p>
+ขนมสำหรับให้เป็นรางวัล
+</p>
+
+<p class="price">
+฿79 / ถุง
+</p>
+
+</div>
+
+<button
+class="btn btn-orange"
+onclick="addCart(79)">
+
+เพิ่ม
+
+</button>
+
+</div>
+
+</div>
+
+
+<div class="list food-item" data-type="treat">
+
+<div class="food-card">
+
+<div class="food-icon">
+🐟
+</div>
+
+<div class="food-info">
+
+<h3>
+ขนมแมวเลีย รสปลา
+</h3>
+
+<span class="food-category">
+ขนมแมว
+</span>
+
+<p>
+ขนมแบบซองสำหรับแมว
+</p>
+
+<p class="price">
+฿59 / แพ็ก
+</p>
+
+</div>
+
+<button
+class="btn btn-orange"
+onclick="addCart(59)">
+
+เพิ่ม
+
+</button>
+
+</div>
+
+</div>
+
+
+<!-- BABY -->
+
+<div class="list food-item" data-type="baby">
+
+<div class="food-card">
+
+<div class="food-icon">
+🍼
+</div>
+
+<div class="food-info">
+
+<h3>
+อาหารลูกสุนัข
+</h3>
+
+<span class="food-category">
+ลูกสุนัข
+</span>
+
+<p>
+สูตรสำหรับลูกสุนัข ช่วยเสริมการเจริญเติบโต
+</p>
+
+<p class="price">
+฿229 / 1 กก.
+</p>
+
+</div>
+
+<button
+class="btn btn-orange"
+onclick="addCart(229)">
+
+เพิ่ม
+
+</button>
+
+</div>
+
+</div>
+
+
+<div class="list food-item" data-type="baby">
+
+<div class="food-card">
+
+<div class="food-icon">
+🐱
+</div>
+
+<div class="food-info">
+
+<h3>
+อาหารลูกแมว
+</h3>
+
+<span class="food-category">
+ลูกแมว
+</span>
+
+<p>
+สูตรสำหรับลูกแมว ช่วยเสริมพัฒนาการ
+</p>
+
+<p class="price">
+฿239 / 1 กก.
+</p>
+
+</div>
+
+<button
+class="btn btn-orange"
+onclick="addCart(239)">
+
+เพิ่ม
+
+</button>
+
+</div>
+
+</div>
+
+
+<!-- SPECIAL -->
+
+<div class="list food-item" data-type="special">
+
+<div class="food-card">
+
+<div class="food-icon">
+🩺
+</div>
+
+<div class="food-info">
+
+<h3>
+อาหารแมว สูตรดูแลทางเดินปัสสาวะ
+</h3>
+
+<span class="food-category">
+สูตรเฉพาะ
+</span>
+
+<p>
+อาหารสูตรเฉพาะสำหรับดูแลสุขภาพแมว
+</p>
+
+<p class="price">
+฿299 / 1 กก.
+</p>
+
+</div>
+
+<button
+class="btn btn-orange"
+onclick="addCart(299)">
+
+เพิ่ม
+
+</button>
+
+</div>
+
+</div>
+
+
+<div class="list food-item" data-type="special">
+
+<div class="food-card">
+
+<div class="food-icon">
+🩺
+</div>
+
+<div class="food-info">
+
+<h3>
+อาหารสุนัข สูตรควบคุมน้ำหนัก
+</h3>
+
+<span class="food-category">
+สูตรเฉพาะ
+</span>
+
+<p>
+เหมาะสำหรับสุนัขที่ต้องการควบคุมน้ำหนัก
+</p>
+
+<p class="price">
+฿289 / 1 กก.
+</p>
+
+</div>
+
+<button
+class="btn btn-orange"
+onclick="addCart(289)">
+
+เพิ่ม
+
+</button>
+
+</div>
+
+</div>
+
+
+<!-- RABBIT -->
+
+<div class="list food-item" data-type="rabbit">
+
+<div class="food-card">
+
+<div class="food-icon">
+🌿
+</div>
+
+<div class="food-info">
+
+<h3>
+อาหารเม็ดกระต่าย
+</h3>
+
+<span class="food-category">
+กระต่าย
+</span>
+
+<p>
+มีใยอาหารสำหรับกระต่าย
+</p>
+
+<p class="price">
+฿129 / 1 กก.
+</p>
+
+</div>
+
+<button
+class="btn btn-orange"
+onclick="addCart(129)">
+
+เพิ่ม
+
+</button>
+
+</div>
+
+</div>
+
+
+<div class="list food-item" data-type="rabbit">
+
+<div class="food-card">
+
+<div class="food-icon">
+🌿
+</div>
+
+<div class="food-info">
+
+<h3>
+หญ้าแห้งสำหรับกระต่าย
+</h3>
+
+<span class="food-category">
+กระต่าย
+</span>
+
+<p>
+ช่วยดูแลระบบทางเดินอาหาร
+</p>
+
+<p class="price">
+฿99 / ถุง
+</p>
+
+</div>
+
+<button
+class="btn btn-orange"
+onclick="addCart(99)">
+
+เพิ่ม
+
+</button>
+
+</div>
+
+</div>
+
+
+<!-- CART -->
+
+<div class="card cart-box">
+
+<div class="cart-total">
+
+<div>
+
+🛒 <b>ตะกร้าสินค้า</b>
+
+<br>
+
+<span style="font-size:11px;color:#71717a;">
+
+จำนวน
+<span id="cartCount">0</span>
+ชิ้น
+
+</span>
+
+</div>
+
+<div class="cart-price">
+
+฿<span id="cartTotal">0</span>
+
+</div>
+
+</div>
+
+<br>
+
+<button
+class="btn btn-orange full"
+onclick="checkoutFood()">
+
+<i class="fa-solid fa-cart-shopping"></i>
+
+&nbsp;
+
+สั่งซื้อสินค้า
+
+</button>
+
+</div>
+
+</div>
+
+
+<!-- =====================================================
+     HEALTH
+===================================================== -->
+
+<div id="health" class="page">
+
+<div class="page-header">
+
+<span class="back"
+onclick="openPage('home')">
+
+<i class="fa-solid fa-arrow-left"></i>
+
+</span>
+
+โปรไฟล์สุขภาพ
+
+</div>
+
+
+<div class="card">
+
+<div class="pet-info">
+
+<img
+class="pet-profile-img"
+src="https://images.unsplash.com/photo-1574158622682-e40e69881006?auto=format&fit=crop&w=300&q=80"
+alt="Milo">
+
+<div class="pet-details">
+
+<h3>
+Milo
+</h3>
+
+<p>
+แมวเปอร์เซีย
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="section-title">
+ข้อมูลพื้นฐาน
+</div>
+
+<div class="card">
+
+<div class="health-grid">
+
+<div class="health-box">
+
+<small>
+อายุ
+</small>
+
+<strong>
+2 ปี
+</strong>
+
+</div>
+
+
+<div class="health-box">
+
+<small>
+น้ำหนัก
+</small>
+
+<strong>
+4.5 กก.
+</strong>
+
+</div>
+
+
+<div class="health-box"
+style="grid-column:1/3;">
+
+<small>
+สายพันธุ์
+</small>
+
+<strong>
+เปอร์เซีย
+</strong>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="card">
+
+<h3>
+⚠️ ประวัติการแพ้
+</h3>
+
+<p style="font-size:13px;color:#71717a;margin-top:8px;">
+
+แพ้อาหารทะเล
+
+</p>
+
+</div>
+
+
+<div class="card">
+
+<h3>
+💉 วัคซีน
+</h3>
+
+<div class="health-box"
+style="margin-top:10px;">
+
+<small>
+วัคซีนล่าสุด
+</small>
+
+<strong>
+15 สิงหาคม 2569
+</strong>
+
+</div>
+
+
+<div class="health-box"
+style="margin-top:8px;background:#fff7ed;">
+
+<small>
+วัคซีนครั้งต่อไป
+</small>
+
+<strong style="color:#ea580c;">
+
+15 กุมภาพันธ์ 2570
+
+</strong>
+
+</div>
+
+
+<button
+class="btn btn-orange full"
+onclick="setReminder()">
+
+🔔 เปิดแจ้งเตือนวัคซีน
+
+</button>
+
+</div>
+
+</div>
+
+
+<!-- =====================================================
+     EMERGENCY
+===================================================== -->
+
+<div id="emergency" class="page">
+
+<div class="page-header">
+
+<span class="back"
+onclick="openPage('home')">
+
+<i class="fa-solid fa-arrow-left"></i>
+
+</span>
+
+🚨 Emergency Pet
+
+</div>
+
+
+<div class="card"
+style="background:#fff1f2;border:1px solid #fecdd3;">
+
+<h3>
+🐱 ข้อมูลสัตว์เลี้ยง
+</h3>
+
+
+<div style="display:flex;align-items:center;gap:12px;margin-top:12px;">
+
+<img
+class="emergency-pet-img"
+src="https://images.unsplash.com/photo-1574158622682-e40e69881006?auto=format&fit=crop&w=300&q=80"
+alt="Milo">
+
+
+<div style="flex:1;">
+
+<div style="display:flex;justify-content:space-between;margin-top:4px;">
+<span>ชื่อ</span>
+<strong>Milo</strong>
+</div>
+
+
+<div style="display:flex;justify-content:space-between;margin-top:8px;">
+<span>สายพันธุ์</span>
+<strong>เปอร์เซีย</strong>
+</div>
+
+
+<div style="display:flex;justify-content:space-between;margin-top:8px;">
+<span>อายุ</span>
+<strong>2 ปี</strong>
+</div>
+
+
+<div style="display:flex;justify-content:space-between;margin-top:8px;">
+<span>น้ำหนัก</span>
+<strong>4.5 กก.</strong>
+</div>
+
+</div>
+
+</div>
+
+
+<div style="display:flex;justify-content:space-between;margin-top:12px;">
+
+<span>ประวัติแพ้</span>
+
+<strong style="color:#dc2626;">
+อาหารทะเล
+</strong>
+
+</div>
+
+</div>
+
+
+<div class="section-title">
+🏥 โรงพยาบาลสัตว์ใกล้ที่สุด
+</div>
+
+
+<div class="hospital">
+
+<h3>
+โรงพยาบาลสัตว์ใกล้บ้าน
+</h3>
+
+<p>
+📍 ห่างจากคุณประมาณ 2.1 กม.
+</p>
+
+<p>
+🕐 เปิด 24 ชั่วโมง
+</p>
+
+
+<div class="hospital-buttons">
+
+<button
+class="btn btn-green"
+onclick="callHospital()">
+
+📞 โทร
+
+</button>
+
+
+<button
+class="btn btn-light"
+onclick="openMap()">
+
+📍 เส้นทาง
+
+</button>
+
+</div>
+
+</div>
+
+
+<div class="hospital">
+
+<h3>
+โรงพยาบาลสัตว์เมืองสุขใจ
+</h3>
+
+<p>
+📍 ห่างจากคุณประมาณ 3.5 กม.
+</p>
+
+<p>
+🕐 เปิด 08:00 - 22:00 น.
+</p>
+
+
+<div class="hospital-buttons">
+
+<button
+class="btn btn-green"
+onclick="callHospital()">
+
+📞 โทร
+
+</button>
+
+
+<button
+class="btn btn-light"
+onclick="openMap()">
+
+📍 เส้นทาง
+
+</button>
+
+</div>
+
+</div>
+
+
+<div class="card"
+style="background:#fff7ed;color:#9a3412;font-size:12px;">
+
+⚠️ หากสัตว์เลี้ยงมีอาการรุนแรง
+เช่น หายใจลำบาก หมดสติ เลือดออกมาก
+หรือชัก ควรรีบไปโรงพยาบาลสัตว์ทันที
+
+</div>
+
+</div>
+
+
+<!-- =====================================================
+     BRANCHES
+===================================================== -->
+
+<div id="branches" class="page">
+
+<div class="page-header">
+
+<span class="back"
+onclick="openPage('home')">
+
+<i class="fa-solid fa-arrow-left"></i>
+
+</span>
+
+สาขาใกล้บ้าน
+
+</div>
+
+
+<div class="hospital">
+
+<h3>
+📍 Pet Care สาขาพิษณุโลก
+</h3>
+
+<p>
+ห่างจากคุณประมาณ 2.3 กม.
+</p>
+
+<p>
+เปิด 09:00 - 20:00 น.
+</p>
+
+
+<div class="hospital-buttons">
+
+<button
+class="btn btn-green"
+onclick="callHospital()">
+
+📞 โทร
+
+</button>
+
+
+<button
+class="btn btn-light"
+onclick="openMap()">
+
+📍 เส้นทาง
+
+</button>
+
+</div>
+
+</div>
+
+
+<div class="hospital">
+
+<h3>
+📍 Pet Care สาขาใกล้เคียง
+</h3>
+
+<p>
+ห่างจากคุณประมาณ 4.8 กม.
+</p>
+
+<p>
+เปิด 09:00 - 20:00 น.
+</p>
+
+
+<div class="hospital-buttons">
+
+<button
+class="btn btn-green"
+onclick="callHospital()">
+
+📞 โทร
+
+</button>
+
+
+<button
+class="btn btn-light"
+onclick="openMap()">
+
+📍 เส้นทาง
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- =====================================================
+     EXTRA
+===================================================== -->
+
+<div id="extra" class="page">
+
+<div class="page-header">
+
+<span class="back"
+onclick="openPage('home')">
+
+<i class="fa-solid fa-arrow-left"></i>
+
+</span>
+
+บริการเสริม
+
+</div>
+
+
+<div class="list">
+
+<h3>
+🚗 รับ-ส่งสัตว์เลี้ยง
+</h3>
+
+<p>
+บริการรับส่งสัตว์เลี้ยงถึงบ้าน
+</p>
+
+<p class="price">
+เริ่มต้น ฿100
+</p>
+
+<button
+class="btn btn-orange"
+onclick="openPage('booking')">
+
+จองบริการ
+
+</button>
+
+</div>
+
+
+<div class="list">
+
+<h3>
+🏨 ฝากเลี้ยงสัตว์
+</h3>
+
+<p>
+ดูแลสัตว์เลี้ยงระหว่างเจ้าของเดินทาง
+</p>
+
+<p class="price">
+เริ่มต้น ฿250 / วัน
+</p>
+
+<button
+class="btn btn-orange"
+onclick="openPage('booking')">
+
+จองบริการ
+
+</button>
+
+</div>
+
+
+<div class="list">
+
+<h3>
+🧸 จำหน่ายอุปกรณ์สัตว์เลี้ยง
+</h3>
+
+<p>
+ของเล่น ปลอกคอ แชมพู และอุปกรณ์ดูแล
+</p>
+
+<p class="price">
+มีสินค้าหลากหลายรายการ
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- =====================================================
+     BOTTOM NAV
+===================================================== -->
+
+<div class="bottom-nav">
+
+<div
+class="nav active"
+id="nav-home"
+onclick="openPage('home')">
+
+<i class="fa-solid fa-house"></i>
+
+<span>
+หน้าแรก
+</span>
+
+</div>
+
+
+<div
+class="nav"
+id="nav-booking"
+onclick="openPage('booking')">
+
+<i class="fa-regular fa-calendar-check"></i>
+
+<span>
+จองคิว
+</span>
+
+</div>
+
+
+<div
+class="nav"
+id="nav-history"
+onclick="openPage('history')">
+
+<i class="fa-solid fa-clock-rotate-left"></i>
+
+<span>
+ประวัติ
+</span>
+
+</div>
+
+
+<div
+class="nav"
+id="nav-account"
+onclick="openPage('account')">
+
+<i class="fa-regular fa-user"></i>
+
+<span>
+บัญชี
+</span>
+
+</div>
+
+</div>
+
+</div>
+
+
+<script>
+
+/* =====================================================
+   PAGE SYSTEM
+===================================================== */
+
+function openPage(page){
+
+    document.querySelectorAll(".page")
+    .forEach(function(p){
+        p.classList.remove("active");
+    });
+
+    const target =
+        document.getElementById(page);
+
+    if(target){
+        target.classList.add("active");
+    }
+
+    document.querySelectorAll(".nav")
+    .forEach(function(nav){
+        nav.classList.remove("active");
+    });
+
+    if(page === "home"){
+        document
+        .getElementById("nav-home")
+        .classList.add("active");
+    }
+
+    if(page === "booking"){
+        document
+        .getElementById("nav-booking")
+        .classList.add("active");
+    }
+
+    if(page === "history"){
+        document
+        .getElementById("nav-history")
+        .classList.add("active");
+    }
+
+    if(page === "account"){
+        document
+        .getElementById("nav-account")
+        .classList.add("active");
+    }
+
+    document
+    .querySelector(".content")
+    .scrollTop = 0;
+
+    if(page !== "home"){
+
+        const results =
+            document.getElementById("searchResults");
+
+        const input =
+            document.getElementById("searchInput");
+
+        const clearButton =
+            document.getElementById("clearSearch");
+
+        if(results){
+            results.style.display = "none";
+        }
+
+        if(input){
+            input.value = "";
+        }
+
+        if(clearButton){
+            clearButton.style.display = "none";
+        }
+    }
+}
+
+
+/* =====================================================
+   SEARCH DATA
+===================================================== */
+
+const searchData = [
+
+    {
+        name:"อาบน้ำตัดขน",
+        detail:"บริการดูแลความสะอาดและตัดแต่งขน",
+        icon:"fa-shower",
+        page:"booking"
+    },
+
+    {
+        name:"ตัดเล็บเช็ดหู",
+        detail:"บริการดูแลเล็บและทำความสะอาดหู",
+        icon:"fa-scissors",
+        page:"booking"
+    },
+
+    {
+        name:"สปาสัตว์เลี้ยง",
+        detail:"บริการสปาและดูแลสัตว์เลี้ยง",
+        icon:"fa-spa",
+        page:"booking"
+    },
+
+    {
+        name:"ฝากเลี้ยง",
+        detail:"บริการรับฝากดูแลสัตว์เลี้ยง",
+        icon:"fa-hotel",
+        page:"booking"
+    },
+
+    {
+        name:"อาหารสัตว์",
+        detail:"อาหารเม็ด อาหารเปียก ขนม และสูตรเฉพาะ",
+        icon:"fa-bowl-food",
+        page:"food"
+    },
+
+    {
+        name:"อาหารเม็ด",
+        detail:"อาหารเม็ดสำหรับสุนัข แมว และกระต่าย",
+        icon:"fa-bowl-food",
+        page:"food"
+    },
+
+    {
+        name:"อาหารเปียก",
+        detail:"อาหารเปียกสำหรับแมวและสุนัข",
+        icon:"fa-bowl-food",
+        page:"food"
+    },
+
+    {
+        name:"ขนมสัตว์เลี้ยง",
+        detail:"ขนมสุนัขและขนมแมว",
+        icon:"fa-bone",
+        page:"food"
+    },
+
+    {
+        name:"อาหารลูกสัตว์",
+        detail:"อาหารสำหรับลูกสุนัขและลูกแมว",
+        icon:"fa-bottle-water",
+        page:"food"
+    },
+
+    {
+        name:"อาหารสูตรเฉพาะ",
+        detail:"อาหารดูแลสุขภาพเฉพาะด้าน",
+        icon:"fa-heart-pulse",
+        page:"food"
+    },
+
+    {
+        name:"อาหารกระต่าย",
+        detail:"อาหารเม็ดและหญ้าแห้งสำหรับกระต่าย",
+        icon:"fa-leaf",
+        page:"food"
+    },
+
+    {
+        name:"บริการรับ-ส่งสัตว์เลี้ยง",
+        detail:"บริการรับส่งสัตว์เลี้ยงถึงบ้าน",
+        icon:"fa-car",
+        page:"extra"
+    },
+
+    {
+        name:"ฝากเลี้ยงสัตว์",
+        detail:"ดูแลสัตว์เลี้ยงระหว่างเจ้าของเดินทาง",
+        icon:"fa-house",
+        page:"extra"
+    },
+
+    {
+        name:"อุปกรณ์สัตว์เลี้ยง",
+        detail:"ของเล่น ปลอกคอ แชมพู และอุปกรณ์ดูแล",
+        icon:"fa-paw",
+        page:"extra"
+    },
+
+    {
+        name:"Pet Care สาขาพิษณุโลก",
+        detail:"ห่างจากคุณประมาณ 2.3 กม. • 09:00 - 20:00 น.",
+        icon:"fa-location-dot",
+        page:"branches"
+    },
+
+    {
+        name:"Pet Care สาขาใกล้เคียง",
+        detail:"ห่างจากคุณประมาณ 4.8 กม. • 09:00 - 20:00 น.",
+        icon:"fa-location-dot",
+        page:"branches"
+    },
+
+    {
+        name:"โรงพยาบาลสัตว์ใกล้บ้าน",
+        detail:"ห่างจากคุณประมาณ 2.1 กม. • เปิด 24 ชั่วโมง",
+        icon:"fa-hospital",
+        page:"emergency"
+    },
+
+    {
+        name:"โรงพยาบาลสัตว์เมืองสุขใจ",
+        detail:"ห่างจากคุณประมาณ 3.5 กม. • 08:00 - 22:00 น.",
+        icon:"fa-hospital",
+        page:"emergency"
+    },
+
+    {
+        name:"โรงพยาบาลสัตว์",
+        detail:"ค้นหาโรงพยาบาลสัตว์ใกล้ที่สุด",
+        icon:"fa-hospital",
+        page:"emergency"
+    },
+
+    {
+        name:"บริการฉุกเฉิน",
+        detail:"ค้นหาโรงพยาบาลสัตว์ใกล้ที่สุด",
+        icon:"fa-triangle-exclamation",
+        page:"emergency"
+    },
+
+    {
+        name:"สุขภาพสัตว์เลี้ยง",
+        detail:"ดูข้อมูลสุขภาพ วัคซีน และประวัติการแพ้",
+        icon:"fa-heart-pulse",
+        page:"health"
+    },
+
+    {
+        name:"วัคซีน",
+        detail:"ข้อมูลวัคซีนและวันนัดครั้งต่อไป",
+        icon:"fa-syringe",
+        page:"health"
+    }
+
+];
+
+
+/* =====================================================
+   SEARCH
+===================================================== */
+
+function searchPetCare(){
+
+    const input =
+        document.getElementById("searchInput");
+
+    const results =
+        document.getElementById("searchResults");
+
+    const clearButton =
+        document.getElementById("clearSearch");
+
+    const keyword =
+        input.value.trim().toLowerCase();
+
+    results.innerHTML = "";
+
+    if(keyword === ""){
+
+        results.style.display = "none";
+
+        clearButton.style.display = "none";
+
+        return;
+    }
+
+    clearButton.style.display = "block";
+
+    const filtered =
+        searchData.filter(function(item){
+
+            return (
+                item.name.toLowerCase().includes(keyword) ||
+                item.detail.toLowerCase().includes(keyword)
+            );
+
+        });
+
+    if(filtered.length === 0){
+
+        results.innerHTML = `
+
+            <div class="no-result">
+
+                <i
+                class="fa-solid fa-magnifying-glass"
+                style="font-size:25px;margin-bottom:8px;">
+                </i>
+
+                <br>
+
+                ไม่พบข้อมูลที่ค้นหา
+
+                <br>
+
+                <span style="font-size:10px;">
+
+                    ลองค้นหา เช่น
+                    อาหาร,
+                    อาบน้ำ,
+                    สาขา,
+                    โรงพยาบาล
+
+                </span>
+
+            </div>
+
+        `;
+
+        results.style.display = "block";
+
+        return;
+    }
+
+    filtered.forEach(function(item){
+
+        const result =
+            document.createElement("div");
+
+        result.className =
+            "search-result";
+
+        result.innerHTML = `
+
+            <div class="search-result-icon">
+
+                <i class="fa-solid ${item.icon}"></i>
+
+            </div>
+
+            <div class="search-result-info">
+
+                <strong>
+                    ${item.name}
+                </strong>
+
+                <span>
+                    ${item.detail}
+                </span>
+
+            </div>
+
+            <i
+            class="fa-solid fa-chevron-right"
+            style="color:#d4d4d8;font-size:12px;">
+            </i>
+
+        `;
+
+        result.onclick = function(){
+
+            openPage(item.page);
+
+            input.value = "";
+
+            results.style.display = "none";
+
+            clearButton.style.display = "none";
+
+        };
+
+        results.appendChild(result);
+
+    });
+
+    results.style.display = "block";
+}
+
+
+/* =====================================================
+   CLEAR SEARCH
+===================================================== */
+
+function clearSearch(){
+
+    const input =
+        document.getElementById("searchInput");
+
+    const results =
+        document.getElementById("searchResults");
+
+    const clearButton =
+        document.getElementById("clearSearch");
+
+    input.value = "";
+
+    results.innerHTML = "";
+
+    results.style.display = "none";
+
+    clearButton.style.display = "none";
+
+    input.focus();
+}
+
+
+/* =====================================================
+   BOOKING
+===================================================== */
+
+function confirmBooking(){
+
+    alert(
+        "✅ จองคิวสำเร็จแล้ว!\n\n" +
+        "ระบบบันทึกการจองของคุณเรียบร้อย"
+    );
+
+    openPage("booking-detail");
+}
+
+
+function cancelBooking(){
+
+    const confirmCancel =
+        confirm("ต้องการยกเลิกการจองหรือไม่?");
+
+    if(confirmCancel){
+
+        alert(
+            "ยกเลิกการจองเรียบร้อยแล้ว"
+        );
+
+        openPage("home");
+    }
+}
+
+
+/* =====================================================
+   CART
+===================================================== */
+
+let cartCount = 0;
+let cartTotal = 0;
+
+
+function refillFood(){
+
+    cartCount++;
+
+    cartTotal += 219;
+
+    updateCart();
+
+    alert(
+
+        "🛒 สั่งอาหารของ Milo เรียบร้อยแล้ว!\n\n" +
+
+        "อาหารเม็ดแมว สูตรควบคุมก้อนขน\n" +
+        "ราคา ฿219"
+
+    );
+}
+
+
+function addCart(price){
+
+    cartCount++;
+
+    cartTotal += price;
+
+    updateCart();
+
+    alert(
+
+        "🛒 เพิ่มสินค้าลงตะกร้าแล้ว\n\n" +
+
+        "ราคา ฿" + price
+
+    );
+}
+
+
+function updateCart(){
+
+    const count =
+        document.getElementById("cartCount");
+
+    const total =
+        document.getElementById("cartTotal");
+
+    if(count){
+        count.textContent = cartCount;
+    }
+
+    if(total){
+        total.textContent = cartTotal;
+    }
+}
+
+
+/* =====================================================
+   FOOD FILTER
+===================================================== */
+
+function filterFood(type,button){
+
+    document
+    .querySelectorAll(".food-filter button")
+    .forEach(function(btn){
+
+        btn.classList.remove("active");
+
+    });
+
+    if(button){
+        button.classList.add("active");
+    }
+
+    document
+    .querySelectorAll(".food-item")
+    .forEach(function(item){
+
+        if(
+            type === "all" ||
+            item.dataset.type === type
+        ){
+
+            item.style.display = "block";
+
+        }
+
+        else{
+
+            item.style.display = "none";
+
+        }
+
+    });
+}
+
+
+/* =====================================================
+   CHECKOUT
+===================================================== */
+
+function checkoutFood(){
+
+    if(cartCount === 0){
+
+        alert(
+
+            "🛒 ตะกร้ายังไม่มีสินค้า\n\n" +
+
+            "กรุณาเลือกอาหารที่ต้องการก่อน"
+
+        );
+
+        return;
+    }
+
+    alert(
+
+        "✅ สั่งซื้อสำเร็จ!\n\n" +
+
+        "จำนวน " +
+        cartCount +
+        " ชิ้น\n" +
+
+        "ยอดรวม ฿" +
+        cartTotal +
+
+        "\n\n" +
+
+        "ขอบคุณที่ใช้บริการ Pet Care 🐾"
+
+    );
+}
+
+
+/* =====================================================
+   REMINDER
+===================================================== */
+
+function setReminder(){
+
+    alert(
+
+        "🔔 เปิดการแจ้งเตือนเรียบร้อยแล้ว!\n\n" +
+
+        "Milo มีนัดวัคซีนครั้งต่อไป\n" +
+
+        "15 กุมภาพันธ์ 2570"
+
+    );
+}
+
+
+/* =====================================================
+   HOSPITAL
+===================================================== */
+
+function callHospital(){
+
+    alert(
+
+        "📞 กำลังโทรหาโรงพยาบาลสัตว์...\n\n" +
+
+        "หมายเลข 081-234-5678"
+
+    );
+}
+
+
+function openMap(){
+
+    window.open(
+
+        "https://www.google.com/maps/search/โรงพยาบาลสัตว์",
+
+        "_blank"
+
+    );
+}
+
+
+/* =====================================================
+   ACCOUNT
+===================================================== */
+
+function editAccount(){
+
+    alert(
+
+        "สามารถเพิ่มแบบฟอร์มแก้ไขชื่อ เบอร์โทร " +
+
+        "และข้อมูลส่วนตัวในส่วนนี้ได้"
+
+    );
+}
+
+
+/* =====================================================
+   SERVICE SLIDER
+===================================================== */
+
+const slider =
+    document.getElementById("serviceSlider");
+
+let isDown = false;
+let startX = 0;
+let scrollLeft = 0;
+
+
+slider.addEventListener(
+"mousedown",
+function(e){
+
+    isDown = true;
+
+    slider.classList.add("dragging");
+
+    startX =
+        e.pageX -
+        slider.offsetLeft;
+
+    scrollLeft =
+        slider.scrollLeft;
+
+});
+
+
+slider.addEventListener(
+"mouseleave",
+function(){
+
+    isDown = false;
+
+    slider.classList.remove("dragging");
+
+});
+
+
+slider.addEventListener(
+"mouseup",
+function(){
+
+    isDown = false;
+
+    slider.classList.remove("dragging");
+
+});
+
+
+slider.addEventListener(
+"mousemove",
+function(e){
+
+    if(!isDown) return;
+
+    e.preventDefault();
+
+    const x =
+        e.pageX -
+        slider.offsetLeft;
+
+    const walk =
+        (x - startX) * 1.5;
+
+    slider.scrollLeft =
+        scrollLeft - walk;
+
+});
+
+
+slider.addEventListener(
+"wheel",
+function(e){
+
+    if(
+        Math.abs(e.deltaY) >
+        Math.abs(e.deltaX)
+    ){
+
+        e.preventDefault();
+
+        slider.scrollLeft +=
+            e.deltaY;
+
+    }
+
+},
+{
+    passive:false
+});
+
+
+let touchStartX = 0;
+let touchScroll = 0;
+
+
+slider.addEventListener(
+"touchstart",
+function(e){
+
+    touchStartX =
+        e.touches[0].pageX;
+
+    touchScroll =
+        slider.scrollLeft;
+
+},
+{
+    passive:true
+});
+
+
+slider.addEventListener(
+"touchmove",
+function(e){
+
+    const currentX =
+        e.touches[0].pageX;
+
+    const distance =
+        currentX - touchStartX;
+
+    slider.scrollLeft =
+        touchScroll - distance;
+
+},
+{
+    passive:true
+});
+
+
+/* =====================================================
+   FOOD FILTER SLIDER
+===================================================== */
+
+const foodFilter =
+    document.querySelector(".food-filter");
+
+let foodIsDown = false;
+let foodStartX = 0;
+let foodScrollLeft = 0;
+
+
+foodFilter.addEventListener(
+"mousedown",
+function(e){
+
+    foodIsDown = true;
+
+    foodFilter.classList.add("dragging");
+
+    foodStartX =
+        e.pageX -
+        foodFilter.offsetLeft;
+
+    foodScrollLeft =
+        foodFilter.scrollLeft;
+
+});
+
+
+foodFilter.addEventListener(
+"mouseleave",
+function(){
+
+    foodIsDown = false;
+
+    foodFilter.classList.remove("dragging");
+
+});
+
+
+foodFilter.addEventListener(
+"mouseup",
+function(){
+
+    foodIsDown = false;
+
+    foodFilter.classList.remove("dragging");
+
+});
+
+
+foodFilter.addEventListener(
+"mousemove",
+function(e){
+
+    if(!foodIsDown) return;
+
+    e.preventDefault();
+
+    const x =
+        e.pageX -
+        foodFilter.offsetLeft;
+
+    const walk =
+        (x - foodStartX) * 1.5;
+
+    foodFilter.scrollLeft =
+        foodScrollLeft - walk;
+
+});
+
+
+foodFilter.addEventListener(
+"wheel",
+function(e){
+
+    if(
+        Math.abs(e.deltaY) >
+        Math.abs(e.deltaX)
+    ){
+
+        e.preventDefault();
+
+        foodFilter.scrollLeft +=
+            e.deltaY;
+
+    }
+
+},
+{
+    passive:false
+});
+
+
+let foodTouchStartX = 0;
+let foodTouchScroll = 0;
+
+
+foodFilter.addEventListener(
+"touchstart",
+function(e){
+
+    foodTouchStartX =
+        e.touches[0].pageX;
+
+    foodTouchScroll =
+        foodFilter.scrollLeft;
+
+},
+{
+    passive:true
+});
+
+
+foodFilter.addEventListener(
+"touchmove",
+function(e){
+
+    const currentX =
+        e.touches[0].pageX;
+
+    const distance =
+        currentX - foodTouchStartX;
+
+    foodFilter.scrollLeft =
+        foodTouchScroll - distance;
+
+},
+{
+    passive:true
+});
+
+</script>
+
+</body>
+</html>
