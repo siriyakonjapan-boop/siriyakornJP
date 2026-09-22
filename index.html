@@ -1309,6 +1309,46 @@ textarea{
 .product-detail-modal .detail-image{width:100%;height:210px;object-fit:cover;border-radius:16px}.detail-price{font-size:18px;font-weight:800;color:#e87819;margin:9px 0}.detail-desc{font-size:10px;color:#776a62;line-height:1.6}.pet-tags{display:flex;gap:5px;flex-wrap:wrap;margin-top:8px}.pet-tag{background:#fff0df;color:#d87418;border-radius:12px;padding:5px 8px;font-size:8px}
 @media(max-width:430px){.product-image{height:125px}.shop-grid{gap:8px}}
 
+.admin-confirm-btn{min-height:42px!important;font-size:11px!important;font-weight:900!important;}
+#adminActionResult{box-shadow:0 4px 12px rgba(47,168,90,.08);}
+
+/* ===== Enhanced Admin Booking Management ===== */
+.booking-manager{border:1px solid #f0e2d8;border-radius:20px;background:#fff;overflow:hidden}
+.booking-manager-head{padding:14px;background:linear-gradient(135deg,#fff8f1,#fff);border-bottom:1px solid #f0e2d8}
+.booking-manager-title{font-size:14px;font-weight:900;color:#493c35}
+.booking-manager-sub{font-size:10px;color:#9b8d84;margin-top:3px}
+.booking-kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:7px;margin-top:12px}
+.booking-kpi{border:1px solid #eee3dc;border-radius:13px;padding:9px 5px;text-align:center;background:#fff}
+.booking-kpi b{display:block;font-size:17px;line-height:1.2}.booking-kpi span{font-size:8px;color:#8d8179}
+.booking-kpi.pending b{color:#e88a18}.booking-kpi.confirmed b{color:#2e9b55}.booking-kpi.progress b{color:#3789c9}.booking-kpi.completed b{color:#2c9a63}.booking-kpi.cancelled b{color:#d85c5c}
+.booking-tabs{display:flex;gap:6px;overflow-x:auto;padding:10px 12px 5px;background:#fff;scrollbar-width:none}.booking-tabs::-webkit-scrollbar{display:none}
+.booking-tab{flex:0 0 auto;border:1px solid #e5ddd7;background:#fff;border-radius:999px;padding:7px 11px;font-size:9px;font-weight:900;color:#756961;cursor:pointer}.booking-tab.active{background:#493c35;color:#fff;border-color:#493c35}
+.booking-filters{padding:8px 12px 12px;display:grid;grid-template-columns:1.4fr .8fr .8fr;gap:7px;background:#fff}
+.booking-filters input,.booking-filters select{width:100%;min-width:0;border:1px solid #e5ddd7;border-radius:11px;padding:9px 10px;font-size:10px;background:#fff;box-sizing:border-box}
+.booking-list-wrap{padding:0 12px 12px;background:#fff}.booking-empty{padding:25px 10px;text-align:center;color:#aaa;font-size:11px;border:1px dashed #ddd;border-radius:14px}
+.booking-card{border:1px solid #eadfd8;border-radius:16px;padding:12px;margin-top:9px;background:#fff;box-shadow:0 3px 12px rgba(80,55,35,.05)}
+.booking-card.pending{border-left:4px solid #ef9b32}.booking-card.confirmed{border-left:4px solid #42a85e}.booking-card.progress{border-left:4px solid #4b94c9}.booking-card.completed{border-left:4px solid #52a56c}.booking-card.cancelled{border-left:4px solid #d96868;opacity:.82}
+.admin-pet-photo{width:58px;height:58px;border-radius:15px;object-fit:cover;flex:0 0 58px;border:2px solid #fff;box-shadow:0 3px 10px rgba(80,55,35,.12);background:#fff4e8}.booking-card-top{display:flex;justify-content:space-between;gap:8px;align-items:flex-start}.booking-id{font-size:9px;color:#a0958e;font-weight:800}.booking-pet{font-size:13px;font-weight:900;color:#493c35;margin-top:2px}.booking-owner{font-size:9px;color:#8e827b;margin-top:2px}.booking-status-pill{white-space:nowrap;border-radius:999px;padding:5px 8px;font-size:8px;font-weight:900}
+.booking-info-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin:10px 0}.booking-info{background:#faf7f4;border-radius:11px;padding:8px;font-size:9px;color:#756a63;line-height:1.6}.booking-info b{display:block;color:#493c35;font-size:10px}
+.booking-price{font-size:12px;font-weight:900;color:#d97818}.booking-actions{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:10px}.booking-actions .btn{min-height:38px;font-size:10px;font-weight:900}.booking-actions .primary{background:#2f9f58!important;color:#fff!important}.booking-actions .danger{background:#fff!important;color:#d45555!important;border:1px solid #efb3b3!important}.booking-actions .secondary{background:#f7f3f0!important;color:#5e514a!important}
+.booking-next{margin-top:9px}.booking-next select{width:100%;border:1px solid #e5ddd7;border-radius:11px;padding:9px;font-size:10px;background:#fff}
+@media(max-width:390px){.booking-kpis{gap:4px}.booking-kpi{padding:8px 2px}.booking-kpi b{font-size:15px}.booking-filters{grid-template-columns:1fr 1fr}.booking-filters input{grid-column:1/-1}}
+
+
+/* ===== Customer ↔ Admin linked booking status ===== */
+.linked-booking-card{position:relative}
+.customer-backend-link{margin:10px 0 8px;padding:8px 10px;border-radius:10px;background:#fff7ed;border:1px dashed #f2b56f;display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:9px;color:#8a6b54}
+.customer-backend-link span{font-weight:900;color:#e77916}
+.booking-timeline{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;margin:8px 0 12px;padding:8px 4px;background:#fffaf6;border-radius:12px;border:1px solid #f1e5dc}
+.timeline-step{position:relative;text-align:center;color:#b5aaa2;min-width:0}
+.timeline-dot{display:flex;align-items:center;justify-content:center;width:20px;height:20px;margin:0 auto 4px;border-radius:50%;background:#eee7e1;color:#a99e96;font-size:9px;font-weight:900}
+.timeline-step b{display:block;font-size:8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.timeline-step em{display:block;font-style:normal;font-size:6.5px;line-height:1.25;margin-top:2px}
+.timeline-step small{display:block;font-size:6px;margin-top:3px;color:#e77916;font-weight:800}
+.timeline-step.active{color:#6c5b4f}.timeline-step.active .timeline-dot{background:#f28c28;color:white}.timeline-step.current b{color:#e77916}
+.booking-cancelled-note{padding:9px 10px;margin:8px 0 12px;border-radius:10px;background:#fff1f1;color:#c45353;border:1px solid #f2cccc;font-size:9px;font-weight:700}
+@media(max-width:390px){.booking-timeline{gap:2px}.timeline-step em{font-size:6px}.customer-backend-link{font-size:8px}}
+
 </style>
 
 <style>
@@ -1329,6 +1369,15 @@ textarea{
 .live-status-banner.flash{animation:statusFlash .55s ease 2}@keyframes statusFlash{50%{transform:scale(1.02);box-shadow:0 0 0 5px rgba(242,140,40,.12)}}
 
 .tracking-search-card{padding:10px!important}.tracking-search-row{display:flex;gap:7px}.tracking-search-box{height:40px;flex:1;border:1px solid #eaded4;border-radius:13px;display:flex;align-items:center;gap:6px;padding:0 10px;color:#958980}.tracking-search-box input{border:0;outline:0;width:100%;font:inherit;font-size:10px;background:transparent}.filter-btn{border:1px solid #eaded4;background:#fff;border-radius:13px;padding:0 12px;font-family:inherit;color:#604f43;font-size:10px}.tracking-extra-filter{display:flex;gap:7px;margin-top:7px}.tracking-extra-filter select{flex:1;border:1px solid #eaded4;border-radius:11px;padding:8px;font:inherit;font-size:10px;background:#fff}.booking-card-new{background:#fff;border:1px solid #f0dfd0;border-radius:18px;padding:12px;margin:10px 0;box-shadow:0 4px 12px rgba(90,60,35,.06)}.booking-card-top{display:flex;justify-content:space-between;align-items:center;gap:7px}.status-pill{border-radius:20px;padding:6px 9px;font-size:9px;font-weight:600;background:#eff9ef;color:#32934b;border:1px solid #ccebcf}.status-pill.status-pending{background:#fff8df;color:#d88b16;border-color:#f2dfad}.status-pill.status-completed{background:#eaf5ff;color:#438ac7;border-color:#c9e2f8}.status-pill.status-cancelled{background:#fff0ef;color:#d45a52;border-color:#f1cfcc}.booking-id{font-size:8px;color:#8a7d73}.booking-main-info{display:grid;grid-template-columns:82px 1fr 105px;gap:10px;margin-top:10px;align-items:center}.booking-pet-img{width:82px;height:82px;border-radius:13px;object-fit:cover}.booking-pet-name{font-size:16px;font-weight:700}.booking-pet-name span{color:#e66e91;font-size:15px}.booking-meta{font-size:9px;color:#786d66;margin:2px 0 8px}.owner-line{font-size:9px;color:#675b53;line-height:1.8}.booking-schedule{background:#fff5ea;border-radius:13px;padding:9px;font-size:9px}.booking-schedule>div+div{margin-top:9px}.booking-schedule small{display:block;color:#ef861f;font-size:8px}.booking-schedule b{display:block;font-size:11px;margin-top:2px}.booking-schedule em{font-style:normal;color:#777;font-size:8px}.booking-bottom-row{display:grid;grid-template-columns:1fr .8fr auto;gap:8px;align-items:center;background:#fffaf5;border-radius:13px;padding:9px;margin-top:10px}.booking-bottom-row small{display:block;color:#9a8c82;font-size:8px}.booking-bottom-row b{font-size:10px}.outline-action,.danger-action{border:1px solid #f18b2b;background:#fff;border-radius:18px;padding:8px 10px;color:#e77e1c;font:inherit;font-size:9px;white-space:nowrap;cursor:pointer}.danger-action{border-color:#e5b7b2;color:#c85b52}.booking-extra{font-size:8px;color:#8b7d73;margin:7px 2px}.booking-actions{display:flex;justify-content:flex-end;gap:7px;margin-top:8px}.empty-booking{text-align:center;padding:28px 15px}.empty-paws{font-size:48px}.empty-title{font-size:16px;font-weight:600}.empty-sub{font-size:10px;color:#999;margin:4px 0 12px}.booking-promo{display:flex;align-items:center;gap:7px;background:#fff5e9;border:1px solid #f8d9b5;border-radius:18px;padding:9px;margin:12px 0 18px}.promo-art{font-size:28px;white-space:nowrap}.promo-text{font-size:11px;line-height:1.35;flex:1}.booking-promo button{border:0;background:#f79532;color:#fff;border-radius:20px;padding:10px 12px;font:inherit;font-size:9px;white-space:nowrap}@media(max-width:430px){.booking-main-info{grid-template-columns:72px 1fr}.booking-pet-img{width:72px;height:72px}.booking-schedule{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;gap:8px}.booking-schedule>div+div{margin-top:0}.booking-bottom-row{grid-template-columns:1fr 1fr}.booking-bottom-row .outline-action{grid-column:1/-1}.booking-id{font-size:7px}.booking-tab{min-width:72px}}
+</style>
+
+<style>
+.pending-confirm-box{margin-top:10px;padding:11px;border:2px solid #f6c27f;border-radius:15px;background:#fff8ef;}
+.pending-confirm-title{font-size:10px;font-weight:800;color:#a55a12;margin-bottom:8px;}
+.pending-confirm-actions{display:grid;grid-template-columns:1fr 1fr;gap:7px;}
+.admin-confirm-btn{width:100%;background:#f79532!important;color:#fff!important;border:0!important;border-radius:12px!important;padding:11px 7px!important;font-size:10px!important;font-weight:800!important;cursor:pointer!important;box-shadow:0 4px 10px rgba(247,149,50,.2);}
+.admin-reject-btn{width:100%;background:#fff!important;color:#d64d4d!important;border:1px solid #e6aaaa!important;border-radius:12px!important;padding:11px 7px!important;font-size:10px!important;font-weight:800!important;cursor:pointer!important;}
+.admin-confirm-btn:active,.admin-reject-btn:active{transform:scale(.98);}
 </style>
 </head>
 
@@ -2632,6 +2681,7 @@ placeholder="เช่น ขี้กลัว ไม่ชอบเสีย�
 <div class="booking-status-tabs">
   <button class="booking-tab active" data-filter="" onclick="setTrackingFilter('')">📅 <span>ทั้งหมด</span><b id="countAll">0</b></button>
   <button class="booking-tab" data-filter="pending" onclick="setTrackingFilter('pending')">◷ <span>รอยืนยัน</span><b id="countPending">0</b></button>
+  <button class="booking-tab" data-filter="confirmed" onclick="setTrackingFilter('confirmed')">✓ <span>ยืนยันแล้ว</span><b id="countConfirmed">0</b></button>
   <button class="booking-tab" data-filter="progress" onclick="setTrackingFilter('progress')">🐾 <span>กำลังใช้บริการ</span><b id="countProgress">0</b></button>
   <button class="booking-tab" data-filter="completed" onclick="setTrackingFilter('completed')">✓ <span>เสร็จสิ้น</span><b id="countCompleted">0</b></button>
   <button class="booking-tab" data-filter="cancelled" onclick="setTrackingFilter('cancelled')">× <span>ยกเลิก</span><b id="countCancelled">0</b></button>
@@ -2674,6 +2724,8 @@ placeholder="เช่น ขี้กลัว ไม่ชอบเสีย�
 <div class="page-subtitle">
     ระบบจัดการสำหรับแอดมิน
 </div>
+
+<div id="adminPendingBanner" style="margin-top:10px;padding:13px;border:2px solid #f3a04b;border-radius:16px;background:#fff8ef;font-size:11px;font-weight:800;color:#9a560e;">🟠 รายการจองที่ยังรอการยืนยันจะแสดงปุ่ม <b>✅ ยืนยันการจอง</b> ด้านล่าง</div>
 
 <div class="dashboard-grid">
 
@@ -2721,35 +2773,15 @@ placeholder="เช่น ขี้กลัว ไม่ชอบเสีย�
 </div>
 
 
-<div class="report-grid">
-
-<div class="report-mini">
-
-<div class="number"
-     id="statConfirmed">
-    0
-</div>
-
-<div style="font-size:9px;color:#8c817a;">
-    ยืนยันแล้ว
-</div>
-
-</div>
-
-
-<div class="report-mini">
-
-<div class="number"
-     id="statCancelled">
-    0
-</div>
-
-<div style="font-size:9px;color:#8c817a;">
-    ยกเลิก
-</div>
-
-</div>
-
+<div class="card" style="margin-top:12px;">
+  <div class="card-title">📊 สถานะการจอง</div>
+  <div class="report-grid">
+    <div class="report-mini"><div class="number" id="statStatusPending">0</div><div style="font-size:9px;color:#8c817a;">🟠 รอยืนยัน</div></div>
+    <div class="report-mini"><div class="number" id="statStatusConfirmed">0</div><div style="font-size:9px;color:#8c817a;">🟢 ยืนยันแล้ว</div></div>
+    <div class="report-mini"><div class="number" id="statStatusProgress">0</div><div style="font-size:9px;color:#8c817a;">🔵 กำลังให้บริการ</div></div>
+    <div class="report-mini"><div class="number" id="statStatusCompleted">0</div><div style="font-size:9px;color:#8c817a;">✅ เสร็จสิ้น</div></div>
+    <div class="report-mini"><div class="number" id="statStatusCancelled">0</div><div style="font-size:9px;color:#8c817a;">🔴 ยกเลิก</div></div>
+  </div>
 </div>
 
 
@@ -2768,68 +2800,40 @@ placeholder="เช่น ขี้กลัว ไม่ชอบเสีย�
 
 
 <div class="card">
-
-<div class="card-title">
-    📋 จัดการรายการจอง
+<div class="booking-manager">
+  <div class="booking-manager-head">
+    <div class="booking-manager-title">📋 จัดการรายการจอง</div>
+    <div class="booking-manager-sub">ตรวจสอบรายละเอียด · ยืนยัน · เปลี่ยนสถานะ · ดูข้อมูลสัตว์เลี้ยง</div>
+    <div class="booking-kpis">
+      <div class="booking-kpi pending"><b id="bmPending">0</b><span>🟠 รอยืนยัน</span></div>
+      <div class="booking-kpi confirmed"><b id="bmConfirmed">0</b><span>🟢 ยืนยันแล้ว</span></div>
+      <div class="booking-kpi progress"><b id="bmProgress">0</b><span>🔵 กำลังบริการ</span></div>
+      <div class="booking-kpi completed"><b id="bmCompleted">0</b><span>✅ เสร็จสิ้น</span></div>
+      <div class="booking-kpi cancelled"><b id="bmCancelled">0</b><span>🔴 ยกเลิก</span></div>
+    </div>
+  </div>
+  <div id="adminActionResult" style="display:none;margin:10px 12px 0;padding:12px 14px;border-radius:14px;background:#eaf8ee;border:2px solid #8ed3a0;color:#26733a;font-size:10px;font-weight:900;line-height:1.6;"></div>
+  <div class="booking-tabs" id="bookingTabs">
+    <button type="button" class="booking-tab active" data-tab="">ทั้งหมด</button>
+    <button type="button" class="booking-tab" data-tab="pending">🟠 รอยืนยัน</button>
+    <button type="button" class="booking-tab" data-tab="confirmed">🟢 ยืนยันแล้ว</button>
+    <button type="button" class="booking-tab" data-tab="progress">🔵 กำลังบริการ</button>
+    <button type="button" class="booking-tab" data-tab="completed">✅ เสร็จสิ้น</button>
+    <button type="button" class="booking-tab" data-tab="cancelled">🔴 ยกเลิก</button>
+  </div>
+  <div class="booking-filters">
+    <input id="adminSearch" type="text" placeholder="🔎 ค้นหารหัส / เจ้าของ / เบอร์ / สัตว์เลี้ยง" oninput="renderAdmin()">
+    <select id="adminStatusFilter" onchange="syncBookingTabFromFilter();renderAdmin()">
+      <option value="">ทุกสถานะ</option><option value="pending">รอยืนยัน</option><option value="confirmed">ยืนยันแล้ว</option><option value="progress">กำลังให้บริการ</option><option value="completed">เสร็จสิ้น</option><option value="cancelled">ยกเลิก</option>
+    </select>
+    <input id="adminDateFilter" type="date" onchange="renderAdmin()">
+  </div>
+  <div style="padding:0 12px 10px;display:flex;justify-content:space-between;align-items:center;font-size:9px;color:#9a8e86;">
+    <span>แสดง <b id="adminResultCount" style="color:#493c35">0</b> รายการ</span>
+    <button type="button" class="btn btn-secondary btn-small" onclick="clearAdminFilters()">ล้างตัวกรอง</button>
+  </div>
+  <div class="booking-list-wrap"><div id="adminBookingList"></div></div>
 </div>
-
-<div class="admin-tools">
-
-<input id="adminSearch"
-       type="text"
-       placeholder="🔎 รหัส / ลูกค้า / เบอร์ / สัตว์เลี้ยง"
-       oninput="renderAdmin()">
-
-<select id="adminStatusFilter"
-        onchange="renderAdmin()">
-
-<option value="">
-    ทุกสถานะ
-</option>
-
-<option value="pending">
-    รอยืนยัน
-</option>
-
-<option value="confirmed">
-    ยืนยันแล้ว
-</option>
-
-<option value="progress">
-    กำลังให้บริการ
-</option>
-
-<option value="completed">
-    เสร็จสิ้น
-</option>
-
-<option value="cancelled">
-    ยกเลิก
-</option>
-
-</select>
-
-<input id="adminDateFilter"
-       type="date"
-       onchange="renderAdmin()">
-
-<button type="button" class="btn btn-secondary btn-small" onclick="filterAdminToday()">
-    📅 วันนี้
-</button>
-
-<button type="button" class="btn btn-secondary btn-small" onclick="clearAdminFilters()">
-    ล้างตัวกรอง
-</button>
-
-</div>
-
-<div class="admin-summary-bar">
-    <span>แสดง <b id="adminResultCount">0</b> รายการ</span>
-    <span>กดรายการเพื่อดูรายละเอียด</span>
-</div>
-
-<div id="adminBookingList"></div>
-
 </div>
 
 <div class="card" style="margin-top:12px;">
@@ -5357,12 +5361,9 @@ function submitBooking(){
 
 
 function saveBookings(){
-
-    localStorage.setItem(
-        "petcare_bookings",
-        JSON.stringify(bookings)
-    );
-
+    localStorage.setItem("petcare_bookings", JSON.stringify(bookings));
+    try{ window.dispatchEvent(new CustomEvent("petcare-bookings-updated")); }catch(e){}
+    try{ if(window.BroadcastChannel){ const ch=new BroadcastChannel("petcare-bookings-sync"); ch.postMessage({type:"bookings-updated",at:Date.now()}); ch.close(); } }catch(e){}
 }
 
 
@@ -5598,7 +5599,9 @@ function clearTrackingFilters(){
     setTrackingFilter('');
 }
 
-function bookingPetImage(type){
+function bookingPetImage(type, photo){
+    // ใช้รูปที่ลูกค้าอัปโหลดก่อนเสมอ ถ้าไม่มีค่อยใช้รูปสำรองตามประเภทสัตว์
+    if(photo && String(photo).trim()) return String(photo);
     return type==='dog'
       ? 'https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=500&q=80'
       : 'https://images.unsplash.com/photo-1518791841217-8f162f1e1131?auto=format&fit=crop&w=500&q=80';
@@ -5608,6 +5611,7 @@ function updateBookingCounts(){
     const set=(id,n)=>{const el=document.getElementById(id);if(el)el.textContent=n;};
     set('countAll',bookings.length);
     set('countPending',bookings.filter(b=>b.status==='pending').length);
+    set('countConfirmed',bookings.filter(b=>b.status==='confirmed').length);
     set('countProgress',bookings.filter(b=>b.status==='progress').length);
     set('countCompleted',bookings.filter(b=>b.status==='completed').length);
     set('countCancelled',bookings.filter(b=>b.status==='cancelled').length);
@@ -5625,64 +5629,86 @@ function updateLiveStatusBanner(message){
 
 function renderBookings(){
     renderShopOrders();
-    const latestBooking=bookings.length?bookings.slice().sort((a,b)=>(b.createdAt||0)-(a.createdAt||0))[0]:null;
-    const latestOrder=shopOrders.length?shopOrders.slice().sort((a,b)=>(b.createdAt||0)-(a.createdAt||0))[0]:null;
-    if(latestOrder && (!latestBooking || (latestOrder.createdAt||0) >= (latestBooking.createdAt||0))){
+    updateBookingCounts();
+
+    const latestBooking=bookings.length?bookings.slice().sort((a,b)=>(new Date(b.updatedAt||b.createdAt||0))-(new Date(a.updatedAt||a.createdAt||0)))[0]:null;
+    const latestOrder=shopOrders.length?shopOrders.slice().sort((a,b)=>(b.updatedAt||b.createdAt||0)-(a.updatedAt||a.createdAt||0))[0]:null;
+    if(latestOrder && (!latestBooking || (latestOrder.updatedAt||latestOrder.createdAt||0) >= new Date(latestBooking.updatedAt||latestBooking.createdAt||0))){
       updateLiveStatusBanner(`🛒 คำสั่งซื้อ #${latestOrder.id} · ${shopOrderStatusText(latestOrder.status)}${latestOrder.bookingPet?` · รับพร้อม ${latestOrder.bookingPet}`:''}`);
     }else if(latestBooking){
-      updateLiveStatusBanner(`🐾 ${latestBooking.petName||'สัตว์เลี้ยง'} · ${statusText(latestBooking.status)} · ${formatDate(latestBooking.date)} ${latestBooking.time||''}`);
+      const extra = latestBooking.status==='confirmed' && latestBooking.confirmedAt ? ` · ยืนยันเมื่อ ${new Date(latestBooking.confirmedAt).toLocaleString('th-TH',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'})}` : '';
+      updateLiveStatusBanner(`🐾 ${latestBooking.petName||'สัตว์เลี้ยง'} · ${statusText(latestBooking.status)} · ${formatDate(latestBooking.date)} ${latestBooking.time||''}${extra}`);
     }else{
       updateLiveStatusBanner('ยังไม่มีการจองหรือคำสั่งซื้อ');
     }
+
     const container=document.getElementById('bookingList');
     if(!container)return;
-    updateBookingCounts();
 
     const search=(document.getElementById('trackingSearch')?.value||'').trim().toLowerCase();
     const filter=document.getElementById('trackingStatus')?.value||'';
     document.querySelectorAll('.booking-tab').forEach(btn=>btn.classList.toggle('active',btn.dataset.filter===filter));
 
     const list=bookings.filter(b=>{
-        const text=`${b.id} ${b.owner} ${b.petName} ${b.phone} ${b.breed} ${b.petType} ${serviceText(b.mainService)}`.toLowerCase();
+        const text=`${b.id||''} ${b.owner||''} ${b.petName||''} ${b.phone||''} ${b.breed||''} ${b.petType||''} ${serviceText(b.mainService)}`.toLowerCase();
         return (!search||text.includes(search))&&(!filter||b.status===filter);
     });
 
     if(!list.length){
-        container.innerHTML=`<div class="empty-booking card"><div class="empty-paws">🐾</div><div class="empty-title">ยังไม่มีการจอง</div><div class="empty-sub">เริ่มจองบริการให้น้องได้เลย</div><button class="btn btn-primary" onclick="showPage('bookingPage')">🐾 จองบริการ</button></div>`;
+        container.innerHTML=`<div class="empty-booking card"><div class="empty-paws">🐾</div><div class="empty-title">ไม่พบรายการจอง</div><div class="empty-sub">ลองเปลี่ยนตัวกรอง หรือเริ่มจองบริการให้น้องได้เลย</div><button class="btn btn-primary" onclick="showPage('bookingPage')">🐾 จองบริการ</button></div>`;
         return;
     }
 
+    const statusMap={pending:'pending',confirmed:'confirmed',progress:'progress',completed:'completed',cancelled:'cancelled'};
     container.innerHTML='';
-    list.slice().reverse().forEach(b=>{
+    list.slice().sort((a,b)=>(new Date(b.updatedAt||b.createdAt||0))-(new Date(a.updatedAt||a.createdAt||0))).forEach(b=>{
         const div=document.createElement('div');
-        div.className='booking-card-new';
+        div.className='booking-card-new linked-booking-card';
         const gender=b.gender==='male'?'♂':'♀';
         const weight=b.weight?` · ${escapeHTML(b.weight)} กก.`:'';
         const extras=getBookingExtrasText(b);
+        const current=statusMap[b.status]||'pending';
+        const steps=[
+          ['pending','ส่งคำขอ','รอหลังบ้านตรวจสอบ'],
+          ['confirmed','ยืนยันแล้ว','หลังบ้านยืนยันการจอง'],
+          ['progress','กำลังให้บริการ','กำลังดำเนินการ'],
+          ['completed','เสร็จสิ้น','บริการเสร็จเรียบร้อย']
+        ];
+        const order=['pending','confirmed','progress','completed'];
+        const currentIndex=order.indexOf(current);
+        const timeline=(b.status==='cancelled')
+          ? `<div class="booking-cancelled-note">🔴 รายการนี้ถูกยกเลิก${b.updatedAt?` เมื่อ ${new Date(b.updatedAt).toLocaleString('th-TH')}`:''}</div>`
+          : `<div class="booking-timeline">${steps.map((st,i)=>{
+              const active=i<=currentIndex;
+              const when=st[0]==='confirmed'&&b.confirmedAt?`<small>${new Date(b.confirmedAt).toLocaleString('th-TH',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'})}</small>`:'';
+              return `<div class="timeline-step ${active?'active':''} ${st[0]===current?'current':''}"><span class="timeline-dot">${active?'✓':i+1}</span><b>${st[1]}</b><em>${st[2]}</em>${when}</div>`;
+          }).join('')}</div>`;
         const action=(b.status!=='cancelled'&&b.status!=='completed')
           ? `<button class="outline-action" onclick="viewBooking('${b.id}')">✎ แก้ไขการจอง</button>`
           : `<button class="outline-action" onclick="viewBooking('${b.id}')">▣ ดูรายละเอียด</button>`;
         div.innerHTML=`
           <div class="booking-card-top">
-            <div class="status-pill ${statusClass(b.status)}">${b.status==='progress'?'✓':b.status==='pending'?'◷':b.status==='completed'?'✓':'×'} ${statusText(b.status)}</div>
-            <div class="booking-id">รหัสการจอง : <b>${escapeHTML(b.id)}</b> 📋</div>
+            <div class="status-pill ${statusClass(b.status)}">${b.status==='progress'?'✓':b.status==='pending'?'◷':b.status==='confirmed'?'✓':b.status==='completed'?'✓':'×'} ${statusText(b.status)}</div>
+            <div class="booking-id">รหัสการจอง : <b>${escapeHTML(b.id||'-')}</b> 📋</div>
           </div>
           <div class="booking-main-info">
-            <img class="booking-pet-img" src="${bookingPetImage(b.petType)}" alt="สัตว์เลี้ยง" onerror="this.style.display='none'">
+            <img class="booking-pet-img" src="${bookingPetImage(b.petType,b.photo)}" alt="รูป ${escapeHTML(b.petName||'สัตว์เลี้ยง')}" onerror="this.style.display='none'">
             <div class="booking-pet-info">
-              <div class="booking-pet-name">${escapeHTML(b.petName)} <span>${gender}</span></div>
+              <div class="booking-pet-name">${escapeHTML(b.petName||'-')} <span>${gender}</span></div>
               <div class="booking-meta">${b.petType==='dog'?'สุนัข':'แมว'} · ${escapeHTML(b.breed||'ไม่ระบุ')} ${weight}</div>
-              <div class="owner-line">👤 เจ้าของ : ${escapeHTML(b.owner)}</div>
-              <div class="owner-line">☎ เบอร์โทร : ${escapeHTML(b.phone)}</div>
+              <div class="owner-line">👤 เจ้าของ : ${escapeHTML(b.owner||'-')}</div>
+              <div class="owner-line">☎ เบอร์โทร : ${escapeHTML(b.phone||'-')}</div>
             </div>
             <div class="booking-schedule">
               <div><small>📅 วันที่ใช้บริการ</small><b>${formatDate(b.date)}</b><em>${isTodayDate(b.date)?'(วันนี้)':''}</em></div>
-              <div><small>◷ เวลา</small><b>${escapeHTML(b.time)}</b></div>
+              <div><small>◷ เวลา</small><b>${escapeHTML(b.time||'-')}</b></div>
             </div>
           </div>
+          <div class="customer-backend-link">🔗 <b>สถานะจากระบบหลังบ้าน</b><span>${statusText(b.status)}</span></div>
+          ${timeline}
           <div class="booking-bottom-row">
             <div><small>🐾 บริการ</small><b>${serviceText(b.mainService)}</b></div>
-            <div><small>🪙 ราคา</small><b>${escapeHTML(b.price)} บาท</b></div>
+            <div><small>🪙 ราคา</small><b>${escapeHTML(b.price||'-')} บาท</b></div>
             ${action}
           </div>
           ${extras?`<div class="booking-extra">${extras}</div>`:''}
@@ -6217,6 +6243,7 @@ function adminLogin(){
         closeModal();
 
         showPage("adminPage");
+        renderAdmin();
 
         showToast(
             "เข้าสู่ระบบแอดมินแล้ว"
@@ -6274,321 +6301,47 @@ function renderAdminShopOrders(){
 }
 
 function renderAdmin(){
-
-    const search =
-    (
-        document
-        .getElementById(
-            "adminSearch"
-        )
-        ?.value || ""
-    )
-    .trim()
-    .toLowerCase();
-
-
-    const statusFilter =
-    document
-    .getElementById(
-        "adminStatusFilter"
-    )
-    ?.value || "";
-
-
-    const dateFilter =
-    document
-    .getElementById(
-        "adminDateFilter"
-    )
-    ?.value || "";
-
-
-    document
-    .getElementById("statTotal")
-    .textContent =
-    bookings.length;
-
-
-    document
-    .getElementById("statPending")
-    .textContent =
-    bookings.filter(
-        b=>b.status === "pending"
-    ).length;
-
-
-    document
-    .getElementById("statDog")
-    .textContent =
-    bookings.filter(
-        b=>b.petType === "dog"
-    ).length;
-
-
-    document
-    .getElementById("statCat")
-    .textContent =
-    bookings.filter(
-        b=>b.petType === "cat"
-    ).length;
-
-
-    document
-    .getElementById("statConfirmed")
-    .textContent =
-    bookings.filter(
-        b=>b.status === "confirmed"
-    ).length;
-
-
-    document
-    .getElementById("statCancelled")
-    .textContent =
-    bookings.filter(
-        b=>b.status === "cancelled"
-    ).length;
-
-
-    let revenue = 0;
-
-
-    bookings
-    .filter(
-        b=>b.status !== "cancelled"
-    )
-    .forEach(b=>{
-
-        const nums =
-        (b.price || "")
-        .match(/\d+/g);
-
-
-        if(!nums) return;
-
-
-        const values =
-        nums.map(Number);
-
-
-        if(values.length >= 2){
-
-            revenue +=
-            Math.round(
-                (values[0] + values[1]) / 2
-            );
-
-        }
-
-        else if(values.length === 1){
-
-            revenue += values[0];
-
-        }
-
-    });
-
-
-    document
-    .getElementById("statRevenue")
-    .textContent =
-    "฿" +
-    revenue.toLocaleString();
-
-
-    renderBookingChart();
-    renderAdminShopOrders();
-
-
-    const list =
-    bookings.filter(b=>{
-
-        const text =
-        `${b.id} ${b.owner} ${b.petName} ${b.phone}`
-        .toLowerCase();
-
-
-        return
-        (!search || text.includes(search)) &&
-        (!statusFilter || b.status === statusFilter) &&
-        (!dateFilter || b.date === dateFilter);
-
-    });
-
-
-    const container =
-    document.getElementById(
-        "adminBookingList"
-    );
-
-    const resultCount = document.getElementById("adminResultCount");
-    if(resultCount){
-        resultCount.textContent = list.length;
-    }
-
-    container.innerHTML = "";
-
-
-    if(!list.length){
-
-        container.innerHTML = `
-
-        <div style="
-            font-size:11px;
-            color:#999;
-            text-align:center;">
-
-            ยังไม่มีรายการจอง
-
-        </div>
-
-        `;
-
-        return;
-
-    }
-
-
-    list.slice()
-    .reverse()
-    .forEach(b=>{
-
-        const div =
-        document.createElement("div");
-
-        div.className =
-        "admin-booking";
-
-
-        const extraText =
-        getBookingExtrasText(b);
-
-
-        div.innerHTML = `
-
-        <div style="
-            display:flex;
-            justify-content:space-between;
-            align-items:start;">
-
-            <div>
-
-                <b>
-
-                    ${b.petType === "dog" ? "🐶" : "🐱"}
-
-                    ${escapeHTML(b.petName)}
-
-                </b>
-
-                <div style="
-                    font-size:9px;
-                    color:#999;
-                    margin-top:3px;">
-
-                    ${escapeHTML(b.owner)}
-
-                </div>
-
-            </div>
-
-
-            <span class="status ${statusClass(b.status)}">
-
-                ${statusText(b.status)}
-
-            </span>
-
-        </div>
-
-
-        <div style="
-            font-size:10px;
-            color:#777;
-            margin-top:8px;">
-
-            📅 ${formatDate(b.date)}
-
-            <br>
-
-            ⏰ ${b.time}
-
-            <br>
-
-            🛁 ${serviceText(b.mainService)}
-
-            <br>
-
-            ${extraText}
-
-            💰 ${escapeHTML(b.price)}
-
-        </div>
-
-
-        <select
-            style="margin-top:8px;"
-            onchange="changeStatus('${b.id}',this.value)">
-
-            <option value="pending"
-                ${b.status === "pending" ? "selected" : ""}>
-                รอยืนยัน
-            </option>
-
-            <option value="confirmed"
-                ${b.status === "confirmed" ? "selected" : ""}>
-                ยืนยันแล้ว
-            </option>
-
-            <option value="progress"
-                ${b.status === "progress" ? "selected" : ""}>
-                กำลังให้บริการ
-            </option>
-
-            <option value="completed"
-                ${b.status === "completed" ? "selected" : ""}>
-                เสร็จสิ้น
-            </option>
-
-            <option value="cancelled"
-                ${b.status === "cancelled" ? "selected" : ""}>
-                ยกเลิก
-            </option>
-
-        </select>
-
-
-        <div class="admin-action-row">
-
-            <button
-                class="btn btn-secondary btn-small"
-                onclick="viewBooking('${b.id}')">
-
-                ดูข้อมูลสัตว์เลี้ยง
-
-            </button>
-
-
-            <button
-                class="btn btn-secondary btn-small"
-                onclick="openEditBooking('${b.id}')">
-
-                ✏️ แก้ไข
-
-            </button>
-
-        </div>
-
-        `;
-
-
-        container.appendChild(div);
-
-    });
-
+    const search=(document.getElementById("adminSearch")?.value||"").trim().toLowerCase();
+    const statusFilter=document.getElementById("adminStatusFilter")?.value||"";
+    const dateFilter=document.getElementById("adminDateFilter")?.value||"";
+    const count=(st)=>bookings.filter(b=>b.status===st).length;
+    const ids={statTotal:bookings.length,statPending:count("pending"),statDog:bookings.filter(b=>b.petType==="dog").length,statCat:bookings.filter(b=>b.petType==="cat").length,statConfirmed:count("confirmed"),statCancelled:count("cancelled"),statStatusPending:count("pending"),statStatusConfirmed:count("confirmed"),statStatusProgress:count("progress"),statStatusCompleted:count("completed"),statStatusCancelled:count("cancelled")};
+    Object.entries(ids).forEach(([id,val])=>{const el=document.getElementById(id);if(el)el.textContent=val;});
+    ["bmPending","bmConfirmed","bmProgress","bmCompleted","bmCancelled"].forEach((id,i)=>{const el=document.getElementById(id);if(el)el.textContent=[count("pending"),count("confirmed"),count("progress"),count("completed"),count("cancelled")][i];});
+    let revenue=0; bookings.filter(b=>b.status!=="cancelled").forEach(b=>{const nums=String(b.price||"").match(/\d+/g);if(nums){const v=nums.map(Number);revenue+=v.length>1?Math.round((v[0]+v[1])/2):v[0];}});
+    const rev=document.getElementById("statRevenue");if(rev)rev.textContent="฿"+revenue.toLocaleString();
+    renderBookingChart(); renderAdminShopOrders();
+    const list=bookings.filter(b=>{
+      const text=`${b.id||""} ${b.owner||""} ${b.petName||""} ${b.phone||""}`.toLowerCase();
+      return (!search||text.includes(search))&&(!statusFilter||b.status===statusFilter)&&(!dateFilter||b.date===dateFilter);
+    }).slice().reverse();
+    const result=document.getElementById("adminResultCount");if(result)result.textContent=list.length;
+    const container=document.getElementById("adminBookingList");if(!container)return;
+    if(!list.length){container.innerHTML='<div class="booking-empty">📭 ไม่พบรายการจองตามเงื่อนไขที่เลือก</div>';return;}
+    container.innerHTML=list.map(b=>{
+      const pending=b.status==="pending";
+      const statusColors={pending:"background:#fff0d9;color:#b56809",confirmed:"background:#eaf8ee;color:#2f7b3d",progress:"background:#eaf5ff;color:#3478a8",completed:"background:#eaf8ee;color:#287a4a",cancelled:"background:#fff0f0;color:#c45353"};
+      const statusTextMap={pending:"🟠 รอยืนยัน",confirmed:"🟢 ยืนยันแล้ว",progress:"🔵 กำลังให้บริการ",completed:"✅ เสร็จสิ้น",cancelled:"🔴 ยกเลิก"};
+      return `<div class="booking-card ${statusClass(b.status)}">
+        <div class="booking-card-top"><div style="display:flex;gap:10px;align-items:center;min-width:0"><img class="admin-pet-photo" src="${bookingPetImage(b.petType,b.photo)}" alt="รูป ${escapeHTML(b.petName||'สัตว์เลี้ยง')}" onerror="this.onerror=null;this.src=bookingPetImage('${b.petType}','')"><div><div class="booking-id">รหัส #${escapeHTML(String(b.id||"-"))}</div><div class="booking-pet">${b.petType==="dog"?"🐶":"🐱"} ${escapeHTML(b.petName||"ไม่ระบุ")}</div><div class="booking-owner">👤 ${escapeHTML(b.owner||"-")} · ☎️ ${escapeHTML(b.phone||"-")}</div></div></div><span class="booking-status-pill" style="${statusColors[b.status]||statusColors.pending}">${statusTextMap[b.status]||b.status}</span></div>
+        <div class="booking-info-grid"><div class="booking-info">📅 <b>${formatDate(b.date)}</b>⏰ ${escapeHTML(b.time||"-")}</div><div class="booking-info">🛁 <b>${serviceText(b.mainService)}</b>${escapeHTML(getBookingExtrasText(b).replace(/<[^>]*>/g," "))}</div></div>
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:8px"><span class="booking-price">💰 ${escapeHTML(b.price||"-")}</span><span style="font-size:8px;color:#9a8e86">${b.createdAt?new Date(b.createdAt).toLocaleString("th-TH"):""}</span></div>
+        ${pending?`<div class="booking-actions"><button type="button" class="btn primary" onclick="return window.confirmBooking('${b.id}')">✅ ยืนยันการจอง</button><button type="button" class="btn danger" onclick="return window.rejectBooking('${b.id}')">❌ ปฏิเสธ</button></div>`:`<div class="booking-next"><select onchange="window.changeStatus('${b.id}',this.value)"><option value="confirmed" ${b.status==="confirmed"?"selected":""}>🟢 ยืนยันแล้ว</option><option value="progress" ${b.status==="progress"?"selected":""}>🔵 กำลังให้บริการ</option><option value="completed" ${b.status==="completed"?"selected":""}>✅ เสร็จสิ้น</option><option value="cancelled" ${b.status==="cancelled"?"selected":""}>🔴 ยกเลิก</option></select></div>`}
+        <div class="booking-actions"><button type="button" class="btn secondary" onclick="viewBooking('${b.id}')">👁️ ดูรายละเอียด</button><button type="button" class="btn secondary" onclick="openEditBooking('${b.id}')">✏️ แก้ไขรายการ</button></div>
+      </div>`;
+    }).join("");
 }
 
-
-
+function syncBookingTabFromFilter(){
+  const v=document.getElementById("adminStatusFilter")?.value||"";
+  document.querySelectorAll("#bookingTabs .booking-tab").forEach(x=>x.classList.toggle("active",x.dataset.tab===v));
+}
+function setupBookingTabs(){
+  document.querySelectorAll("#bookingTabs .booking-tab").forEach(btn=>btn.addEventListener("click",()=>{
+    const v=btn.dataset.tab||"";const sel=document.getElementById("adminStatusFilter");if(sel)sel.value=v;
+    document.querySelectorAll("#bookingTabs .booking-tab").forEach(x=>x.classList.remove("active"));btn.classList.add("active");renderAdmin();
+  }));
+}
 function filterAdminToday(){
     const input = document.getElementById("adminDateFilter");
     if(!input) return;
@@ -6607,143 +6360,145 @@ function clearAdminFilters(){
 }
 
 function renderBookingChart(){
-
-    const chart =
-    document.getElementById(
-        "bookingChart"
-    );
-
-
+    const chart = document.getElementById("bookingChart");
     if(!chart) return;
 
-
+    // สร้างกราฟใหม่ทุกครั้ง และไม่พึ่งพา Chart.js เพื่อให้เปิดไฟล์ HTML ตรง ๆ ก็แสดงได้
     chart.innerHTML = "";
+    chart.style.display = "grid";
+    chart.style.gridTemplateColumns = "repeat(7, minmax(0, 1fr))";
+    chart.style.alignItems = "end";
+    chart.style.gap = "6px";
+    chart.style.height = "180px";
+    chart.style.padding = "10px 4px 4px";
+    chart.style.boxSizing = "border-box";
 
-
-    const today =
-    new Date();
-
-
+    const today = new Date();
+    today.setHours(0,0,0,0);
     const days = [];
 
-
     for(let i=6;i>=0;i--){
+        const d = new Date(today);
+        d.setDate(today.getDate() - i);
+        const yyyy = d.getFullYear();
+        const mm = String(d.getMonth()+1).padStart(2,'0');
+        const dd = String(d.getDate()).padStart(2,'0');
+        const iso = `${yyyy}-${mm}-${dd}`;
 
-        const d =
-        new Date(today);
+        // รองรับวันที่ที่เก็บเป็น YYYY-MM-DD และรูปแบบอื่นที่อาจอยู่ในข้อมูลเก่า
+        const count = (Array.isArray(bookings) ? bookings : []).filter(b => {
+            if(!b || b.status === 'cancelled') return false;
+            const raw = String(b.date || '').trim();
+            if(raw === iso) return true;
+            const m = raw.match(/^(\d{1,2})[\/-](\d{1,2})[\/-](\d{4})$/);
+            if(m) return Number(m[1]) === Number(dd) && Number(m[2]) === Number(mm) && Number(m[3]) === Number(yyyy);
+            return false;
+        }).length;
 
-
-        d.setDate(
-            today.getDate() - i
-        );
-
-
-        const iso =
-        d.toISOString()
-        .slice(0,10);
-
-
-        const count =
-        bookings.filter(
-            b=>b.date === iso
-        ).length;
-
-
-        days.push({
-            date:d,
-            count:count
-        });
-
+        days.push({d, iso, count});
     }
 
+    const max = Math.max(1, ...days.map(x=>x.count));
 
-    const max =
-    Math.max(
-        ...days.map(x=>x.count),
-        1
-    );
+    days.forEach(item => {
+        const col = document.createElement('div');
+        col.style.cssText = 'height:100%;min-width:0;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:5px;font-size:9px;color:#8c817a;';
 
+        const number = document.createElement('div');
+        number.textContent = String(item.count);
+        number.style.cssText = 'font-size:10px;font-weight:900;color:#e97912;min-height:14px;';
 
-    days.forEach(item=>{
+        const track = document.createElement('div');
+        track.style.cssText = 'width:100%;height:105px;display:flex;align-items:flex-end;justify-content:center;background:#fff5ea;border-radius:9px 9px 4px 4px;overflow:hidden;';
 
-        const col =
-        document.createElement("div");
+        const bar = document.createElement('div');
+        const h = item.count > 0 ? Math.max(12, (item.count/max)*100) : 4;
+        bar.style.cssText = `width:65%;height:${h}%;min-height:4px;border-radius:7px 7px 2px 2px;background:linear-gradient(to top,#f28c28,#ffb45b);`;
+        track.appendChild(bar);
 
-        col.className =
-        "chart-col";
+        const label = document.createElement('div');
+        label.textContent = `${item.d.getDate()}/${item.d.getMonth()+1}`;
+        label.style.cssText = 'font-size:9px;font-weight:700;color:#777;white-space:nowrap;';
 
-
-        const bar =
-        document.createElement("div");
-
-        bar.className =
-        "chart-bar";
-
-
-        bar.style.height =
-        `${Math.max(
-            5,
-            (item.count / max) * 100
-        )}%`;
-
-
-        const label =
-        document.createElement("div");
-
-        label.textContent =
-        `${item.date.getDate()}/${item.date.getMonth()+1}`;
-
-
-        const number =
-        document.createElement("div");
-
-        number.textContent =
-        item.count;
-
-
-        col.appendChild(number);
-
-        col.appendChild(bar);
-
-        col.appendChild(label);
-
-
+        col.append(number, track, label);
         chart.appendChild(col);
-
     });
+}
 
+
+window.confirmBooking = function confirmBooking(id){
+    const b = bookings.find(x => String(x.id) === String(id));
+    if(!b){
+        showToast("ไม่พบรายการจองนี้");
+        return false;
+    }
+    if(b.status !== "pending" && !(b.status === "confirmed" && !b.confirmedAt)){
+        showToast("รายการนี้ได้รับการยืนยันไปแล้ว");
+        renderAdmin();
+        return false;
+    }
+
+    b.status = "confirmed";
+    b.confirmedAt = new Date().toISOString();
+    b.updatedAt = new Date().toISOString();
+    saveBookings();
+
+    try { addNotification(`✅ การจอง ${b.petName} ได้รับการยืนยันแล้ว`); } catch(e) {}
+
+    const result = document.getElementById("adminActionResult");
+    if(result){
+        result.dataset.locked = "1";
+        result.innerHTML = `🟢 <b>ยืนยันการจองสำเร็จ</b><br>${escapeHTML(b.petName)} · ${formatDate(b.date)} · ${escapeHTML(b.time)}<br><span style="font-weight:700;">รายการถูกย้ายไปอยู่ใน “รายการที่ยืนยันแล้ว” และลูกค้าได้รับการแจ้งเตือนแล้ว</span>`;
+        result.style.display = "block";
+    }
+
+    renderBookings();
+    renderAdmin();
+
+    // renderAdmin ไม่ลบผลการยืนยัน จึงค้างให้เห็นชัดเจน
+    const result2 = document.getElementById("adminActionResult");
+    if(result2){
+        result2.dataset.locked = "1";
+        result2.style.display = "block";
+    }
+    return false;
+}
+
+window.rejectBooking = function rejectBooking(id){
+    const b = bookings.find(x => String(x.id) === String(id));
+    if(!b){ showToast("ไม่พบรายการจองนี้"); return false; }
+    if(b.status !== "pending") { showToast("รายการนี้ไม่ได้อยู่ในสถานะรอยืนยัน"); return false; }
+    b.status = "cancelled";
+    b.updatedAt = new Date().toISOString();
+    saveBookings();
+    addNotification(`❌ การจอง ${b.petName} ถูกปฏิเสธ/ยกเลิก`);
+    showToast(`❌ ยกเลิกการจอง ${b.petName} แล้ว`);
+    renderBookings();
+    renderAdmin();
 }
 
 
 
-function changeStatus(id,status){
+window.changeStatus = function changeStatus(id,status){
 
-    const b =
-    bookings.find(
-        x=>x.id === id
-    );
-
+    const b = bookings.find(x=>x.id === id);
 
     if(!b) return;
 
+    if(status === "confirmed" && b.status === "pending"){
+        confirmBooking(id);
+        return;
+    }
 
     b.status = status;
-
     saveBookings();
 
+    addNotification(`สถานะการจอง ${b.petName} เปลี่ยนเป็น ${statusText(status)}`);
 
-    addNotification(
-        `สถานะการจอง ${b.petName} เปลี่ยนเป็น ${statusText(status)}`
-    );
+    showToast("เปลี่ยนสถานะแล้ว");
 
-
-    showToast(
-        "เปลี่ยนสถานะแล้ว"
-    );
-
-
+    renderBookings();
     renderAdmin();
-
 }
 
 
@@ -7428,6 +7183,46 @@ renderDateChoices();
 updateSummary();
 
 loadTimeSlots();
+
+
+
+// วาดกราฟแยกจาก renderAdmin เพื่อไม่ให้ส่วนอื่นของหลังบ้านทำให้กราฟหาย
+try {
+    if(document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => { try { renderBookingChart(); } catch(e) {} }, 50);
+        });
+    } else {
+        setTimeout(() => { try { renderBookingChart(); } catch(e) {} }, 50);
+    }
+} catch(e) {}
+
+try{setupBookingTabs();}catch(e){}
+
+/* ===== Live sync: customer page follows admin backend changes ===== */
+(function(){
+  function syncBookingsFromStorage(){
+    try{
+      const raw=localStorage.getItem('petcare_bookings');
+      if(raw){
+        const fresh=JSON.parse(raw);
+        if(Array.isArray(fresh)){
+          bookings.length=0; fresh.forEach(x=>bookings.push(x));
+          renderBookings();
+          if(typeof renderAdmin==='function' && document.getElementById('adminPage')?.classList.contains('active')) renderAdmin();
+        }
+      }
+    }catch(e){ console.warn('booking sync',e); }
+  }
+  window.addEventListener('storage',e=>{if(e.key==='petcare_bookings') syncBookingsFromStorage();});
+  window.addEventListener('petcare-bookings-updated',syncBookingsFromStorage);
+  try{
+    if(window.BroadcastChannel){
+      const ch=new BroadcastChannel('petcare-bookings-sync');
+      ch.onmessage=e=>{if(e.data?.type==='bookings-updated') syncBookingsFromStorage();};
+    }
+  }catch(e){}
+})();
 
 </script>
 
