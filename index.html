@@ -559,6 +559,9 @@ textarea{
     color:#8c817a;
     line-height:1.6;
 }
+.deposit-summary{margin-top:11px;background:#fff;border:1px solid #f1d7bc;border-radius:14px;padding:10px 11px;box-shadow:0 2px 8px rgba(120,80,40,.04)}
+.deposit-row{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:10px;color:#75675d;line-height:1.7}.deposit-row b{color:#d86f0c;font-size:11px}.deposit-row.balance{border-top:1px dashed #ead8c8;margin-top:6px;padding-top:6px}.deposit-row.balance b{color:#4f4037}
+
 
 .btn{
     width:100%;
@@ -1324,6 +1327,8 @@ textarea{
 .admin-confirm-btn{min-height:42px!important;font-size:11px!important;font-weight:900!important;}
 #adminActionResult{box-shadow:0 4px 12px rgba(47,168,90,.08);}
 
+/* ===== Deposit management ===== */
+.deposit-admin-box{margin-top:9px;padding:10px;border:1px solid #f0dfd1;border-radius:13px;background:#fffaf6}.deposit-admin-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px}.deposit-admin-item{background:#fff;border-radius:10px;padding:8px;border:1px solid #f0e6df}.deposit-admin-item span{display:block;font-size:8px;color:#91847c}.deposit-admin-item b{display:block;margin-top:2px;font-size:11px;color:#d86f0c}.deposit-status-select{width:100%;border:1px solid #e5ddd7;border-radius:10px;padding:7px 8px;font-family:inherit;font-size:9px;font-weight:800;background:#fff;margin-top:7px}.deposit-paid-btn{width:100%;border:0;border-radius:10px;padding:8px;background:#eaf8ee;color:#2f7b3d;font-family:inherit;font-size:9px;font-weight:900;cursor:pointer;margin-top:7px}
 /* ===== Admin reliability upgrade ===== */
 .admin-manager-tools{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}
 .admin-manager-tools .btn{flex:1 1 0;min-width:0}
@@ -1381,6 +1386,19 @@ textarea{
 .profile-pet-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px}.profile-pet-card{border:1px solid #eee0d4;border-radius:16px;padding:9px;background:#fff}.profile-pet-photo{width:100%;height:105px;border-radius:12px;object-fit:cover;background:#fff3e5}.profile-pet-card b{display:block;font-size:12px;margin-top:6px}.profile-pet-meta{font-size:9px;color:#8d7d73;line-height:1.7}.profile-empty{padding:20px;text-align:center;color:#97877c;font-size:11px;background:#fff8f1;border-radius:15px}
 .profile-modal-title{font-size:17px;font-weight:700;margin-bottom:4px}.profile-modal-sub{font-size:10px;color:#918178;margin-bottom:12px}.profile-form-label{display:block;font-size:11px;font-weight:600;margin:9px 0 5px}.profile-form-input{width:100%;padding:11px 12px;border:1px solid #dfd4cb;border-radius:12px;font-family:inherit;font-size:11px;outline:none;background:#fff}.profile-form-input:focus{border-color:#e99a48}.profile-modal-actions{display:flex;gap:8px;margin-top:14px}.profile-modal-actions button{flex:1}.profile-info-row{padding:10px 0;border-bottom:1px solid #f0e8e2;font-size:11px}.profile-info-row:last-child{border-bottom:0}.profile-order-card{border:1px solid #eee0d4;border-radius:14px;padding:11px;margin-bottom:8px;background:#fff}.profile-order-status{float:right;font-size:9px;font-weight:600;color:#d87919}.profile-order-items{font-size:10px;color:#716158;margin-top:5px}.profile-order-total{font-size:11px;font-weight:700;margin-top:5px}
 
+
+/* ===== Deposit payment + bank transfer ===== */
+.deposit-payment-box{margin-top:10px;padding:12px;border:1px solid #efd9c7;border-radius:16px;background:linear-gradient(180deg,#fffaf5,#fff)}
+.deposit-payment-title{font-size:13px;font-weight:900;color:#493c35}.deposit-payment-note{font-size:9px;line-height:1.6;color:#8b7d74;margin:4px 0 9px}
+.bank-info-card{border:1px solid #ead8ca;border-radius:14px;padding:10px;background:#fff}
+.bank-info-head{display:flex;justify-content:space-between;gap:8px;align-items:center;font-size:10px;font-weight:900;color:#5c4e46;margin-bottom:7px}
+.bank-ready-badge{font-size:8px;border-radius:999px;padding:4px 7px;background:#fff0d9;color:#a86113;white-space:nowrap}.bank-ready-badge.ready{background:#eaf8ee;color:#2f7b3d}
+.bank-info-row{display:flex;justify-content:space-between;gap:8px;padding:6px 0;border-top:1px dashed #eee0d6;font-size:9px;color:#8a7c73}.bank-info-row b{color:#4c4039;text-align:right}.bank-info-row.account{align-items:center}.bank-info-row.account b{font-size:12px;letter-spacing:.5px}
+.copy-bank-btn{border:0;border-radius:8px;background:#fff0df;color:#d86f0c;font-family:inherit;font-size:8px;font-weight:900;padding:6px 8px;cursor:pointer}
+.deposit-slip-upload{margin-top:9px;display:flex;align-items:center;gap:9px;padding:10px;border:1.5px dashed #e4b98f;border-radius:13px;background:#fffaf4;cursor:pointer}.deposit-slip-upload input{display:none}.deposit-slip-icon{width:36px;height:36px;border-radius:10px;background:#fff0df;display:flex;align-items:center;justify-content:center;font-size:18px;flex:0 0 36px}.deposit-slip-upload b{display:block;font-size:10px;color:#554940}.deposit-slip-upload small{display:block;font-size:8px;color:#9a8e86;margin-top:2px}.deposit-slip-preview{width:100%;max-height:230px;object-fit:contain;margin-top:8px;border-radius:12px;border:1px solid #eadfd7;background:#faf7f4}.deposit-slip-status{font-size:8px;color:#8e8179;margin-top:5px;font-weight:800}
+.admin-bank-card{margin-top:12px}.admin-bank-form{display:grid;grid-template-columns:1fr 1fr;gap:8px}.admin-bank-form .full{grid-column:1/-1}.admin-bank-form label{font-size:8px;color:#887b72;font-weight:800;display:block;margin-bottom:4px}.admin-bank-form input{width:100%;box-sizing:border-box;border:1px solid #e5ddd7;border-radius:10px;padding:9px;font-family:inherit;font-size:10px;background:#fff}.admin-bank-actions{display:flex;gap:7px;margin-top:8px}.admin-bank-actions button{flex:1}.admin-bank-preview{margin-top:8px;padding:9px;border-radius:12px;background:#fff8ef;border:1px solid #f0dfcf;font-size:9px;line-height:1.7;color:#6f6259}.deposit-slip-admin{margin-top:8px;padding:8px;border:1px solid #eadfd8;border-radius:12px;background:#fff}.deposit-slip-admin img{width:100%;max-height:210px;object-fit:contain;border-radius:9px;background:#f8f5f2}.deposit-slip-meta{font-size:8px;color:#8d8179;line-height:1.6;margin-top:5px}.deposit-review-actions{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:7px}.deposit-review-actions button{border:0;border-radius:10px;padding:9px;font-family:inherit;font-size:9px;font-weight:900;cursor:pointer}.deposit-verify-btn{background:#eaf8ee;color:#2f7b3d}.deposit-reject-btn{background:#fff0f0;color:#c45353}.deposit-status-pill{display:inline-block;padding:4px 7px;border-radius:999px;font-size:8px;font-weight:900}.deposit-status-submitted{background:#fff0d9;color:#a86113}.deposit-status-paid{background:#eaf8ee;color:#2f7b3d}.deposit-status-rejected{background:#fff0f0;color:#c45353}.deposit-status-pending{background:#f3f0ed;color:#776b63}.deposit-status-refunded{background:#edf4ff;color:#3b68a6}
+.customer-deposit-status{margin-top:8px;padding:9px;border-radius:12px;background:#fffaf5;border:1px solid #eadfd8;font-size:9px;line-height:1.6}.customer-deposit-status b{font-size:10px}
+@media(max-width:430px){.admin-bank-form{grid-template-columns:1fr}.admin-bank-form .full{grid-column:auto}.deposit-review-actions{grid-template-columns:1fr 1fr}}
 </style>
 
 <style>
@@ -1457,6 +1475,29 @@ textarea{
 
 <div class="page-subtitle">
     เลือกบริการที่ต้องการ
+</div>
+
+<div class="card" style="margin-top:12px;">
+  <div class="card-title">📌 คำแนะนำ</div>
+  <div style="font-size:12px;line-height:2;color:#6f6259;">
+    <b>ควรอ่านก่อนกดยืนยันการจอง</b><br><br>
+
+    <b>🛁 บริการอาบน้ำ–ตัดขน</b><br>
+    1. 🧴 กรุณาแจ้งรายละเอียดเกี่ยวกับสัตว์เลี้ยง เช่น สายพันธุ์ และบริการที่ต้องการ<br>
+    2. ✂️ หากต้องการตัดขน กรุณาระบุ ทรงหรือความยาวที่ต้องการ<br>
+    3. 🩺 กรุณาแจ้ง โรคประจำตัว แผล หรือข้อควรระวัง ก่อนใช้บริการ<br>
+    4. ⚠️ หากสัตว์เลี้ยงมีอาการป่วยหรือมีความผิดปกติ กรุณาแจ้งทางร้านก่อนใช้บริการ<br><br>
+
+    <b>🏠 บริการรับฝากเลี้ยง</b><br>
+    1. 🍚 แนะนำให้นำอาหารของสัตว์เลี้ยงมาเอง หากไม่สะดวก ทางร้านมีขนมสำหรับป้อน โดยมีค่าใช้จ่ายเพิ่มเติม<br>
+    2. 🩺 กรุณาแจ้ง โรคประจำตัวหรือข้อควรระวัง ก่อนเข้าพัก<br>
+    3. 💊 หากมีการให้ยา กรุณาแจ้ง ชื่อยา จำนวนเม็ด/ปริมาณ และเวลาที่ต้องให้ยา อย่างละเอียด<br>
+    4. 🐕 สามารถเลือกบริการ พาสัตว์เลี้ยงออกไปเดินเล่น ได้ โดยมีค่าใช้จ่ายเพิ่มเติม<br>
+    5. 📸 ทางร้านจะ อัปเดตรูปภาพ/วิดีโอตามเวลาที่กำหนด<br>
+    6. 🛍️ หากซื้อสินค้าเพิ่มเติมจากทางร้าน สามารถชำระเงินในวันที่มารับสินค้า/มารับสัตว์เลี้ยง<br><br>
+
+    <b>⚠️ กรุณากรอกข้อมูลของสัตว์เลี้ยงให้ครบถ้วนและเป็นความจริง เพื่อให้ทางร้านดูแลได้อย่างเหมาะสม</b>
+  </div>
 </div>
 
 
@@ -1548,33 +1589,33 @@ textarea{
         </tr>
 
         <tr>
-            <td>1–5 กก.</td>
-            <td>150–250</td>
-            <td>300–450</td>
+            <td>1–2.9 กก.</td>
+            <td>250 บาท</td>
+            <td>450 บาท</td>
         </tr>
 
         <tr>
-            <td>5–10 กก.</td>
-            <td>200–300</td>
-            <td>350–500</td>
+            <td>3–4.9 กก.</td>
+            <td>350 บาท</td>
+            <td>550 บาท</td>
         </tr>
 
         <tr>
-            <td>10–20 กก.</td>
-            <td>300–400</td>
-            <td>500–700</td>
+            <td>5–6.9 กก.</td>
+            <td>400 บาท</td>
+            <td>650 บาท</td>
         </tr>
 
         <tr>
-            <td>20–30 กก.</td>
-            <td>400–600</td>
-            <td>700–900</td>
+            <td>7–10 กก.</td>
+            <td>500 บาท</td>
+            <td>800 บาท</td>
         </tr>
 
         <tr>
-            <td>30 กก.+</td>
-            <td>500–800</td>
-            <td>900–1200+</td>
+            <td>10.1–15 กก.</td>
+            <td>600 บาท</td>
+            <td>900 บาท</td>
         </tr>
 
     </table>
@@ -1599,14 +1640,14 @@ textarea{
 
         <tr>
             <td>ขนสั้น</td>
-            <td>250–350</td>
-            <td>350–500</td>
+            <td>300 บาท</td>
+            <td>450 บาท</td>
         </tr>
 
         <tr>
             <td>ขนยาว</td>
-            <td>350–500</td>
-            <td>500–700</td>
+            <td>400 บาท</td>
+            <td>550 บาท</td>
         </tr>
 
     </table>
@@ -1638,15 +1679,15 @@ textarea{
         </tr>
 
         <tr>
-            <td>☀️ รายวัน</td>
-            <td>300–500 บาท</td>
-            <td>300–500 บาท</td>
+            <td>☀️ ชั่วคราว<br><small>ไม่เกิน 8 ชั่วโมง</small></td>
+            <td>250 บาท</td>
+            <td>200 บาท</td>
         </tr>
 
         <tr>
             <td>🌙 ค้างคืน</td>
-            <td>500–800 บาท</td>
-            <td>500–800 บาท</td>
+            <td>400 บาท</td>
+            <td>300 บาท</td>
         </tr>
 
     </table>
@@ -1663,6 +1704,8 @@ textarea{
 
     </div>
 </div>
+
+
 
 </section>
 
@@ -1821,11 +1864,11 @@ textarea{
         onchange="calculatePrice()">
 
 <option value="">เลือกน้ำหนัก</option>
-<option value="1-5">1–5 กก.</option>
-<option value="5-10">5–10 กก.</option>
-<option value="10-20">10–20 กก.</option>
-<option value="20-30">20–30 กก.</option>
-<option value="30+">30 กก.+</option>
+<option value="1-2.9">1–2.9 กก.</option>
+<option value="3-4.9">3–4.9 กก.</option>
+<option value="5-6.9">5–6.9 กก.</option>
+<option value="7-10">7–10 กก.</option>
+<option value="10.1-15">10.1–15 กก.</option>
 
 </select>
 
@@ -2023,7 +2066,7 @@ placeholder="เช่น เวลาให้อาหาร อาหาร�
 <button class="option"
         onclick="selectMainService(this,'boarding-day')">
 
-    ☀️ รับฝากรายวัน
+    ☀️ รับฝากชั่วคราว • ไม่เกิน 8 ชั่วโมง
 
 </button>
 
@@ -2053,40 +2096,8 @@ placeholder="เช่น เวลาให้อาหาร อาหาร�
 <div class="boarding-extra-grid">
 
 
-<button class="boarding-extra"
-        onclick="toggleBoardingExtra(this,'room')">
-
-    <span class="extra-icon">
-        🛏️
-    </span>
-
-    <span class="extra-name">
-        ห้องพักสัตว์เลี้ยง
-    </span>
-
-    <span class="extra-price">
-        +100–300 บาท/วัน
-    </span>
-
-</button>
 
 
-<button class="boarding-extra"
-        onclick="toggleBoardingExtra(this,'food')">
-
-    <span class="extra-icon">
-        🍚
-    </span>
-
-    <span class="extra-name">
-        อาหาร
-    </span>
-
-    <span class="extra-price">
-        +50–150 บาท/มื้อ
-    </span>
-
-</button>
 
 
 <button class="boarding-extra"
@@ -2101,7 +2112,7 @@ placeholder="เช่น เวลาให้อาหาร อาหาร�
     </span>
 
     <span class="extra-price">
-        +50–150 บาท/ครั้ง
+        +20 บาท/ครั้ง
     </span>
 
 </button>
@@ -2119,7 +2130,7 @@ placeholder="เช่น เวลาให้อาหาร อาหาร�
     </span>
 
     <span class="extra-price">
-        +200–500 บาท
+        + ตามราคาบริการอาบน้ำ
     </span>
 
 </button>
@@ -2137,7 +2148,7 @@ placeholder="เช่น เวลาให้อาหาร อาหาร�
     </span>
 
     <span class="extra-price">
-        +50–100 บาท/ครั้ง
+        +50 บาท/ครั้ง
     </span>
 
 </button>
@@ -2155,7 +2166,7 @@ placeholder="เช่น เวลาให้อาหาร อาหาร�
     </span>
 
     <span class="extra-price">
-        +50–150 บาท
+        ฟรี
     </span>
 
 </button>
@@ -2241,9 +2252,6 @@ placeholder="เช่น ชื่อยา ปริมาณยา เวล�
 
 </div>
 
-<div class="info-note">
-    ⚠️ กรุณานำยาและคำแนะนำการใช้ยามาให้ครบถ้วน
-</div>
 
 </div>
 
@@ -2378,7 +2386,7 @@ placeholder="เช่น ชื่อยา ปริมาณยา เวล�
 <button class="option extra-service"
         onclick="toggleExtra(this,'mat')">
 
-    ✂️ ตัดสังกะตัง 100–500+
+    ✂️ ตัดสังกะตัง 100 บาท
 
 </button>
 
@@ -2403,7 +2411,7 @@ placeholder="เช่น ชื่อยา ปริมาณยา เวล�
 <button class="option extra-service"
         onclick="toggleExtra(this,'mat')">
 
-    ✂️ ตัดสังกะตัง 100–500+
+    ✂️ ตัดสังกะตัง 100 บาท
 
 </button>
 
@@ -2414,27 +2422,33 @@ placeholder="เช่น ชื่อยา ปริมาณยา เวล�
 
 <!-- PRICE -->
 <div class="price-box">
-
-<div class="price-label">
-    ราคาประเมิน
+<div class="price-label">ราคาประเมินทั้งหมด</div>
+<div class="price" id="priceText">กรุณาเลือกข้อมูล</div>
+<div class="price-note" id="priceNote">เลือกข้อมูลเพื่อดูราคา</div>
+<div id="depositSummary" class="deposit-summary" style="display:none;">
+  <div class="deposit-row"><span>💳 มัดจำบริการ</span><b id="depositText">฿0–฿0</b></div>
+  <div class="deposit-row"><span>📌 คิดเป็น</span><b>40% ของยอดทั้งหมด</b></div>
+  <div class="deposit-row balance"><span>💰 ยอดคงเหลือวันใช้บริการ</span><b id="balanceText">฿0–฿0</b></div>
 </div>
 
-<div class="price"
-     id="priceText">
-
-    กรุณาเลือกข้อมูล
-
+<div id="depositPaymentBox" class="deposit-payment-box" style="display:none;">
+  <div class="deposit-payment-title">🏦 ชำระมัดจำ 40%</div>
+  <div class="deposit-payment-note">กรุณาโอนเงินมัดจำตามยอดที่ระบบคำนวณ แล้วแนบสลิปเพื่อให้แอดมินตรวจสอบ</div>
+  <div class="bank-info-card">
+    <div class="bank-info-head"><span>🏦 บัญชีธนาคารร้าน Pawfect</span><span class="bank-ready-badge" id="bankReadyBadge">บัญชีจำลอง</span></div>
+    <div class="bank-info-row"><span>ธนาคาร</span><b id="customerBankName">-</b></div>
+    <div class="bank-info-row"><span>ชื่อบัญชี</span><b id="customerBankAccountName">-</b></div>
+    <div class="bank-info-row account"><span>เลขบัญชี</span><b id="customerBankAccountNumber">กรุณาตั้งค่าเลขบัญชี</b><button type="button" class="copy-bank-btn" onclick="copyBankAccount()">คัดลอก</button></div>
+  </div>
+  <label class="deposit-slip-upload">
+    <input type="file" id="depositSlip" accept="image/*" onchange="previewDepositSlip(event)">
+    <div class="deposit-slip-icon">🧾</div>
+    <div><b>แนบรูปสลิปการโอนเงิน</b><small>รองรับ JPG / PNG · 1 รูป</small></div>
+  </label>
+  <img id="depositSlipPreview" class="deposit-slip-preview" style="display:none;" alt="สลิปการโอนเงิน">
+  <div id="depositSlipStatus" class="deposit-slip-status">ยังไม่ได้แนบสลิป</div>
 </div>
-
-<div class="price-note"
-     id="priceNote">
-
-    เลือกข้อมูลเพื่อดูราคา
-
 </div>
-
-</div>
-
 </div>
 
 
@@ -2648,8 +2662,8 @@ placeholder="เช่น ขี้กลัว ไม่ชอบเสีย�
   <div id="shopGrid" class="shop-grid"></div>
 
   <div class="shop-note">
-    <b>🏪 การรับสินค้า</b><br>
-    เลือกสินค้าใส่ตะกร้าและสั่งซื้อได้ จากนั้นชำระเงินและรับสินค้าที่ร้าน Pawfect
+    <b>📌 คำแนะนำ</b><br>
+    🛍️ หากซื้อสินค้าเพิ่มเติมจากทางร้าน สามารถชำระเงินในวันที่มารับสินค้า/มารับสัตว์เลี้ยง
   </div>
 
   <div class="cart-float">
@@ -2754,7 +2768,7 @@ placeholder="เช่น ขี้กลัว ไม่ชอบเสีย�
     ระบบจัดการสำหรับแอดมิน
 </div>
 
-<div id="adminPendingBanner" style="margin-top:10px;padding:13px;border:2px solid #f3a04b;border-radius:16px;background:#fff8ef;font-size:11px;font-weight:800;color:#9a560e;">🟠 รายการจองที่ยังรอการยืนยันจะแสดงปุ่ม <b>✅ ยืนยันการจอง</b> ด้านล่าง</div>
+<div id="adminPendingBanner" style="margin-top:10px;padding:13px;border:2px solid #f3a04b;border-radius:16px;background:#fff8ef;font-size:11px;font-weight:800;color:#9a560e;">🟠 ตรวจสลิปมัดจำ 40% ให้ผ่านก่อน แล้วจึงกด <b>✅ ยืนยันการจอง</b> เพื่อยืนยันรายการ</div>
 
 <div class="dashboard-grid">
 
@@ -2801,6 +2815,29 @@ placeholder="เช่น ขี้กลัว ไม่ชอบเสีย�
 
 </div>
 
+
+<div class="card" style="margin-top:12px;">
+  <div class="card-title">💳 สรุปมัดจำบริการ 40%</div>
+  <div class="report-grid">
+    <div class="report-mini"><div class="number" id="statDepositDue">฿0</div><div style="font-size:9px;color:#8c817a;">มัดจำที่ต้องชำระ</div></div>
+    <div class="report-mini"><div class="number" id="statDepositSubmitted">0</div><div style="font-size:9px;color:#8c817a;">รอตรวจสลิป</div></div>
+    <div class="report-mini"><div class="number" id="statDepositPaid">฿0</div><div style="font-size:9px;color:#8c817a;">มัดจำที่ชำระแล้ว</div></div>
+    <div class="report-mini"><div class="number" id="statDepositRejected">0</div><div style="font-size:9px;color:#8c817a;">สลิปไม่ผ่าน</div></div>
+    <div class="report-mini"><div class="number" id="statDepositBalance">฿0</div><div style="font-size:9px;color:#8c817a;">ยอดคงเหลือโดยประมาณ</div></div>
+  </div>
+</div>
+
+<div class="card admin-bank-card">
+  <div class="card-title">🏦 ตั้งค่าบัญชีรับมัดจำ</div>
+  <div style="font-size:9px;color:#8c817a;line-height:1.6;margin-bottom:9px;">ข้อมูลนี้จะแสดงให้ลูกค้าในขั้นตอนชำระมัดจำ 40% • ขณะนี้ใช้บัญชีจำลองสำหรับทดสอบระบบ • หากนำไปใช้งานจริงให้เปลี่ยนเป็นบัญชีร้านจริง</div>
+  <div class="admin-bank-form">
+    <div><label>ธนาคาร</label><input id="adminBankName" placeholder="เช่น ธนาคารกสิกรไทย"></div>
+    <div><label>ชื่อบัญชี</label><input id="adminBankAccountName" placeholder="ชื่อเจ้าของบัญชี"></div>
+    <div class="full"><label>เลขบัญชี</label><input id="adminBankAccountNumber" inputmode="numeric" placeholder="เลขบัญชีธนาคารร้าน"></div>
+  </div>
+  <div class="admin-bank-actions"><button type="button" class="btn btn-primary" onclick="saveBankInfoFromAdmin()">💾 บันทึกบัญชีร้าน</button><button type="button" class="btn btn-secondary" onclick="renderBankInfoAdmin()">↻ โหลดข้อมูล</button></div>
+  <div id="adminBankPreview" class="admin-bank-preview">ยังไม่ได้ตั้งค่าบัญชีรับมัดจำ</div>
+</div>
 
 <div class="card" style="margin-top:12px;">
   <div class="card-title">📊 สถานะการจอง</div>
@@ -2858,6 +2895,9 @@ placeholder="เช่น ขี้กลัว ไม่ชอบเสีย�
     <input id="adminSearch" type="text" placeholder="🔎 ค้นหารหัส / เจ้าของ / เบอร์ / สัตว์เลี้ยง" oninput="renderAdmin()">
     <select id="adminStatusFilter" onchange="syncBookingTabFromFilter();renderAdmin()">
       <option value="">ทุกสถานะ</option><option value="pending">รอยืนยัน</option><option value="confirmed">ยืนยันแล้ว</option><option value="progress">กำลังให้บริการ</option><option value="completed">เสร็จสิ้น</option><option value="cancelled">ยกเลิก</option>
+    </select>
+    <select id="adminDepositFilter" onchange="renderAdmin()">
+      <option value="">มัดจำทุกสถานะ</option><option value="pending">⚪ ยังไม่ชำระ</option><option value="submitted">🟠 รอตรวจสลิป</option><option value="paid">🟢 ชำระแล้ว</option><option value="rejected">🔴 สลิปไม่ผ่าน</option><option value="refunded">🔵 คืนมัดจำแล้ว</option>
     </select>
     <input id="adminDateFilter" type="date" onchange="renderAdmin()">
   </div>
@@ -3064,7 +3104,18 @@ let selectedExtras = [];
 let selectedBoardingExtras = [];
 let selectedTime = "";
 let uploadedPhoto = "";
+let uploadedDepositSlip = "";
 let bookingMode = "service";
+
+let bankInfo = JSON.parse(localStorage.getItem("pawfect_bank_info") || "null") || {
+    bankName: "ธนาคารกสิกรไทย",
+    accountName: "Pawfect Pet Care",
+    accountNumber: "123-4-56789-0"
+};
+// บัญชีด้านบนเป็นบัญชีจำลองสำหรับทดสอบระบบเท่านั้น
+if(!bankInfo.bankName || !bankInfo.accountName || !bankInfo.accountNumber){
+    bankInfo = {bankName:"ธนาคารกสิกรไทย", accountName:"Pawfect Pet Care", accountNumber:"123-4-56789-0"};
+}
 
 
 const dogBreeds = [
@@ -3101,29 +3152,29 @@ const catBreeds = [
 
 const dogPrices = {
 
-    "1-5":{
-        bath:"150-250",
-        cut:"300-450"
+    "1-2.9":{
+        bath:"250",
+        cut:"450"
     },
 
-    "5-10":{
-        bath:"200-300",
-        cut:"350-500"
+    "3-4.9":{
+        bath:"350",
+        cut:"550"
     },
 
-    "10-20":{
-        bath:"300-400",
-        cut:"500-700"
+    "5-6.9":{
+        bath:"400",
+        cut:"650"
     },
 
-    "20-30":{
-        bath:"400-600",
-        cut:"700-900"
+    "7-10":{
+        bath:"500",
+        cut:"800"
     },
 
-    "30+":{
-        bath:"500-800",
-        cut:"900-1200+"
+    "10.1-15":{
+        bath:"600",
+        cut:"900"
     }
 
 };
@@ -3132,13 +3183,13 @@ const dogPrices = {
 const catPrices = {
 
     short:{
-        blow:"250-350",
-        cut:"350-500"
+        blow:"300",
+        cut:"450"
     },
 
     long:{
-        blow:"350-500",
-        cut:"500-700"
+        blow:"400",
+        cut:"550"
     }
 
 };
@@ -3146,8 +3197,14 @@ const catPrices = {
 
 const boardingPrices = {
 
-    day:"300-500",
-    night:"500-800"
+    day:{
+        dog:"250",
+        cat:"200"
+    },
+    night:{
+        dog:"400",
+        cat:"300"
+    }
 
 };
 
@@ -3157,39 +3214,27 @@ const boardingPrices = {
 */
 const boardingExtraPrices = {
 
-    room:{
-        min:100,
-        max:300,
-        text:"ห้องพักสัตว์เลี้ยง"
-    },
-
-    food:{
-        min:50,
-        max:150,
-        text:"อาหาร"
-    },
-
     medicine:{
-        min:50,
-        max:150,
+        min:20,
+        max:20,
         text:"ให้ยา"
     },
 
     bath:{
-        min:200,
-        max:500,
+        min:0,
+        max:0,
         text:"อาบน้ำก่อนรับกลับ"
     },
 
     walk:{
         min:50,
-        max:100,
+        max:50,
         text:"พาออกไปเดินเล่น"
     },
 
     update:{
-        min:50,
-        max:150,
+        min:0,
+        max:0,
         text:"ส่งรูป/วิดีโออัปเดต"
     }
 
@@ -3824,9 +3869,13 @@ function renderSelectedBoardingExtras(){
         const p =
         boardingExtraPrices[x];
 
+        const priceText = (p.min === 0 && p.max === 0)
+            ? "ฟรี"
+            : `+${p.min}${p.max !== p.min ? "-" + p.max : ""} บาท`;
+
         return `
         • ${escapeHTML(p.text)}
-        (+${p.min}${p.max !== p.min ? "-" + p.max : ""} บาท)
+        (${priceText})
         `;
 
     })
@@ -3836,249 +3885,220 @@ function renderSelectedBoardingExtras(){
 
 
 
-function calculatePrice(){
-
-    let base = "";
-    let note = "";
-
-
-    /*
-        BOARDING
-    */
-    if(bookingMode === "boarding"){
-
-        if(selectedMainService === "boarding-day"){
-
-            base = boardingPrices.day;
-
-            note = "รับฝากรายวัน";
-
-        }
-
-
-        if(selectedMainService === "boarding-night"){
-
-            base = boardingPrices.night;
-
-            note = "รับฝากค้างคืน";
-
-        }
-
-    }
-
-
-    /*
-        DOG
-    */
-    else if(selectedPetType === "dog"){
-
-        const weight =
-        document.getElementById("weight").value;
-
-        if(weight && selectedMainService){
-
-            const p =
-            dogPrices[weight];
-
-            if(selectedMainService === "dog-bath"){
-
-                base = p.bath;
-
-                note =
-                "สุนัข • อาบน้ำอย่างเดียว";
-
-            }
-
-            if(selectedMainService === "dog-cut"){
-
-                base = p.cut;
-
-                note =
-                "สุนัข • อาบน้ำ + ตัดขน";
-
-            }
-
-        }
-
-    }
-
-
-    /*
-        CAT
-    */
-    else if(selectedPetType === "cat"){
-
-        const hair =
-        document.getElementById("catHair").value;
-
-        if(hair && selectedMainService){
-
-            const p =
-            catPrices[hair];
-
-            if(selectedMainService === "cat-blow"){
-
-                base = p.blow;
-
-                note =
-                "แมว • อาบน้ำ + เป่าขน";
-
-            }
-
-            if(selectedMainService === "cat-cut"){
-
-                base = p.cut;
-
-                note =
-                "แมว • อาบน้ำ + ตัดขน";
-
-            }
-
-        }
-
-    }
-
-
-    let extraMin = 0;
-    let extraMax = 0;
-
-
-    /*
-        GROOMING EXTRAS
-    */
-    selectedExtras.forEach(x=>{
-
-        if(x === "tooth"){
-            extraMin += 50;
-            extraMax += 50;
-        }
-
-        if(x === "medshampoo"){
-            extraMin += 100;
-            extraMax += 100;
-        }
-
-        if(x === "spa"){
-            extraMin += 100;
-            extraMax += 100;
-        }
-
-        if(x === "mat"){
-            extraMin += 100;
-            extraMax += 500;
-        }
-
-        // รองรับรายการจองเก่าที่ใช้ชื่อบริการเดิม
-        if(x === "nail"){
-            extraMin += 50;
-            extraMax += 100;
-        }
-
-        if(x === "ear"){
-            extraMin += 100;
-            extraMax += 100;
-        }
-
-        if(x === "paw"){
-            extraMin += 50;
-            extraMax += 50;
-        }
-
-    });
-
-
-    /*
-        BOARDING EXTRAS
-    */
-    selectedBoardingExtras.forEach(x=>{
-
-        const p =
-        boardingExtraPrices[x];
-
-        if(p){
-
-            extraMin += p.min;
-            extraMax += p.max;
-
-        }
-
-    });
-
-
-    if(base){
-
-        const numbers =
-        base.match(/\d+/g).map(Number);
-
-        let min = numbers[0];
-
-        let max =
-        numbers.length > 1
-        ? numbers[1]
-        : numbers[0];
-
-
-        min += extraMin;
-        max += extraMax;
-
-
-        document
-        .getElementById("priceText")
-        .textContent =
-        `฿${min.toLocaleString()}–${max.toLocaleString()}`;
-
-
-        let extraText = "";
-
-
-        if(selectedExtras.length){
-
-            extraText +=
-            " + บริการเสริม";
-
-        }
-
-
-        if(selectedBoardingExtras.length){
-
-            extraText +=
-            " + บริการเสริมรับฝาก";
-
-        }
-
-
-        document
-        .getElementById("priceNote")
-        .textContent =
-        note + extraText;
-
-    }
-
-    else{
-
-        document
-        .getElementById("priceText")
-        .textContent =
-        "กรุณาเลือกข้อมูล";
-
-
-        document
-        .getElementById("priceNote")
-        .textContent =
-        bookingMode === "boarding"
-        ?
-        "เลือกประเภทการรับฝากเพื่อดูราคาประเมิน"
-        :
-        "เลือกข้อมูลสัตว์เลี้ยงและบริการเพื่อดูราคา";
-
-    }
-
-
-    updateSummary();
-
+function moneyRange(min,max){
+    min=Number(min)||0;
+    max=Number(max);
+    if(!Number.isFinite(max)) max=min;
+    return min===max ? `฿${min.toLocaleString()}` : `฿${min.toLocaleString()}–฿${max.toLocaleString()}`;
 }
 
+function getBoardingBathRange(){
+    if(selectedPetType === "dog"){
+        const weight = document.getElementById("weight")?.value;
+        if(weight && dogPrices[weight]){
+            const p = dogPrices[weight];
+            const n = Number(p.bath);
+            return {min:n,max:n};
+        }
+    }
+    if(selectedPetType === "cat"){
+        const hair = document.getElementById("catHair")?.value;
+        if(hair && catPrices[hair]){
+            const p = catPrices[hair];
+            const n = Number(p.blow);
+            return {min:n,max:n};
+        }
+    }
+    return null;
+}
 
+function syncBoardingExtraPrices(){
+    const bath = getBoardingBathRange();
+    if(bath){
+        boardingExtraPrices.bath.min = bath.min;
+        boardingExtraPrices.bath.max = bath.max;
+    }else{
+        boardingExtraPrices.bath.min = 0;
+        boardingExtraPrices.bath.max = 0;
+    }
+
+    const bathPriceEl = document.querySelector('[onclick="toggleBoardingExtra(this,\'bath\')"] .extra-price');
+    if(bathPriceEl){
+        bathPriceEl.textContent = bath ? `+${bath.min === bath.max ? bath.min : bath.min + "–" + bath.max} บาท` : "+ ตามราคาบริการอาบน้ำ";
+    }
+}
+
+function calculatePrice(){
+    let base = "";
+    let note = "";
+    if(bookingMode === "boarding"){
+        const boardingPetType = selectedPetType || document.getElementById("petType")?.value || "dog";
+        if(selectedMainService === "boarding-day"){ base = boardingPrices.day[boardingPetType] || boardingPrices.day.dog; note = `รับฝากชั่วคราว • ไม่เกิน 8 ชั่วโมง • ${boardingPetType === "cat" ? "แมว" : "สุนัข"}`; }
+        if(selectedMainService === "boarding-night"){ base = boardingPrices.night[boardingPetType] || boardingPrices.night.dog; note = `รับฝากค้างคืน • ${boardingPetType === "cat" ? "แมว" : "สุนัข"}`; }
+    }
+    else if(selectedPetType === "dog"){
+        const weight = document.getElementById("weight").value;
+        if(weight && selectedMainService){
+            const p = dogPrices[weight];
+            if(selectedMainService === "dog-bath"){ base = p.bath; note = "สุนัข • อาบน้ำอย่างเดียว"; }
+            if(selectedMainService === "dog-cut"){ base = p.cut; note = "สุนัข • อาบน้ำ + ตัดขน"; }
+        }
+    }
+    else if(selectedPetType === "cat"){
+        const hair = document.getElementById("catHair").value;
+        if(hair && selectedMainService){
+            const p = catPrices[hair];
+            if(selectedMainService === "cat-blow"){ base = p.blow; note = "แมว • อาบน้ำ + เป่าขน"; }
+            if(selectedMainService === "cat-cut"){ base = p.cut; note = "แมว • อาบน้ำ + ตัดขน"; }
+        }
+    }
+    syncBoardingExtraPrices();
+    let extraMin = 0, extraMax = 0;
+    selectedExtras.forEach(x=>{
+        if(x === "tooth"){ extraMin += 50; extraMax += 50; }
+        if(x === "medshampoo"){ extraMin += 100; extraMax += 100; }
+        if(x === "spa"){ extraMin += 100; extraMax += 100; }
+        if(x === "mat"){ extraMin += 100; extraMax += 100; }
+        if(x === "nail"){ extraMin += 50; extraMax += 100; }
+        if(x === "ear"){ extraMin += 100; extraMax += 100; }
+        if(x === "paw"){ extraMin += 50; extraMax += 50; }
+    });
+    selectedBoardingExtras.forEach(x=>{
+        const p = boardingExtraPrices[x];
+        if(p){ extraMin += p.min; extraMax += p.max; }
+    });
+    const summary = document.getElementById("depositSummary");
+    if(base){
+        const numbers = base.match(/\d+/g).map(Number);
+        let min = numbers[0], max = numbers.length > 1 ? numbers[1] : numbers[0];
+        min += extraMin; max += extraMax;
+        document.getElementById("priceText").textContent = moneyRange(min,max);
+        let extraText = "";
+        if(selectedExtras.length) extraText += " + บริการเสริม";
+        if(selectedBoardingExtras.length) extraText += " + บริการเสริมรับฝาก";
+        document.getElementById("priceNote").textContent = note + extraText;
+        const depositMin = Math.round(min * 0.40), depositMax = Math.round(max * 0.40);
+        const balanceMin = min - depositMin, balanceMax = max - depositMax;
+        if(summary) summary.style.display = "block";
+        const d=document.getElementById("depositText"), bal=document.getElementById("balanceText");
+        if(d) d.textContent = moneyRange(depositMin,depositMax);
+        if(bal) bal.textContent = moneyRange(balanceMin,balanceMax);
+        updateDepositPaymentBox();
+    }else{
+        document.getElementById("priceText").textContent = "กรุณาเลือกข้อมูล";
+        document.getElementById("priceNote").textContent = bookingMode === "boarding" ? "เลือกประเภทการรับฝากเพื่อดูราคาประเมิน" : "เลือกข้อมูลสัตว์เลี้ยงและบริการเพื่อดูราคา";
+        if(summary) summary.style.display = "none";
+        updateDepositPaymentBox();
+    }
+    updateSummary();
+}
+
+function getPriceRange(priceText){
+    const nums = String(priceText || "").match(/\d+/g);
+    if(!nums || !nums.length) return null;
+    const min=Number(nums[0]), max=nums.length>1?Number(nums[1]):min;
+    return {min,max};
+}
+function financialsFromBooking(b){
+    const parsed=getPriceRange(b?.price||"");
+    const totalMin=Number.isFinite(Number(b?.totalMin))?Number(b.totalMin):(parsed?parsed.min:0);
+    const totalMax=Number.isFinite(Number(b?.totalMax))?Number(b.totalMax):(parsed?parsed.max:totalMin);
+    const percent=Number.isFinite(Number(b?.depositPercent))?Number(b.depositPercent):40;
+    const depositMin=Number.isFinite(Number(b?.depositMin))?Number(b.depositMin):Math.round(totalMin*percent/100);
+    const depositMax=Number.isFinite(Number(b?.depositMax))?Number(b.depositMax):Math.round(totalMax*percent/100);
+    return {totalMin,totalMax,percent,depositMin,depositMax,balanceMin:Math.max(0,totalMin-depositMin),balanceMax:Math.max(0,totalMax-depositMax),depositStatus:b?.depositStatus||"pending"};
+}
+function depositStatusText(status){ return ({pending:"⚪ ยังไม่ชำระ",submitted:"🟠 รอตรวจสลิป",paid:"🟢 ชำระแล้ว",rejected:"🔴 สลิปไม่ผ่าน",refunded:"🔵 คืนมัดจำแล้ว"})[status]||"⚪ ยังไม่ชำระ"; }
+function depositStatusOptions(status){ return ["pending","submitted","paid","rejected","refunded"].map(v=>`<option value="${v}" ${status===v?"selected":""}>${depositStatusText(v)}</option>`).join(""); }
+function depositStatusClass(status){ return ({pending:"deposit-status-pending",submitted:"deposit-status-submitted",paid:"deposit-status-paid",rejected:"deposit-status-rejected",refunded:"deposit-status-refunded"})[status]||"deposit-status-pending"; }
+
+
+
+function saveBankInfo(){
+    localStorage.setItem("pawfect_bank_info", JSON.stringify(bankInfo));
+}
+function bankInfoReady(){
+    return !!(String(bankInfo.bankName||"").trim() && String(bankInfo.accountName||"").trim() && String(bankInfo.accountNumber||"").trim());
+}
+function renderBankInfoToCustomer(){
+    const bn=document.getElementById("customerBankName");
+    const an=document.getElementById("customerBankAccountName");
+    const no=document.getElementById("customerBankAccountNumber");
+    const badge=document.getElementById("bankReadyBadge");
+    if(bn) bn.textContent=bankInfo.bankName||"ยังไม่ได้ตั้งค่า";
+    if(an) an.textContent=bankInfo.accountName||"ยังไม่ได้ตั้งค่า";
+    if(no) no.textContent=bankInfo.accountNumber||"กรุณาตั้งค่าเลขบัญชี";
+    if(badge){ badge.textContent=bankInfoReady()?"พร้อมรับโอน":"ยังไม่ตั้งค่า"; badge.classList.toggle("ready",bankInfoReady()); }
+}
+function renderBankInfoAdmin(){
+    const a=document.getElementById("adminBankName"), b=document.getElementById("adminBankAccountName"), c=document.getElementById("adminBankAccountNumber"), p=document.getElementById("adminBankPreview");
+    if(a) a.value=bankInfo.bankName||"";
+    if(b) b.value=bankInfo.accountName||"";
+    if(c) c.value=bankInfo.accountNumber||"";
+    if(p) p.innerHTML=bankInfoReady()?`<b>บัญชีที่ลูกค้าจะเห็น</b><br>🏦 ${escapeHTML(bankInfo.bankName)}<br>👤 ${escapeHTML(bankInfo.accountName)}<br>💳 ${escapeHTML(bankInfo.accountNumber)}`:`<b style="color:#b56809">⚠️ ยังไม่ได้ตั้งค่าบัญชีรับมัดจำ</b>`;
+    renderBankInfoToCustomer();
+}
+function saveBankInfoFromAdmin(){
+    const bankName=(document.getElementById("adminBankName")?.value||"").trim();
+    const accountName=(document.getElementById("adminBankAccountName")?.value||"").trim();
+    const accountNumber=(document.getElementById("adminBankAccountNumber")?.value||"").trim();
+    if(!bankName||!accountName||!accountNumber){ showToast("กรุณากรอกธนาคาร ชื่อบัญชี และเลขบัญชีให้ครบ"); return; }
+    bankInfo={bankName,accountName,accountNumber};
+    saveBankInfo(); renderBankInfoAdmin(); showToast("🏦 บันทึกบัญชีรับมัดจำแล้ว");
+}
+function copyBankAccount(){
+    if(!bankInfo.accountNumber){ showToast("ร้านยังไม่ได้ตั้งค่าเลขบัญชี"); return; }
+    if(navigator.clipboard?.writeText){ navigator.clipboard.writeText(bankInfo.accountNumber).then(()=>showToast("คัดลอกเลขบัญชีแล้ว")).catch(()=>showToast("คัดลอกไม่สำเร็จ กรุณากดค้างที่เลขบัญชี")); }
+    else showToast("เลขบัญชี: "+bankInfo.accountNumber);
+}
+function resizeImageFile(file, maxSize=1400, quality=.78){
+    return new Promise((resolve,reject)=>{
+        const reader=new FileReader();
+        reader.onload=e=>{
+            const img=new Image();
+            img.onload=()=>{
+                let w=img.width,h=img.height;
+                const scale=Math.min(1,maxSize/Math.max(w,h)); w=Math.round(w*scale); h=Math.round(h*scale);
+                const canvas=document.createElement("canvas"); canvas.width=w; canvas.height=h;
+                const ctx=canvas.getContext("2d"); ctx.drawImage(img,0,0,w,h);
+                resolve(canvas.toDataURL("image/jpeg",quality));
+            };
+            img.onerror=reject; img.src=e.target.result;
+        };
+        reader.onerror=reject; reader.readAsDataURL(file);
+    });
+}
+function previewDepositSlip(event){
+    const file=event.target.files?.[0];
+    if(!file) return;
+    if(!file.type.startsWith("image/")){ showToast("กรุณาเลือกไฟล์รูปภาพ"); return; }
+    resizeImageFile(file,1400,.78).then(data=>{
+        uploadedDepositSlip=data;
+        const img=document.getElementById("depositSlipPreview"); if(img){img.src=data;img.style.display="block";}
+        const st=document.getElementById("depositSlipStatus"); if(st){st.textContent="🟠 แนบสลิปแล้ว · รอแอดมินตรวจสอบ";st.style.color="#a86113";}
+    }).catch(()=>showToast("ไม่สามารถอ่านรูปสลิปได้"));
+}
+
+function updateDepositPaymentBox(){
+    const box=document.getElementById("depositPaymentBox");
+    const summary=document.getElementById("depositSummary");
+    const hasPrice=!!getPriceRange(document.getElementById("priceText")?.textContent);
+    if(box) box.style.display=hasPrice?"block":"none";
+    if(summary) summary.style.display=hasPrice?"block":"none";
+    if(hasPrice) renderBankInfoToCustomer();
+}
+
+function previewDepositSlipForExisting(id){
+    const input=document.createElement("input"); input.type="file"; input.accept="image/*";
+    input.onchange=()=>{
+        const file=input.files?.[0]; if(!file)return;
+        resizeImageFile(file,1400,.78).then(data=>{
+            const b=bookings.find(x=>String(x.id)===String(id)); if(!b)return;
+            b.depositSlip=data; b.depositStatus="submitted"; b.depositSlipSubmittedAt=new Date().toISOString(); b.depositRejectedReason=""; b.updatedAt=new Date().toISOString();
+            saveBookings(); addNotification(`🧾 ได้รับสลิปมัดจำใหม่ของ ${b.petName||"สัตว์เลี้ยง"} แล้ว`); showToast("แนบสลิปใหม่แล้ว รอแอดมินตรวจสอบ"); renderBookings(); renderAdmin();
+        }).catch(()=>showToast("ไม่สามารถอ่านรูปสลิปได้"));
+    }; input.click();
+}
 
 function previewPhoto(event){
 
@@ -5259,6 +5279,14 @@ function submitBooking(){
 
     }
 
+    if(!bankInfoReady()){
+        return showToast("ร้านยังไม่ได้ตั้งค่าบัญชีรับมัดจำ กรุณาแจ้งแอดมิน");
+    }
+
+    if(!uploadedDepositSlip){
+        return showToast("กรุณาโอนมัดจำ 40% และแนบรูปสลิปก่อนยืนยันการจอง");
+    }
+
 
     const duplicate =
     bookings.some(
@@ -5388,6 +5416,18 @@ function submitBooking(){
         .getElementById("priceText")
         .textContent,
 
+        totalMin: getPriceRange(document.getElementById("priceText")?.textContent)?.min || 0,
+        totalMax: getPriceRange(document.getElementById("priceText")?.textContent)?.max || 0,
+        depositPercent: 40,
+        depositMin: Math.round((getPriceRange(document.getElementById("priceText")?.textContent)?.min || 0) * 0.40),
+        depositMax: Math.round((getPriceRange(document.getElementById("priceText")?.textContent)?.max || 0) * 0.40),
+        depositStatus: "submitted",
+        depositSlip: uploadedDepositSlip,
+        depositSlipSubmittedAt: new Date().toISOString(),
+        depositRejectedReason: "",
+        depositPaidAt: "",
+        depositRefundedAt: "",
+
         status:"pending",
 
         bookingType:bookingMode,
@@ -5401,8 +5441,9 @@ function submitBooking(){
     bookings.push(booking);
     saveBookings();
 
+    const savedFinancials = financialsFromBooking(booking);
     addNotification(
-        `จองบริการ ${petName} สำเร็จ วันที่ ${formatDate(date)} เวลา ${selectedTime}`
+        `จองบริการ ${petName} สำเร็จ วันที่ ${formatDate(date)} เวลา ${selectedTime} · มัดจำ 40% ${moneyRange(savedFinancials.depositMin,savedFinancials.depositMax)} · แนบสลิปแล้ว รอแอดมินตรวจสอบ`
     );
 
     // แสดงหน้าการจองทันทีหลังบันทึกสำเร็จ
@@ -5471,6 +5512,11 @@ function resetForm(){
     document
     .getElementById("petPhoto")
     .value = "";
+
+    uploadedDepositSlip = "";
+    const slipInput=document.getElementById("depositSlip"); if(slipInput) slipInput.value="";
+    const slipPreview=document.getElementById("depositSlipPreview"); if(slipPreview){slipPreview.src="";slipPreview.style.display="none";}
+    const slipStatus=document.getElementById("depositSlipStatus"); if(slipStatus) slipStatus.textContent="ยังไม่ได้แนบสลิป";
 
 
     document
@@ -5630,6 +5676,13 @@ function resetForm(){
     .textContent =
     "เลือกข้อมูลเพื่อดูราคา";
 
+    const depositSummary = document.getElementById("depositSummary");
+    if(depositSummary) depositSummary.style.display = "none";
+    const depositText = document.getElementById("depositText");
+    const balanceText = document.getElementById("balanceText");
+    if(depositText) depositText.textContent = "฿0–฿0";
+    if(balanceText) balanceText.textContent = "฿0–฿0";
+
 
     renderDateChoices();
 
@@ -5765,9 +5818,11 @@ function renderBookings(){
           </div>
           <div class="customer-backend-link">🔗 <b>สถานะจากระบบหลังบ้าน</b><span>${statusText(b.status)}</span></div>
           ${timeline}
+          <div class="customer-deposit-status"><b>💳 มัดจำ 40%: ${(()=>{const f=financialsFromBooking(b);return moneyRange(f.depositMin,f.depositMax)})()}</b> · <span class="deposit-status-pill ${depositStatusClass(financialsFromBooking(b).depositStatus)}">${depositStatusText(financialsFromBooking(b).depositStatus)}</span>${b.depositStatus==='rejected'?`<br><span style="color:#c45353">${escapeHTML(b.depositRejectedReason||'กรุณาแนบสลิปใหม่')}</span> <button class="outline-action" onclick="previewDepositSlipForExisting('${b.id}')">📎 แนบสลิปใหม่</button>`:''}</div>
           <div class="booking-bottom-row">
             <div><small>🐾 บริการ</small><b>${serviceText(b.mainService)}</b></div>
-            <div><small>🪙 ราคา</small><b>${escapeHTML(b.price||'-')} บาท</b></div>
+            <div><small>🪙 ยอดรวม</small><b>${escapeHTML(b.price||'-')}</b></div>
+            <div><small>💳 มัดจำ 40%</small><b>${(()=>{const f=financialsFromBooking(b);return moneyRange(f.depositMin,f.depositMax)})()}</b></div>
             ${action}
           </div>
           ${extras?`<div class="booking-extra">${extras}</div>`:''}
@@ -5791,7 +5846,7 @@ function getBookingExtrasText(b){
         tooth: "แปรงฟัน 50 บาท",
         medshampoo: "ฟอกแชมพูยา 100 บาท",
         spa: "สปา เริ่ม 100 บาท",
-        mat: "ตัดสังกะตัง 100–500+ บาท",
+        mat: "ตัดสังกะตัง 100 บาท",
         // รองรับรายการจองเก่า
         nail: "ตัดเล็บ 50–100 บาท",
         ear: "เช็ดหู 100 บาท",
@@ -5877,6 +5932,8 @@ function viewBooking(id){
 
     "";
 
+
+    const depositInfo = (()=>{ const f=financialsFromBooking(b); return `<div class="customer-deposit-status"><b>💳 มัดจำ 40%:</b> ${moneyRange(f.depositMin,f.depositMax)}<br><b>💰 ยอดคงเหลือ:</b> ${moneyRange(f.balanceMin,f.balanceMax)}<br><b>สถานะ:</b> <span class="deposit-status-pill ${depositStatusClass(f.depositStatus)}">${depositStatusText(f.depositStatus)}</span>${b.depositSlip?`<div style="margin-top:7px"><img src="${b.depositSlip}" style="width:100%;max-height:220px;object-fit:contain;border-radius:12px;border:1px solid #eadfd8"></div>`:''}${b.depositStatus==='rejected'?`<div style="margin-top:5px;color:#c45353">${escapeHTML(b.depositRejectedReason||'กรุณาแนบสลิปใหม่')}<br><button class="outline-action" onclick="closeModal();previewDepositSlipForExisting('${b.id}')">📎 แนบสลิปใหม่</button></div>`:''}</div>`; })();
 
     let boardingDetails = "";
 
@@ -5966,6 +6023,7 @@ function viewBooking(id){
 
     ${photo}
 
+    ${depositInfo}
 
     <div style="
         font-size:11px;
@@ -6080,10 +6138,17 @@ function viewBooking(id){
 
         <br>
 
-        <b>ราคา:</b>
+        <b>ราคาประเมินทั้งหมด:</b>
         ${escapeHTML(b.price)}
 
         <br>
+
+        ${(()=>{const f=financialsFromBooking(b);return `
+        <div class="deposit-summary" style="margin:10px 0;">
+          <div class="deposit-row"><span>💳 มัดจำ ${f.percent}%</span><b>${moneyRange(f.depositMin,f.depositMax)}</b></div>
+          <div class="deposit-row"><span>📌 สถานะมัดจำ</span><b>${depositStatusText(f.depositStatus)}</b></div>
+          <div class="deposit-row balance"><span>💰 ยอดคงเหลือ</span><b>${moneyRange(f.balanceMin,f.balanceMax)}</b></div>
+        </div>`})()}
 
         <b>นิสัยและพฤติกรรม:</b>
         ${escapeHTML(b.behavior || "ไม่มี")}
@@ -6381,6 +6446,8 @@ function normalizeBookingDateForFilter(raw){
 }
 
 function renderAdmin(){
+    renderBankInfoAdmin();
+    bookings=bookings.map(b=>{ const f=financialsFromBooking(b); return {...b,totalMin:f.totalMin,totalMax:f.totalMax,depositPercent:f.percent,depositMin:f.depositMin,depositMax:f.depositMax,depositStatus:f.depositStatus}; });
     const search=(document.getElementById("adminSearch")?.value||"").trim().toLowerCase();
     const statusFilter=document.getElementById("adminStatusFilter")?.value||"";
     const dateFilter=document.getElementById("adminDateFilter")?.value||"";
@@ -6388,13 +6455,27 @@ function renderAdmin(){
     const ids={statTotal:bookings.length,statPending:count("pending"),statDog:bookings.filter(b=>b.petType==="dog").length,statCat:bookings.filter(b=>b.petType==="cat").length,statConfirmed:count("confirmed"),statCancelled:count("cancelled"),statStatusPending:count("pending"),statStatusConfirmed:count("confirmed"),statStatusProgress:count("progress"),statStatusCompleted:count("completed"),statStatusCancelled:count("cancelled")};
     Object.entries(ids).forEach(([id,val])=>{const el=document.getElementById(id);if(el)el.textContent=val;});
     ["bmPending","bmConfirmed","bmProgress","bmCompleted","bmCancelled"].forEach((id,i)=>{const el=document.getElementById(id);if(el)el.textContent=[count("pending"),count("confirmed"),count("progress"),count("completed"),count("cancelled")][i];});
-    let revenue=0; bookings.filter(b=>b.status!=="cancelled").forEach(b=>{const nums=String(b.price||"").match(/\d+/g);if(nums){const v=nums.map(Number);revenue+=v.length>1?Math.round((v[0]+v[1])/2):v[0];}});
+    let revenue=0, depositDue=0, depositPaid=0, balanceTotal=0;
+    bookings.filter(b=>b.status!=="cancelled").forEach(b=>{
+      const f=financialsFromBooking(b);
+      revenue += Math.round((f.totalMin+f.totalMax)/2);
+      if(f.depositStatus==="paid") depositPaid += Math.round((f.depositMin+f.depositMax)/2);
+      else depositDue += Math.round((f.depositMin+f.depositMax)/2);
+      balanceTotal += Math.round((f.balanceMin+f.balanceMax)/2);
+    });
     const rev=document.getElementById("statRevenue");if(rev)rev.textContent="฿"+revenue.toLocaleString();
+    const dd=document.getElementById("statDepositDue");if(dd)dd.textContent="฿"+depositDue.toLocaleString();
+    const ds=document.getElementById("statDepositSubmitted");if(ds)ds.textContent=bookings.filter(b=>b.depositStatus==='submitted').length;
+    const dr=document.getElementById("statDepositRejected");if(dr)dr.textContent=bookings.filter(b=>b.depositStatus==='rejected').length;
+    const dp=document.getElementById("statDepositPaid");if(dp)dp.textContent="฿"+depositPaid.toLocaleString();
+    const db=document.getElementById("statDepositBalance");if(db)db.textContent="฿"+balanceTotal.toLocaleString();
     renderBookingChart(); renderAdminShopOrders();
+    const depositFilter=document.getElementById("adminDepositFilter")?.value||"";
     const list=bookings.filter(b=>{
       const text=`${b.id||""} ${b.owner||""} ${b.petName||""} ${b.phone||""}`.toLowerCase();
       const normalizedDate=normalizeBookingDateForFilter(b.date);
-      return (!search||text.includes(search))&&(!statusFilter||b.status===statusFilter)&&(!dateFilter||normalizedDate===dateFilter);
+      const f=financialsFromBooking(b);
+      return (!search||text.includes(search))&&(!statusFilter||b.status===statusFilter)&&(!depositFilter||f.depositStatus===depositFilter)&&(!dateFilter||normalizedDate===dateFilter);
     }).slice().reverse();
     const result=document.getElementById("adminResultCount");if(result)result.textContent=list.length;
     const container=document.getElementById("adminBookingList");if(!container)return;
@@ -6407,6 +6488,7 @@ function renderAdmin(){
         <div class="booking-card-top"><div style="display:flex;gap:10px;align-items:center;min-width:0"><img class="admin-pet-photo" src="${bookingPetImage(b.petType,b.photo)}" alt="รูป ${escapeHTML(b.petName||'สัตว์เลี้ยง')}" onerror="this.onerror=null;this.src=bookingPetImage('${b.petType}','')"><div><div class="booking-id">รหัส #${escapeHTML(String(b.id||"-"))}</div><div class="booking-pet">${b.petType==="dog"?"🐶":"🐱"} ${escapeHTML(b.petName||"ไม่ระบุ")}</div><div class="booking-owner">👤 ${escapeHTML(b.owner||"-")} · ☎️ ${escapeHTML(b.phone||"-")}</div></div></div><span class="booking-status-pill" style="${statusColors[b.status]||statusColors.pending}">${statusTextMap[b.status]||b.status}</span></div>
         <div class="booking-info-grid"><div class="booking-info">📅 <b>${formatDate(b.date)}</b>⏰ ${escapeHTML(b.time||"-")}</div><div class="booking-info">🛁 <b>${serviceText(b.mainService)}</b>${escapeHTML(getBookingExtrasText(b).replace(/<[^>]*>/g," "))}</div></div>
         <div style="display:flex;justify-content:space-between;align-items:center;gap:8px"><span class="booking-price">💰 ${escapeHTML(b.price||"-")}</span><span style="font-size:8px;color:#9a8e86">${b.createdAt?new Date(b.createdAt).toLocaleString("th-TH"):""}</span></div>
+        ${(()=>{const f=financialsFromBooking(b); const slip=b.depositSlip?`<div class="deposit-slip-admin"><img src="${b.depositSlip}" alt="สลิปมัดจำ" onclick="openDepositSlip('${b.id}')"><div class="deposit-slip-meta">🧾 แนบสลิปแล้ว${b.depositSlipSubmittedAt?` · ${new Date(b.depositSlipSubmittedAt).toLocaleString('th-TH')}`:''}</div>${f.depositStatus==='submitted'?`<div class="deposit-review-actions"><button type="button" class="deposit-verify-btn" onclick="window.verifyDeposit('${b.id}')">✅ ตรวจสอบผ่าน</button><button type="button" class="deposit-reject-btn" onclick="window.rejectDeposit('${b.id}')">❌ สลิปไม่ผ่าน</button></div>`:''}</div>`:`<div style="margin-top:8px;font-size:8px;color:#a58f84;background:#fff8f2;padding:8px;border-radius:10px">🧾 ยังไม่มีสลิปการโอนเงิน</div>`; return `<div class="deposit-admin-box"><div class="deposit-admin-grid"><div class="deposit-admin-item"><span>💳 มัดจำ ${f.percent}%</span><b>${moneyRange(f.depositMin,f.depositMax)}</b></div><div class="deposit-admin-item"><span>💰 คงเหลือ</span><b>${moneyRange(f.balanceMin,f.balanceMax)}</b></div></div><div style="margin-top:7px"><span class="deposit-status-pill ${depositStatusClass(f.depositStatus)}">${depositStatusText(f.depositStatus)}</span></div><select class="deposit-status-select" onchange="window.updateDepositStatus('${b.id}',this.value)">${depositStatusOptions(f.depositStatus)}</select>${slip}</div>`})()}
         ${pending?`<div class="booking-actions"><button type="button" class="btn primary" onclick="return window.confirmBooking('${b.id}')">✅ ยืนยันการจอง</button><button type="button" class="btn danger" onclick="return window.rejectBooking('${b.id}')">❌ ปฏิเสธ</button></div>`:`<div class="booking-next"><select ${['completed','cancelled'].includes(b.status)?'disabled':''} onchange="window.changeStatus('${b.id}',this.value)">${bookingStatusOptions(b.status)}</select></div>`}
         <div class="booking-actions"><button type="button" class="btn secondary" onclick="viewBooking('${b.id}')">👁️ ดูรายละเอียด</button><button type="button" class="btn secondary" onclick="openEditBooking('${b.id}')">✏️ แก้ไขรายการ</button></div>
       </div>`;
@@ -6433,10 +6515,13 @@ function filterAdminToday(){
 function clearAdminFilters(){
     const search = document.getElementById("adminSearch");
     const status = document.getElementById("adminStatusFilter");
+    const deposit = document.getElementById("adminDepositFilter");
     const date = document.getElementById("adminDateFilter");
     if(search) search.value = "";
     if(status) status.value = "";
+    if(deposit) deposit.value = "";
     if(date) date.value = "";
+    document.querySelectorAll("#bookingTabs .booking-tab").forEach(btn=>btn.classList.toggle("active",btn.dataset.tab===""));
     renderAdmin();
 }
 
@@ -6553,6 +6638,10 @@ window.confirmBooking = function confirmBooking(id){
         renderAdmin();
         return false;
     }
+    if((b.depositStatus||"pending") !== "paid") {
+        showToast("กรุณาตรวจสอบสลิปและยืนยันมัดจำ 40% ก่อนยืนยันการจอง");
+        return false;
+    }
     if(hasBookingConflict(b,b.id)){
         showToast('ไม่สามารถยืนยันได้ เพราะวันและเวลานี้มีรายการจองอื่นอยู่แล้ว');
         return false;
@@ -6586,6 +6675,44 @@ window.rejectBooking = function rejectBooking(id){
     renderBookings(); renderAdmin();
     return false;
 };
+
+window.updateDepositStatus = function updateDepositStatus(id,status){
+    const b=bookings.find(x=>String(x.id)===String(id));
+    if(!b) return;
+    if(!["pending","submitted","paid","rejected","refunded"].includes(status)) return;
+    const previous=b.depositStatus||"pending";
+    b.depositStatus=status;
+    b.updatedAt=new Date().toISOString();
+    if(status==="paid"){ b.depositPaidAt=new Date().toISOString(); b.depositRefundedAt=""; b.depositRejectedReason=""; }
+    else if(status==="refunded"){ b.depositRefundedAt=new Date().toISOString(); }
+    else if(status==="rejected"){ b.depositPaidAt=""; b.depositRefundedAt=""; }
+    else if(status==="pending"){ b.depositPaidAt=""; b.depositRefundedAt=""; }
+    saveBookings();
+    addNotification(`มัดจำการจอง ${b.petName||"สัตว์เลี้ยง"} เปลี่ยนจาก ${depositStatusText(previous)} เป็น ${depositStatusText(status)}`);
+    showToast(`อัปเดตสถานะมัดจำเป็น “${depositStatusText(status)}” แล้ว`);
+    renderBookings(); renderAdmin();
+};
+
+window.verifyDeposit = function verifyDeposit(id){
+    const b=bookings.find(x=>String(x.id)===String(id)); if(!b)return;
+    if(!b.depositSlip){showToast("ไม่พบสลิปสำหรับตรวจสอบ");return;}
+    b.depositStatus="paid"; b.depositPaidAt=new Date().toISOString(); b.depositRejectedReason=""; b.updatedAt=new Date().toISOString();
+    saveBookings(); addNotification(`🟢 ตรวจสอบสลิปมัดจำของ ${b.petName||"สัตว์เลี้ยง"} ผ่านแล้ว`); showToast("🟢 ตรวจสอบสลิปผ่านแล้ว"); renderBookings(); renderAdmin();
+};
+
+window.rejectDeposit = function rejectDeposit(id){
+    const b=bookings.find(x=>String(x.id)===String(id)); if(!b)return;
+    const reason=prompt("ระบุเหตุผลที่สลิปไม่ผ่าน เช่น ยอดเงินไม่ตรง / อ่านสลิปไม่ได้:","");
+    if(reason===null)return;
+    b.depositStatus="rejected"; b.depositRejectedReason=reason.trim()||"กรุณาตรวจสอบสลิปและแนบใหม่"; b.depositPaidAt=""; b.updatedAt=new Date().toISOString();
+    saveBookings(); addNotification(`🔴 สลิปมัดจำของ ${b.petName||"สัตว์เลี้ยง"} ไม่ผ่านการตรวจสอบ · ${b.depositRejectedReason}`); showToast("🔴 ส่งสถานะสลิปไม่ผ่านให้ลูกค้าแล้ว"); renderBookings(); renderAdmin();
+};
+
+function openDepositSlip(id){
+    const b=bookings.find(x=>String(x.id)===String(id)); if(!b?.depositSlip)return;
+    document.getElementById("modalContent").innerHTML=`<h2>🧾 สลิปมัดจำ #${escapeHTML(b.id||"")}</h2><div style="font-size:10px;color:#8d8179;margin-bottom:8px">${escapeHTML(b.petName||"")} · ${depositStatusText(b.depositStatus)}</div><img src="${b.depositSlip}" style="width:100%;max-height:70vh;object-fit:contain;border-radius:14px;border:1px solid #eadfd8"><button class="btn btn-secondary" onclick="closeModal()">ปิด</button>`;
+    document.getElementById("modalBg").classList.add("show");
+}
 
 window.changeStatus = function changeStatus(id,status){
     const b=bookings.find(x=>String(x.id)===String(id));
@@ -6623,6 +6750,16 @@ function refreshAdminData(){
       if(!Array.isArray(notifications)) notifications=[];
       shopOrders=JSON.parse(localStorage.getItem('petcare_shop_orders')||'[]');
       if(!Array.isArray(shopOrders)) shopOrders=[];
+      let changed=false;
+      bookings=bookings.map(b=>{
+        const f=financialsFromBooking(b);
+        const next={...b,totalMin:f.totalMin,totalMax:f.totalMax,depositPercent:f.percent,depositMin:f.depositMin,depositMax:f.depositMax,depositStatus:f.depositStatus};
+        if(b.depositPaidAt) next.depositPaidAt=b.depositPaidAt;
+        if(b.depositRefundedAt) next.depositRefundedAt=b.depositRefundedAt;
+        if(JSON.stringify(next)!==JSON.stringify(b)) changed=true;
+        return next;
+      });
+      if(changed) saveBookings();
     }catch(e){
       showToast('ไม่สามารถโหลดข้อมูลใหม่ได้');
       return;
@@ -7000,7 +7137,7 @@ function serviceText(service){
         "แมว - อาบน้ำ + ตัดขน",
 
         "boarding-day":
-        "รับฝากรายวัน",
+        "รับฝากชั่วคราว • ไม่เกิน 8 ชั่วโมง",
 
         "boarding-night":
         "รับฝากค้างคืน"
@@ -7398,7 +7535,8 @@ try {
     }
 } catch(e) {}
 
-try{setupBookingTabs();}catch(e){}
+try{renderBankInfoAdmin();
+setupBookingTabs();}catch(e){}
 
 /* ===== Live sync: customer page follows admin backend changes ===== */
 (function(){
