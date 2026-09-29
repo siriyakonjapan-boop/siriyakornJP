@@ -818,6 +818,15 @@ textarea{
 }
 
 
+
+.admin-create-order{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:10px;}
+.admin-create-order .full{grid-column:1/-1;}
+.admin-create-order label{display:block;font-size:9px;color:#806f65;font-weight:800;margin-bottom:4px;}
+.admin-create-order select,.admin-create-order input{width:100%;box-sizing:border-box;border:1px solid #eadfd6;border-radius:10px;padding:9px 10px;background:#fff;font-family:inherit;font-size:10px;color:#49382f;outline:none;}
+.admin-create-order select:focus,.admin-create-order input:focus{border-color:#f2a15a;box-shadow:0 0 0 2px rgba(242,161,90,.12);}
+.admin-create-order-summary{background:#fffaf5;border:1px dashed #e6c9ad;border-radius:12px;padding:9px 10px;font-size:9px;color:#735f53;line-height:1.7;}
+.admin-create-order-actions{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap;}
+@media(max-width:520px){.admin-create-order{grid-template-columns:1fr}.admin-create-order .full{grid-column:auto;}}
 .admin-order-card{
     border:1px solid #eee2d8;
     padding:12px;
@@ -2852,6 +2861,18 @@ placeholder="เช่น ขี้กลัว ไม่ชอบเสีย�
 </div>
 
 
+<div class="card" style="margin-top:12px;">
+  <div class="card-title">⚡ งานที่ต้องจัดการวันนี้</div>
+  <div class="report-grid">
+    <div class="report-mini"><div class="number" id="adminTodayBookings">0</div><div style="font-size:9px;color:#8c817a;">📅 นัดหมายวันนี้</div></div>
+    <div class="report-mini"><div class="number" id="adminNeedConfirm">0</div><div style="font-size:9px;color:#8c817a;">⏳ รอยืนยัน</div></div>
+    <div class="report-mini"><div class="number" id="adminNeedSlip">0</div><div style="font-size:9px;color:#8c817a;">🧾 รอตรวจสลิป</div></div>
+    <div class="report-mini"><div class="number" id="adminNeedOrder">0</div><div style="font-size:9px;color:#8c817a;">🛒 รอจัดสินค้า</div></div>
+    <div class="report-mini"><div class="number" id="adminCustomerCount">0</div><div style="font-size:9px;color:#8c817a;">👥 ลูกค้าที่มีนัดวันนี้</div></div>
+  </div>
+  <div id="adminQuickAlert" style="margin-top:10px;font-size:9px;line-height:1.7;color:#6f625a;background:#fff8f2;border:1px solid #f0dfd2;border-radius:12px;padding:10px 12px;">กำลังตรวจสอบงานที่ต้องจัดการ...</div>
+</div>
+
 <div class="card"
      style="margin-top:12px;">
 
@@ -2911,7 +2932,10 @@ placeholder="เช่น ขี้กลัว ไม่ชอบเสีย�
 </div>
 
 <div class="card" style="margin-top:12px;">
-  <div class="card-title">🛒 จัดการคำสั่งซื้อสินค้า</div>
+  <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;">
+    <div class="card-title" style="margin:0;">🛒 จัดการคำสั่งซื้อสินค้า</div>
+  </div>
+  <div style="font-size:9px;color:#8c7d74;margin-top:4px;line-height:1.6;">ติดตามและจัดการสถานะคำสั่งซื้อสินค้าจากส่วนนี้</div>
   <div class="admin-order-stats">
     <div class="admin-order-stat"><b id="adminOrderTotal">0</b><span>คำสั่งซื้อทั้งหมด</span></div>
     <div class="admin-order-stat"><b id="adminOrderPreparing">0</b><span>กำลังจัดเตรียม</span></div>
@@ -3305,8 +3329,17 @@ const demoShopOrder={
   bookingId:'',bookingPet:'',pickupMode:'store',bookingDate:'',bookingTime:'',bookingPetType:'',isDemo:true,isCustomerVisible:true
 };
 // หน้าการจองของฉันแสดงคำสั่งซื้อสินค้าตัวอย่างเพียง 1 รายการ
-const realShopOrders=shopOrders.filter(o=>!o.isDemo);
-shopOrders=[demoShopOrder,...realShopOrders];
+const realShopOrders=shopOrders.filter(o=>!o.isDemo && !o.isAdminDemo);
+const adminDemoShopOrders=[
+  {id:'PC-ADMIN001',status:'confirmed',createdAt:Date.now()-300000,updatedAt:Date.now()-300000,total:248,items:[{id:'D001',name:'ลูกบอลยางเด้ง',qty:1,price:89},{id:'D004',name:'ชามสแตนเลส',qty:1,price:159}],bookingId:'',bookingPet:'',pickupMode:'store',bookingDate:'',bookingTime:'',bookingPetType:'dog',isDemo:false,isAdminDemo:true,isCustomerVisible:false},
+  {id:'PC-ADMIN002',status:'preparing',createdAt:Date.now()-240000,updatedAt:Date.now()-120000,total:378,items:[{id:'C001',name:'ไม้ตกแมวขนนก',qty:1,price:79},{id:'C003',name:'อุโมงค์ของเล่นแมว',qty:1,price:299}],bookingId:'',bookingPet:'',pickupMode:'store',bookingDate:'',bookingTime:'',bookingPetType:'cat',isDemo:false,isAdminDemo:true,isCustomerVisible:false},
+  {id:'PC-ADMIN003',status:'ready',createdAt:Date.now()-180000,updatedAt:Date.now()-60000,total:699,items:[{id:'C005',name:'ชามน้ำพุไฟฟ้า',qty:1,price:699}],bookingId:'',bookingPet:'',pickupMode:'store',bookingDate:'',bookingTime:'',bookingPetType:'cat',isDemo:false,isAdminDemo:true,isCustomerVisible:false},
+  {id:'PC-ADMIN004',status:'done',createdAt:Date.now()-120000,updatedAt:Date.now()-30000,total:477,items:[{id:'D002',name:'เชือกกัดแทะ',qty:1,price:129},{id:'D005',name:'ชามป้อนอาหารช้า',qty:1,price:259},{id:'D001',name:'ลูกบอลยางเด้ง',qty:1,price:89}],bookingId:'',bookingPet:'',pickupMode:'store',bookingDate:'',bookingTime:'',bookingPetType:'dog',isDemo:false,isAdminDemo:true,isCustomerVisible:false},
+  {id:'PC-ADMIN005',status:'confirmed',createdAt:Date.now()-60000,updatedAt:Date.now()-60000,total:947,items:[{id:'D008',name:'น้ำพุสัตว์เลี้ยง',qty:1,price:599},{id:'C006',name:'ชามอาหารคู่แมว',qty:1,price:189},{id:'C007',name:'ชามน้ำแมว',qty:1,price:159}],bookingId:'',bookingPet:'',pickupMode:'store',bookingDate:'',bookingTime:'',bookingPetType:'both',isDemo:false,isAdminDemo:true,isCustomerVisible:false}
+];
+const existingAdminDemoIds=new Set(shopOrders.filter(o=>o && o.isAdminDemo).map(o=>o.id));
+adminDemoShopOrders.forEach(o=>{if(!existingAdminDemoIds.has(o.id)) shopOrders.push(o);});
+shopOrders=[demoShopOrder,...shopOrders.filter(o=>o.id!==demoShopOrder.id)];
 localStorage.setItem('petcare_shop_orders',JSON.stringify(shopOrders));
 let shopPickupMode='store';
 let shopSelectedBookingId='';
@@ -3476,7 +3509,8 @@ function shopOrderStatusText(status){return status==='confirmed'?'ยืนย�
 function renderShopOrders(){
   const box=document.getElementById('shopOrdersTracking'); if(!box)return;
   if(!shopOrders.length){box.innerHTML='';return;}
-  const visibleOrders=shopOrders.filter(o=>o.isDemo && o.isCustomerVisible).slice(0,1);
+  const realOrders=shopOrders.filter(o=>o && !o.isDemo && !o.isAdminDemo).slice().sort((a,b)=>(Number(b.createdAt||0)-Number(a.createdAt||0)));
+  const visibleOrders=realOrders.length ? realOrders : shopOrders.filter(o=>o.isDemo && !o.isAdminDemo && o.isCustomerVisible).slice(0,1);
   if(!visibleOrders.length){box.innerHTML='';return;}
   box.innerHTML=`<div class="page-title" style="font-size:15px;margin-top:8px">🛒 คำสั่งซื้อสินค้า</div>`+visibleOrders.slice().reverse().map(o=>{
     const cls=o.status==='ready'?'ready':o.status==='done'?'done':'';
@@ -3488,11 +3522,16 @@ function renderShopOrders(){
 function createShopOrder(){
   const total=shopCart.reduce((s,i)=>{const p=shopProducts.find(x=>x.id===i.id);return s+(p?p.price*i.qty:0)},0);
   const b=shopPickupMode==='withPet'?getSelectedShopBooking():null;
-  const order={id:'PC-'+String(Date.now()).slice(-6),status:'confirmed',createdAt:Date.now(),total,items:shopCart.map(i=>{const p=shopProducts.find(x=>x.id===i.id);return {id:i.id,name:p?.name||'สินค้า',qty:i.qty,price:p?.price||0};}),bookingId:b?.id||'',bookingPet:b?.petName||'',pickupMode:shopPickupMode,bookingDate:b?.date||'',bookingTime:b?.time||'',bookingPetType:b?.petType||''};
+  const customer=getCustomerProfile();
+  const order={id:'PC-'+String(Date.now()).slice(-6),status:'confirmed',createdAt:Date.now(),total,items:shopCart.map(i=>{const p=shopProducts.find(x=>x.id===i.id);return {id:i.id,name:p?.name||'สินค้า',qty:i.qty,price:p?.price||0};}),customerName:customer.name||'',customerPhone:customer.phone||'',bookingId:b?.id||'',bookingPet:b?.petName||'',pickupMode:shopPickupMode,bookingDate:b?.date||'',bookingTime:b?.time||'',bookingPetType:b?.petType||''};
+  shopOrders=shopOrders.filter(o=>!o.isDemo || o.isAdminDemo);
+  order.isDemo=false;
+  order.isCustomerVisible=true;
   shopOrders.push(order);saveShopOrders();shopCart=[];saveShopCart();
   addNotification(`✅ ยืนยันคำสั่งซื้อ #${order.id} แล้ว`);
   showToast(`✅ ยืนยันคำสั่งซื้อ #${order.id} แล้ว`);
   renderShopOrders();renderCart();
+  refreshProfilePage();
   closeShopModal(null,'shopCheckoutModal');
   showPage('trackingPage');
   scheduleShopOrderProgress(order.id);
@@ -3510,7 +3549,7 @@ function scheduleShopOrderProgress(id){
 }
 function processSavedShopOrders(){
   const now=Date.now();
-  shopOrders.forEach(o=>{
+  shopOrders.filter(o=>!o.isAdminDemo).forEach(o=>{
     const age=now-(o.createdAt||now);
     if(o.status==='confirmed'&&age>=3000) updateShopOrder(o.id,'preparing',`📦 คำสั่งซื้อ #${o.id} กำลังจัดเตรียมสินค้า`);
     if(o.status==='preparing'&&age>=9000) updateShopOrder(o.id,'ready',`🎉 คำสั่งซื้อ #${o.id} จัดเตรียมเสร็จแล้ว พร้อมรับสินค้า${o.bookingPet?'พร้อมสัตว์เลี้ยงที่จองไว้':''}`);
@@ -5535,8 +5574,9 @@ function submitBooking(){
         `จองบริการ ${petName} สำเร็จ วันที่ ${formatDate(date)} เวลา ${selectedTime} · มัดจำ 40% ${moneyRange(savedFinancials.depositMin,savedFinancials.depositMax)} · แนบสลิปแล้ว รอแอดมินตรวจสอบ`
     );
 
-    // แสดงหน้าการจองทันทีหลังบันทึกสำเร็จ
+    // อัปเดตบัญชีของฉันให้ใช้ข้อมูลจากการจองล่าสุดทันที
     renderBookings();
+    refreshProfilePage();
     showPage("trackingPage");
     showToast("✅ จองเรียบร้อยแล้ว โปรดรอยืนยันการจองจากทางร้าน");
 
@@ -5818,7 +5858,7 @@ const breedPhotoMap = {
   "อเมริกัน ชอร์ตแฮร์":"https://kotomaniya.com.ua/wp-content/uploads/2021/01/dac1c6f3e8b8dd0c00859d6de400e0c5-min.jpg",
   "เมนคูน":"https://images.squarespace-cdn.com/content/v1/6425ec5d33eaaa634113b2d4/b996cf98-f5c6-4e3f-b706-f6ca9f8045ff/ChatGPT%2BImage%2BJan%2B24%2C%2B2026%2C%2B01_18_57%2BPM.png?format=1500w",
   "แร็กดอลล์":"https://www.purina.co.uk/sites/default/files/2022-06/Ragdoll.jpg?itok=uoJljrty",
-  "เบงกอล":"https://www.zooplus.be/magazine/wp-content/uploads/2018/02/bengalkatze.jpg"
+  "เบงกอล":"https://commons.wikimedia.org/wiki/Special:FilePath/Bengal%20cat.jpg"
 };
 
 function bookingPetImage(type, photo, breed){
@@ -5827,6 +5867,19 @@ function bookingPetImage(type, photo, breed){
     return type==='dog'
       ? 'https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=500&q=80'
       : 'https://images.unsplash.com/photo-1518791841217-8f162f1e1131?auto=format&fit=crop&w=500&q=80';
+}
+
+function fixBengalDemoPhotos(){
+    const bengalPhoto=breedPhotoMap["เบงกอล"];
+    let changed=false;
+    bookings.forEach(b=>{
+      const name=String(b.petName||"").trim();
+      if((name==="ไทเกอร์" || name==="เบงเบง") && String(b.breed||"").trim()==="เบงกอล" && b.photo!==bengalPhoto){
+        b.photo=bengalPhoto;
+        changed=true;
+      }
+    });
+    if(changed) localStorage.setItem("petcare_bookings",JSON.stringify(bookings));
 }
 
 function seedPawfectDemoBookingsV4(){
@@ -5839,7 +5892,7 @@ function seedPawfectDemoBookingsV4(){
 
     const photos=breedPhotoMap;
     const data=[
-      ['DEMO-001','น.ส.กมลชนก ใจดี','0812345601','โมจิ','dog','female','โกลเด้น รีทรีฟเวอร์','3 ปี','28','dog-cut','02/10/2569','10:00','completed','1,200 - 1,350 บาท'],
+      ['DEMO-001','น.ส.กมลชนก ใจดี','0812345601','ช็อกโก้','dog','female','พุดเดิ้ล','3 ปี','7','dog-cut','02/10/2569','10:00','completed','800 - 800 บาท'],
       ['DEMO-002','น.ส.กมลชนก ใจดี','0812345601','โบโบ้','dog','male','ลาบราดอร์ รีทรีฟเวอร์','2 ปี','30','dog-bath','01/10/2569','13:00','confirmed','500 - 500 บาท'],
       ['DEMO-003','น.ส.พิมพ์ชนก แสงทอง','0834567803','โอ้','cat','female','เปอร์เซีย','1 ปี 6 เดือน','4.5','cat-cut','30/09/2569','14:00','pending','550 - 550 บาท'],
       ['DEMO-004','นายณัฐวุฒิ คงมั่น','0845678904','โกโก้','dog','male','ชิวาวา','4 ปี','2.8','dog-bath','30/09/2569','09:00','progress','250 - 250 บาท'],
@@ -5890,6 +5943,97 @@ function seedPawfectDemoBookingsV4(){
     });
     localStorage.setItem('petcare_bookings',JSON.stringify(bookings));
     localStorage.setItem(FLAG,'done');
+}
+
+// ตรวจสอบ/เติมรูปสัตว์เลี้ยงให้ครบทั้ง 30 รายการ โดยใช้รูปจริงตามสายพันธุ์ที่ระบุ
+(function ensureAllDemoPetPhotos(){
+  try{
+    const raw=JSON.parse(localStorage.getItem('petcare_bookings')||'[]');
+    if(!Array.isArray(raw)) return;
+    let changed=false;
+    raw.forEach(b=>{
+      if(!b || !String(b.id||'').startsWith('DEMO-')) return;
+      const breed=String(b.breed||'').trim();
+      const matched=breedPhotoMap[breed] || '';
+      if(matched && b.photo!==matched){ b.photo=matched; changed=true; }
+    });
+    if(changed){
+      localStorage.setItem('petcare_bookings',JSON.stringify(raw));
+      bookings=raw;
+    }
+  }catch(e){}
+})();
+
+// เปลี่ยนสัตว์เลี้ยงตัวอย่างเดิมของลูกค้าให้เป็นสัตว์เลี้ยงตัวใหม่ โดยคงรายการจองเดิมไว้
+(function migrateDemoPet(){
+    try{
+      const raw=JSON.parse(localStorage.getItem('petcare_bookings')||'[]');
+      if(!Array.isArray(raw)) return;
+      const idx=raw.findIndex(b=>b.id==='DEMO-001');
+      if(idx<0 || raw[idx].petName!=='โมจิ') return;
+      raw[idx]={...raw[idx],petName:'ช็อกโก้',breed:'พุดเดิ้ล',weight:'7',price:'800 - 800 บาท',totalMin:800,totalMax:800,depositMin:320,depositMax:320,photo:breedPhotoMap['พุดเดิ้ล']||raw[idx].photo};
+      localStorage.setItem('petcare_bookings',JSON.stringify(raw));
+      bookings=raw;
+    }catch(e){}
+})();
+
+function makeDemoDepositSlip(booking, index){
+    const amount=Math.round(Number(booking.depositMin||0));
+    const id=String(booking.id||`DEMO-${String(index+1).padStart(3,'0')}`);
+    const date=String(booking.date||'-');
+    const owner=String(booking.owner||'ลูกค้าตัวอย่าง');
+    const bank='ธนาคารกสิกรไทย';
+    const account='Pawfect Pet Care';
+    const svg=`<svg xmlns="http://www.w3.org/2000/svg" width="900" height="1200" viewBox="0 0 900 1200">
+      <rect width="900" height="1200" fill="#f7f4f0"/>
+      <rect x="55" y="55" width="790" height="1090" rx="32" fill="#ffffff" stroke="#eadfd7" stroke-width="4"/>
+      <rect x="55" y="55" width="790" height="155" rx="32" fill="#f28c28"/>
+      <text x="450" y="125" text-anchor="middle" font-family="Arial,sans-serif" font-size="38" font-weight="700" fill="#ffffff">${bank}</text>
+      <text x="450" y="172" text-anchor="middle" font-family="Arial,sans-serif" font-size="24" fill="#fff7ee">สลิปโอนเงิน (ข้อมูลจำลอง)</text>
+      <text x="95" y="275" font-family="Arial,sans-serif" font-size="25" fill="#887b72">รายการ</text>
+      <text x="95" y="330" font-family="Arial,sans-serif" font-size="34" font-weight="700" fill="#49382f">ชำระมัดจำ 40% · ${id}</text>
+      <line x1="95" y1="365" x2="805" y2="365" stroke="#eadfd7" stroke-width="3"/>
+      <text x="95" y="430" font-family="Arial,sans-serif" font-size="24" fill="#887b72">ผู้โอน</text>
+      <text x="95" y="470" font-family="Arial,sans-serif" font-size="29" font-weight="700" fill="#49382f">${owner}</text>
+      <text x="95" y="540" font-family="Arial,sans-serif" font-size="24" fill="#887b72">เข้าบัญชี</text>
+      <text x="95" y="580" font-family="Arial,sans-serif" font-size="29" font-weight="700" fill="#49382f">${account}</text>
+      <text x="95" y="650" font-family="Arial,sans-serif" font-size="24" fill="#887b72">วันที่จอง</text>
+      <text x="95" y="690" font-family="Arial,sans-serif" font-size="29" font-weight="700" fill="#49382f">${date}</text>
+      <rect x="95" y="750" width="710" height="150" rx="22" fill="#fff4e8"/>
+      <text x="450" y="805" text-anchor="middle" font-family="Arial,sans-serif" font-size="24" fill="#887b72">จำนวนเงิน</text>
+      <text x="450" y="860" text-anchor="middle" font-family="Arial,sans-serif" font-size="48" font-weight="700" fill="#d86f0c">฿${amount.toLocaleString('th-TH')}</text>
+      <circle cx="450" cy="1000" r="52" fill="#eaf8ee"/>
+      <text x="450" y="1013" text-anchor="middle" font-family="Arial,sans-serif" font-size="42" fill="#2f7b3d">✓</text>
+      <text x="450" y="1080" text-anchor="middle" font-family="Arial,sans-serif" font-size="24" font-weight="700" fill="#2f7b3d">ชำระเงินสำเร็จ · ข้อมูลจำลองสำหรับระบบ</text>
+    </svg>`;
+    return 'data:image/svg+xml;charset=UTF-8,'+encodeURIComponent(svg);
+}
+
+function upgradeDemoBookingsWithPaidSlips(){
+    try{
+      const raw=JSON.parse(localStorage.getItem('petcare_bookings')||'[]');
+      if(!Array.isArray(raw)) return;
+      let changed=false;
+      raw.forEach((b,i)=>{
+        if(!b || !b.isDemo || !/^DEMO-\d{3}$/.test(String(b.id||''))) return;
+        const slip=makeDemoDepositSlip(b,i);
+        const submittedAt=b.depositSlipSubmittedAt || new Date(Date.now()-(i+1)*3600000).toISOString();
+        const paidAt=b.depositPaidAt || submittedAt;
+        if(b.depositSlip!==slip || b.depositStatus!=='paid' || b.depositPaidAt!==paidAt || b.depositSlipSubmittedAt!==submittedAt){
+          b.depositSlip=slip;
+          b.depositStatus='paid';
+          b.depositSlipSubmittedAt=submittedAt;
+          b.depositPaidAt=paidAt;
+          b.depositRejectedReason='';
+          b.depositRefundedAt='';
+          changed=true;
+        }
+      });
+      if(changed){
+        localStorage.setItem('petcare_bookings',JSON.stringify(raw));
+        bookings=raw;
+      }
+    }catch(e){ console.warn('upgradeDemoBookingsWithPaidSlips',e); }
 }
 
 function getCustomerBookings(){
@@ -6574,21 +6718,161 @@ function adminLogin(){
 
 
 
+function renderAdminOverview(){
+    const today=getLocalISODate(new Date());
+    const activeBookings=bookings.filter(b=>b.status!=="cancelled");
+    const todayBookings=activeBookings.filter(b=>normalizeBookingDateForFilter(b.date)===today);
+    const pending=activeBookings.filter(b=>b.status==="pending").length;
+    const slip=activeBookings.filter(b=>financialsFromBooking(b).depositStatus==="submitted").length;
+    const orderList=Array.isArray(shopOrders)?shopOrders:[];
+    const orderNeed=orderList.filter(o=>!o.isDemo && (o.status==="confirmed" || o.status==="preparing")).length;
+    const customerKeys=new Set(todayBookings.map(b=>{
+      const phone=String(b.phone||"").replace(/\D/g,"");
+      const owner=String(b.owner||"").trim().toLowerCase();
+      return phone||owner;
+    }).filter(Boolean));
+    const set=(id,val)=>{const el=document.getElementById(id);if(el)el.textContent=val;};
+    set("adminTodayBookings",todayBookings.length);
+    set("adminNeedConfirm",pending);
+    set("adminNeedSlip",slip);
+    set("adminNeedOrder",orderNeed);
+    set("adminCustomerCount",customerKeys.size);
+    const alert=document.getElementById("adminQuickAlert");
+    if(alert){
+      const parts=[];
+      if(todayBookings.length) parts.push(`วันนี้มีนัดหมาย ${todayBookings.length} รายการ`);
+      if(pending) parts.push(`มี ${pending} รายการรอยืนยัน`);
+      if(slip) parts.push(`มี ${slip} สลิปรอตรวจ`);
+      if(orderNeed) parts.push(`มี ${orderNeed} คำสั่งซื้อรอจัดการ`);
+      alert.innerHTML=parts.length?`🔔 <b>งานที่ควรตรวจสอบ:</b> ${parts.join(' · ')}`:'✅ ตอนนี้ไม่มีงานด่วนที่ต้องดำเนินการ';
+    }
+}
+
+function renderAdminCreateOrderOptions(){
+    const bookingSelect=document.getElementById('adminCreateOrderBooking');
+    const productSelect=document.getElementById('adminCreateOrderProduct');
+    if(bookingSelect){
+        const current=bookingSelect.value;
+        const activeBookings=bookings.filter(b=>b.status!=='cancelled');
+        bookingSelect.innerHTML='<option value="">เลือกการจอง (ไม่เชื่อมก็ได้)</option>'+activeBookings.map(b=>{
+            const owner=escapeHTML(b.owner||'ไม่ระบุชื่อ');
+            const pet=escapeHTML(b.petName||'สัตว์เลี้ยง');
+            const date=formatDate(b.date);
+            return `<option value="${escapeHTML(b.id||'')}">${owner} · ${pet} · ${date}</option>`;
+        }).join('');
+        if(current && activeBookings.some(b=>String(b.id)===String(current))) bookingSelect.value=current;
+    }
+    if(productSelect){
+        const current=productSelect.value;
+        productSelect.innerHTML='<option value="">เลือกสินค้า</option>'+shopProducts.map(p=>`<option value="${escapeHTML(p.id)}">${escapeHTML(p.name)} · ฿${Number(p.price||0).toLocaleString('th-TH')}</option>`).join('');
+        if(current && shopProducts.some(p=>String(p.id)===String(current))) productSelect.value=current;
+    }
+    renderAdminCreateOrderSummary();
+}
+function syncAdminCreateOrderCustomer(){
+    const id=document.getElementById('adminCreateOrderBooking')?.value||'';
+    const b=bookings.find(x=>String(x.id)===String(id));
+    const name=document.getElementById('adminCreateOrderCustomer');
+    const phone=document.getElementById('adminCreateOrderPhone');
+    const pickup=document.getElementById('adminCreateOrderPickup');
+    if(b){
+        if(name) name.value=b.owner||'';
+        if(phone) phone.value=b.phone||'';
+        if(pickup) pickup.value='withPet';
+    }
+    renderAdminCreateOrderSummary();
+}
+function renderAdminCreateOrderSummary(){
+    const box=document.getElementById('adminCreateOrderSummary'); if(!box)return;
+    const pid=document.getElementById('adminCreateOrderProduct')?.value||'';
+    const qty=Math.max(1,Number(document.getElementById('adminCreateOrderQty')?.value||1));
+    const p=shopProducts.find(x=>String(x.id)===String(pid));
+    if(!p){box.textContent='เลือกสินค้าและจำนวนเพื่อดูยอดรวม';return;}
+    box.innerHTML=`🛍️ ${escapeHTML(p.name)} × ${qty} · ราคาต่อชิ้น ฿${Number(p.price||0).toLocaleString('th-TH')}<br><b style="color:#d86f0c;font-size:11px;">ยอดรวม ฿${(Number(p.price||0)*qty).toLocaleString('th-TH')}</b>`;
+}
+function clearAdminCreateOrder(){
+    const ids=['adminCreateOrderBooking','adminCreateOrderProduct','adminCreateOrderQty','adminCreateOrderPhone','adminCreateOrderCustomer','adminCreateOrderPickup'];
+    ids.forEach(id=>{const el=document.getElementById(id);if(!el)return;if(id==='adminCreateOrderQty')el.value=1;else if(id==='adminCreateOrderPickup')el.value='store';else el.value='';});
+    renderAdminCreateOrderSummary();
+}
+function createAdminShopOrder(){
+    const bookingId=document.getElementById('adminCreateOrderBooking')?.value||'';
+    const productId=document.getElementById('adminCreateOrderProduct')?.value||'';
+    const qty=Math.max(1,Number(document.getElementById('adminCreateOrderQty')?.value||0));
+    const customerName=(document.getElementById('adminCreateOrderCustomer')?.value||'').trim();
+    const customerPhone=(document.getElementById('adminCreateOrderPhone')?.value||'').trim();
+    const pickupMode=document.getElementById('adminCreateOrderPickup')?.value||'store';
+    const product=shopProducts.find(p=>String(p.id)===String(productId));
+    const booking=bookingId?bookings.find(b=>String(b.id)===String(bookingId)):null;
+    if(!product){showToast('⚠️ กรุณาเลือกสินค้า');return;}
+    if(qty<1){showToast('⚠️ จำนวนสินค้าต้องอย่างน้อย 1 ชิ้น');return;}
+    if(!customerName && !booking){showToast('⚠️ กรุณาระบุชื่อลูกค้า หรือเลือกการจอง');return;}
+    const owner=customerName || booking?.owner || '';
+    const phone=customerPhone || booking?.phone || '';
+    const order={
+        id:'PC-'+String(Date.now()).slice(-6),status:'confirmed',createdAt:Date.now(),updatedAt:Date.now(),
+        total:Number(product.price||0)*qty,
+        items:[{id:product.id,name:product.name,qty,price:Number(product.price||0)}],
+        customerName:owner,customerPhone:phone,bookingId:booking?.id||'',bookingPet:booking?.petName||'',
+        pickupMode:booking && pickupMode==='withPet'?'withPet':'store',bookingDate:booking?.date||'',bookingTime:booking?.time||'',bookingPetType:booking?.petType||'',
+        isDemo:false,isCustomerVisible:true,createdByAdmin:true
+    };
+    shopOrders=Array.isArray(shopOrders)?shopOrders.filter(o=>!o.isDemo || o.isAdminDemo):[];
+    shopOrders.push(order);saveShopOrders();
+    addNotification(`🛒 สร้างคำสั่งซื้อ #${order.id} ให้ ${owner||'ลูกค้า'} แล้ว`);
+    showToast(`✅ สร้างคำสั่งซื้อ #${order.id} แล้ว`);
+    renderAdminCreateOrderOptions();
+    renderAdminShopOrders();
+    renderShopOrders();
+    refreshProfilePage();
+    scheduleShopOrderProgress(order.id);
+}
+
+function updateAdminOrderStatus(id,status){
+    const order=shopOrders.find(o=>String(o.id)===String(id));
+    if(!order)return;
+    order.status=status;
+    order.updatedAt=Date.now();
+    saveShopOrders();
+    renderAdminShopOrders();
+    renderShopOrders();
+    addNotification(`🛒 คำสั่งซื้อ #${order.id} เปลี่ยนเป็น ${shopOrderStatusText(status)}`);
+    showToast(`อัปเดตคำสั่งซื้อ #${order.id} แล้ว`);
+}
+
+function openAdminOrderCreateFromManage(){
+    const card=document.querySelector('#adminPage .card[style*="margin-top:12px"]');
+    const createCard=[...document.querySelectorAll('#adminPage .card')].find(el=>el.querySelector('#adminCreateOrderBooking'));
+    if(createCard){
+        createCard.scrollIntoView({behavior:'smooth',block:'center'});
+        createCard.style.boxShadow='0 0 0 2px rgba(242,140,40,.35), 0 8px 24px rgba(73,56,47,.12)';
+        setTimeout(()=>{createCard.style.boxShadow='';},1400);
+        renderAdminCreateOrderOptions();
+        showToast('🛒 เลือกสินค้าและข้อมูลลูกค้าเพื่อสร้างคำสั่งซื้อ');
+    }else{
+        showToast('⚠️ ไม่พบส่วนสร้างคำสั่งซื้อ');
+    }
+}
+
 function renderAdminShopOrders(){
     const listBox=document.getElementById("adminShopOrderList");
     if(!listBox) return;
-    const search=(document.getElementById("adminOrderSearch")?.value||"").trim().toLowerCase();
+    const searchRaw=(document.getElementById("adminOrderSearch")?.value||"").trim().toLowerCase();
+    const search=normalizeAdminSearchText(searchRaw);
     const statusFilter=document.getElementById("adminOrderStatusFilter")?.value||"";
+    const realOrders=(Array.isArray(shopOrders)?shopOrders:[]).filter(o=>!o.isDemo || o.isAdminDemo);
     const totalEl=document.getElementById("adminOrderTotal");
     const prepEl=document.getElementById("adminOrderPreparing");
     const readyEl=document.getElementById("adminOrderReady");
-    if(totalEl) totalEl.textContent=shopOrders.length;
-    if(prepEl) prepEl.textContent=shopOrders.filter(o=>o.status==='preparing').length;
-    if(readyEl) readyEl.textContent=shopOrders.filter(o=>o.status==='ready').length;
-    const filtered=shopOrders.filter(o=>{
+    if(totalEl) totalEl.textContent=realOrders.length;
+    if(prepEl) prepEl.textContent=realOrders.filter(o=>o.status==='preparing').length;
+    if(readyEl) readyEl.textContent=realOrders.filter(o=>o.status==='ready').length;
+    const filtered=realOrders.filter(o=>{
+        const linked=o.bookingId?bookings.find(b=>String(b.id)===String(o.bookingId)):null;
         const itemText=(o.items||[]).map(i=>`${i.id||''} ${i.name||''}`).join(' ');
-        const text=`${o.id||''} ${itemText} ${o.bookingPet||''} ${o.bookingPetType||''}`.toLowerCase();
-        return (!search||text.includes(search)) && (!statusFilter||o.status===statusFilter);
+        const text=`${o.id||''} ${o.bookingId||''} ${itemText} ${o.bookingPet||''} ${o.bookingPetType||''} ${o.pickupMode||''} ${linked?.id||''} ${linked?.owner||''} ${linked?.phone||''} ${linked?.petName||''}`;
+        const normalizedText=normalizeAdminSearchText(text);
+        return (!search||normalizedText.includes(search)) && (!statusFilter||o.status===statusFilter);
     }).slice().reverse();
     const count=document.getElementById("adminOrderResultCount");
     if(count) count.textContent=filtered.length;
@@ -6599,16 +6883,31 @@ function renderAdminShopOrders(){
     listBox.innerHTML=filtered.map(o=>{
         const cls=o.status==='ready'?'ready':o.status==='done'?'done':'';
         const status=shopOrderStatusText(o.status);
-        const pet=o.bookingPet?`🐾 รับพร้อม <b>${escapeHTML(o.bookingPet)}</b> · ${o.bookingPetType==='dog'?'🐶 สุนัข':'🐱 แมว'}`:'🏪 รับสินค้าแยกที่ร้าน';
+        const linked=o.bookingId?bookings.find(b=>String(b.id)===String(o.bookingId)):null;
+        const pet=linked?`🐾 เชื่อมกับการจอง <b>#${escapeHTML(linked.id)}</b> · ${escapeHTML(linked.petName||o.bookingPet||'สัตว์เลี้ยง')} · ${linked.petType==='dog'?'🐶 สุนัข':'🐱 แมว'}`:(o.bookingPet?`🐾 รับพร้อม <b>${escapeHTML(o.bookingPet)}</b>`:'🏪 รับสินค้าแยกที่ร้าน');
+        const customer=linked?`👤 ${escapeHTML(linked.owner||'-')} · ☎️ ${escapeHTML(linked.phone||'-')}`:'';
         const date=o.bookingDate?`📅 ${formatDate(o.bookingDate)}${o.bookingTime?' · ⏰ '+escapeHTML(o.bookingTime):''}`:'';
         const items=(o.items||[]).map(i=>`• <span class="admin-order-code">${escapeHTML(i.id||'-')}</span> · ${escapeHTML(i.name)} × ${i.qty}`).join('<br>');
         return `<div class="admin-order-card">
           <div class="admin-order-head"><div class="admin-order-id">🛒 #${escapeHTML(o.id||'-')}</div><div class="admin-order-status ${cls}">${status}</div></div>
           <div class="admin-order-items">${items||'ไม่มีรายการสินค้า'}</div>
           <div class="admin-order-total">รวม ฿${Number(o.total||0).toLocaleString('th-TH')}</div>
-          <div class="admin-order-meta">${pet}<br>${date}${o.pickupMode==='withPet'?'':' '}</div>
+          <div class="admin-order-meta">${pet}${customer?`<br>${customer}`:''}${date?`<br>${date}`:''}</div>
+          <div style="display:flex;gap:8px;align-items:center;margin-top:9px;flex-wrap:wrap;">
+            <label style="font-size:9px;color:#8a7b72;font-weight:700;">เปลี่ยนสถานะ</label>
+            <select class="deposit-status-select" style="flex:1;min-width:150px;" onchange="updateAdminOrderStatus('${String(o.id).replace(/'/g,"\'")}',this.value)">
+              <option value="confirmed" ${o.status==='confirmed'?'selected':''}>ยืนยันคำสั่งซื้อแล้ว</option>
+              <option value="preparing" ${o.status==='preparing'?'selected':''}>กำลังจัดเตรียม</option>
+              <option value="ready" ${o.status==='ready'?'selected':''}>พร้อมรับสินค้า</option>
+              <option value="done" ${o.status==='done'?'selected':''}>รับสินค้าเรียบร้อยแล้ว</option>
+            </select>
+          </div>
         </div>`;
     }).join('');
+}
+
+function normalizeAdminSearchText(value){
+    return String(value ?? '').toLowerCase().trim().replace(/[\s#\-_/\.]/g,'');
 }
 
 function normalizeBookingDateForFilter(raw){
@@ -6622,8 +6921,11 @@ function normalizeBookingDateForFilter(raw){
 
 function renderAdmin(){
     renderBankInfoAdmin();
+    renderAdminCreateOrderOptions();
+    renderAdminOverview();
     bookings=bookings.map(b=>{ const f=financialsFromBooking(b); return {...b,totalMin:f.totalMin,totalMax:f.totalMax,depositPercent:f.percent,depositMin:f.depositMin,depositMax:f.depositMax,depositStatus:f.depositStatus}; });
-    const search=(document.getElementById("adminSearch")?.value||"").trim().toLowerCase();
+    const searchRaw=(document.getElementById("adminSearch")?.value||"").trim().toLowerCase();
+    const search=normalizeAdminSearchText(searchRaw);
     const statusFilter=document.getElementById("adminStatusFilter")?.value||"";
     const dateFilter=document.getElementById("adminDateFilter")?.value||"";
     const count=(st)=>bookings.filter(b=>b.status===st).length;
@@ -6647,10 +6949,11 @@ function renderAdmin(){
     renderBookingChart(); renderAdminShopOrders();
     const depositFilter=document.getElementById("adminDepositFilter")?.value||"";
     const list=bookings.filter(b=>{
-      const text=`${b.id||""} ${b.owner||""} ${b.petName||""} ${b.phone||""}`.toLowerCase();
+      const text=`${b.id||""} ${b.owner||""} ${b.petName||""} ${b.phone||""} ${b.breed||""} ${b.mainService||""} ${b.date||""} ${b.time||""}`;
+      const normalizedText=normalizeAdminSearchText(text);
       const normalizedDate=normalizeBookingDateForFilter(b.date);
       const f=financialsFromBooking(b);
-      return (!search||text.includes(search))&&(!statusFilter||b.status===statusFilter)&&(!depositFilter||f.depositStatus===depositFilter)&&(!dateFilter||normalizedDate===dateFilter);
+      return (!search||normalizedText.includes(search))&&(!statusFilter||b.status===statusFilter)&&(!depositFilter||f.depositStatus===depositFilter)&&(!dateFilter||normalizedDate===dateFilter);
     }).slice().reverse();
     const result=document.getElementById("adminResultCount");if(result)result.textContent=list.length;
     const container=document.getElementById("adminBookingList");if(!container)return;
@@ -6732,7 +7035,12 @@ function renderBookingChart(){
             const raw = String(b.date || '').trim();
             if(raw === iso) return true;
             const m = raw.match(/^(\d{1,2})[\/-](\d{1,2})[\/-](\d{4})$/);
-            if(m) return Number(m[1]) === Number(dd) && Number(m[2]) === Number(mm) && Number(m[3]) === Number(yyyy);
+            if(m){
+                const rawYear = Number(m[3]);
+                // รองรับทั้ง ค.ศ. และ พ.ศ. ที่ใช้ในข้อมูลการจอง
+                const normalizedYear = rawYear > 2400 ? rawYear - 543 : rawYear;
+                return Number(m[1]) === Number(dd) && Number(m[2]) === Number(mm) && normalizedYear === Number(yyyy);
+            }
             return false;
         }).length;
 
@@ -7500,14 +7808,18 @@ function toggleNotifications(){
 
 
 // ===== Customer profile =====
+function getCustomerBookingsForProfile(){
+  const source=(typeof getCustomerBookings === 'function' ? getCustomerBookings() : bookings);
+  return (Array.isArray(source)?source:[])
+    .filter(b=>b && b.status !== 'cancelled')
+    .slice()
+    .sort((a,b)=>(new Date(b.updatedAt||b.createdAt||0))-(new Date(a.updatedAt||a.createdAt||0)));
+}
 function getCustomerProfile(){
   let saved={};
   try{saved=JSON.parse(localStorage.getItem('petcare_customer_profile')||'{}')||{};}catch(e){}
-  const customerBookings = (typeof getCustomerBookings === 'function' ? getCustomerBookings() : bookings)
-    .filter(b=>b && b.status !== 'cancelled');
-  const latest = customerBookings.slice().sort((a,b)=>
-    (new Date(b.updatedAt||b.createdAt||0))-(new Date(a.updatedAt||a.createdAt||0))
-  )[0] || customerBookings.slice().reverse().find(b=>b.owner||b.phone);
+  const customerBookings=getCustomerBookingsForProfile();
+  const latest=customerBookings[0];
   return {
     name:(latest&&latest.owner) || saved.name || 'น.ส.กมลชนก ใจดี',
     phone:(latest&&latest.phone) || saved.phone || '0812345601',
@@ -7515,23 +7827,32 @@ function getCustomerProfile(){
   };
 }
 function saveCustomerProfile(data){localStorage.setItem('petcare_customer_profile',JSON.stringify(data));}
+function profileBookings(){
+  return getCustomerBookingsForProfile();
+}
 function profilePets(){
   const map=new Map();
-  bookings.slice().reverse().forEach(b=>{
+  profileBookings().forEach(b=>{
     const key=String(b.petName||'').trim().toLowerCase(); if(!key)return;
     if(!map.has(key)) map.set(key,b);
   });
   return [...map.values()];
 }
+function profileOrders(){
+  const orders=Array.isArray(shopOrders)?shopOrders:[];
+  const realOrders=orders.filter(o=>o && !o.isDemo && !o.isAdminDemo);
+  if(realOrders.length) return realOrders.slice().sort((a,b)=>(Number(b.createdAt||0)-Number(a.createdAt||0)));
+  return orders.filter(o=>o && o.isDemo && o.isCustomerVisible).slice(0,1);
+}
 function refreshProfilePage(){
-  const p=getCustomerProfile(), pets=profilePets(), orders=Array.isArray(shopOrders)?shopOrders:[];
+  const p=getCustomerProfile(), profileBookingList=profileBookings(), pets=profilePets(), orders=profileOrders();
   const nameEl=document.getElementById('profileName'), phoneEl=document.getElementById('profilePhone'), avatar=document.getElementById('profileAvatar');
   if(nameEl) nameEl.textContent=p.name||'ลูกค้า Pawfect';
   if(phoneEl) phoneEl.textContent=p.phone||'ยังไม่ได้เพิ่มเบอร์โทรศัพท์';
   if(avatar) avatar.textContent=p.name ? String(p.name).trim().charAt(0).toUpperCase() : '🐾';
-  const a=document.getElementById('profileBookingCount'); if(a)a.textContent=bookings.filter(b=>b.status!=='cancelled').length;
+  const a=document.getElementById('profileBookingCount'); if(a)a.textContent=profileBookingList.length;
   const b=document.getElementById('profilePetCount'); if(b)b.textContent=pets.length;
-  const c=document.getElementById('profileOrderCount'); if(c)c.textContent=shopOrders.filter(o=>o.isDemo && o.isCustomerVisible).slice(0,1).length;
+  const c=document.getElementById('profileOrderCount'); if(c)c.textContent=orders.length;
 }
 function openProfileEdit(){
   const p=getCustomerProfile();
@@ -7549,8 +7870,8 @@ function openMyPets(){
   document.getElementById('modalContent').innerHTML=html; document.getElementById('modalBg').classList.add('show');
 }
 function openMyOrders(){
-  const orders=(Array.isArray(shopOrders)?shopOrders:[]).slice().reverse();
-  const html=orders.length?`<div class="profile-modal-title">🛍️ คำสั่งซื้อของฉัน</div><div class="profile-modal-sub">รับสินค้าได้ที่ร้าน Pawfect</div>${orders.map(o=>`<div class="profile-order-card"><span class="profile-order-status">${escapeHTML(shopOrderStatusText(o.status))}</span><b>#${escapeHTML(o.id)}</b><div class="profile-order-items">${o.items.map(i=>escapeHTML(i.name)+' × '+i.qty).join(' · ')}</div><div class="profile-order-total">รวม ฿${Number(o.total||0).toLocaleString('th-TH')}</div></div>`).join('')}`:`<div class="profile-modal-title">🛍️ คำสั่งซื้อของฉัน</div><div class="profile-empty">ยังไม่มีคำสั่งซื้อสินค้า<br><br><button class="btn btn-primary" onclick="closeModal();showPage('shopPage')">ไปที่ร้านค้า</button></div>`;
+  const orders=profileOrders().slice().reverse();
+  const html=orders.length?`<div class="profile-modal-title">🛍️ คำสั่งซื้อของฉัน</div><div class="profile-modal-sub">ข้อมูลคำสั่งซื้อจากร้าน Pawfect</div>${orders.map(o=>{const linked=o.bookingId?bookings.find(b=>b.id===o.bookingId):null;const linkText=linked?`🐾 เชื่อมกับการจอง: ${escapeHTML(linked.petName||o.bookingPet||'สัตว์เลี้ยง')} · ${formatDate(linked.date)} · ${escapeHTML(linked.time||'-')}`:(o.bookingPet?`🐾 รับพร้อม ${escapeHTML(o.bookingPet)}`:'🏪 รับสินค้าที่ร้าน');return `<div class="profile-order-card"><span class="profile-order-status">${escapeHTML(shopOrderStatusText(o.status))}</span><b>#${escapeHTML(o.id)}</b><div class="profile-order-items">${o.items.map(i=>escapeHTML(i.name)+' × '+i.qty).join(' · ')}</div><div class="profile-order-total">รวม ฿${Number(o.total||0).toLocaleString('th-TH')}</div><div style="margin-top:6px;font-size:11px;color:#8a5a32">${linkText}</div></div>`;}).join('')}`:`<div class="profile-modal-title">🛍️ คำสั่งซื้อของฉัน</div><div class="profile-empty">ยังไม่มีคำสั่งซื้อสินค้า<br><br><button class="btn btn-primary" onclick="closeModal();showPage('shopPage')">ไปที่ร้านค้า</button></div>`;
   document.getElementById('modalContent').innerHTML=html; document.getElementById('modalBg').classList.add('show');
 }
 function openFavorites(){
@@ -7695,6 +8016,8 @@ function escapeHTML(value){
 })();
 
 seedPawfectDemoBookingsV4();
+fixBengalDemoPhotos();
+upgradeDemoBookingsWithPaidSlips();
 
 renderNotifications();
 
