@@ -1385,6 +1385,33 @@ textarea{
 @media(max-width:390px){.booking-timeline{gap:2px}.timeline-step em{font-size:6px}.customer-backend-link{font-size:8px}}
 
 
+/* ===== Role Landing / Login ===== */
+.role-landing-card{margin:22px 16px;padding:22px 18px;border:1px solid #eadfd7;border-radius:24px;background:linear-gradient(135deg,#fffdf9,#fffaf5);box-shadow:0 10px 28px rgba(80,55,35,.08)}
+.role-landing-icon{width:62px;height:62px;margin:0 auto 10px;border-radius:20px;background:#fff3e5;color:var(--orange);display:flex;align-items:center;justify-content:center;font-size:32px;box-shadow:0 6px 18px rgba(242,140,40,.12)}
+.role-landing-title{text-align:center;font-size:21px;font-weight:800;color:var(--brown)}
+.role-landing-sub{text-align:center;font-size:10px;color:#8c817a;margin:5px 0 14px;line-height:1.7}
+.role-login-tabs{display:grid;grid-template-columns:1fr 1fr;gap:6px;padding:4px;background:#f7f1eb;border-radius:13px;margin-bottom:14px}
+.role-login-tab{border:0;background:transparent;color:#8b7c73;border-radius:10px;padding:10px 5px;font-family:inherit;font-size:11px;font-weight:700;cursor:pointer}
+.role-login-tab.active{background:#f28c28;color:#fff;box-shadow:0 3px 9px rgba(242,140,40,.16)}
+.role-login-form{text-align:left}
+.role-login-label{display:block;font-size:11px;font-weight:700;color:#49382f;margin:10px 0 5px}
+.role-login-input{width:100%;box-sizing:border-box;padding:11px 12px;border:1px solid #dfd4cb;border-radius:12px;background:#fff;font-family:inherit;font-size:11px;outline:none}
+.role-login-input:focus{border-color:#e99a48}
+.role-login-submit{width:100%;padding:12px 14px;border:0;border-radius:13px;background:#f28c28;color:#fff;font-family:inherit;font-size:12px;font-weight:700;cursor:pointer;margin-top:14px}
+.role-login-admin .role-login-submit{background:#49382f}
+.role-login-help{margin-top:10px;padding:9px 10px;border-radius:11px;background:#fff8f0;border:1px dashed #efc995;font-size:9px;color:#8b6b53;line-height:1.6;text-align:left}
+.role-login-register{text-align:center;margin-top:10px;font-size:10px;color:#8c817a}
+.role-login-register button{border:0;background:none;color:#e77916;font-family:inherit;font-weight:700;cursor:pointer}
+
+/* ===== Customer Login ===== */
+.customer-login-card{margin:18px 16px;padding:20px;border:1px solid #f1d9c2;border-radius:22px;background:linear-gradient(135deg,#fff7ed,#fffaf5);box-shadow:0 8px 22px rgba(120,80,40,.08)}
+.customer-login-icon{width:64px;height:64px;margin:0 auto 12px;border-radius:20px;background:#fff;color:var(--orange);display:flex;align-items:center;justify-content:center;font-size:34px;box-shadow:0 5px 15px rgba(242,140,40,.12)}
+.customer-login-title{text-align:center;font-size:19px;font-weight:700;color:var(--brown)}
+.customer-login-sub{text-align:center;font-size:10px;color:#8c817a;margin:5px 0 16px;line-height:1.6}
+.customer-login-switch{text-align:center;margin-top:12px;font-size:10px;color:#8c817a}
+.customer-login-link{border:0;background:none;color:#e77916;font-family:inherit;font-weight:700;cursor:pointer}
+.customer-login-demo{margin-top:12px;padding:9px 11px;border-radius:12px;background:#fff;border:1px dashed #efc995;font-size:9px;color:#8b6b53;line-height:1.6}
+
 /* ===== Pawfect customer profile ===== */
 .profile-hero-card{display:flex;align-items:center;gap:13px;padding:18px;background:linear-gradient(135deg,#fff3df,#fffaf5);border:1px solid #f4d8b7;border-radius:22px;box-shadow:0 6px 18px rgba(92,60,35,.06);margin-top:10px}
 .profile-avatar{width:68px;height:68px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:#fff;border:3px solid #ffd9a9;font-size:34px;box-shadow:0 4px 12px rgba(100,65,35,.10);flex:0 0 68px}
@@ -1465,6 +1492,48 @@ textarea{
 
 
 <!-- HOME -->
+<section id="roleLandingPage" class="page active">
+
+<div class="page-title" style="text-align:center;margin-top:24px;">ยินดีต้อนรับสู่ Pawfect 🐾</div>
+<div class="page-subtitle" style="text-align:center;">กรุณาเข้าสู่ระบบก่อนเข้าใช้บริการ</div>
+
+<div class="role-landing-card">
+  <div class="role-landing-icon">🐾</div>
+  <div class="role-landing-title">เข้าสู่ระบบ</div>
+  <div class="role-landing-sub">เลือกประเภทบัญชีที่ต้องการใช้งาน</div>
+
+  <div class="role-login-tabs">
+    <button id="landingCustomerTab" class="role-login-tab active" onclick="switchLandingRole('customer')">👤 ลูกค้า</button>
+    <button id="landingAdminTab" class="role-login-tab" onclick="switchLandingRole('admin')">⚙️ แอดมิน</button>
+  </div>
+
+  <div id="landingCustomerForm" class="role-login-form">
+    <label class="role-login-label">เบอร์โทรศัพท์</label>
+    <input id="landingCustomerPhone" class="role-login-input" type="tel" inputmode="numeric" maxlength="10" placeholder="08xxxxxxxx">
+
+    <label class="role-login-label">รหัสผ่าน</label>
+    <input id="landingCustomerPassword" class="role-login-input" type="password" placeholder="กรอกรหัสผ่าน">
+
+    <button class="role-login-submit" onclick="landingLogin('customer')">🔐 เข้าสู่ระบบ</button>
+
+    <div class="role-login-register">ยังไม่มีบัญชี? <button onclick="showCustomerLoginFromLanding(true)">สมัครสมาชิก</button></div>
+    <div class="role-login-help">💡 บัญชีตัวอย่างสำหรับทดลอง<br>ลูกค้า: 0812345678 / 123456</div>
+  </div>
+
+  <div id="landingAdminForm" class="role-login-form role-login-admin hidden">
+    <label class="role-login-label">ชื่อผู้ใช้</label>
+    <input id="landingAdminPhone" class="role-login-input" type="text" placeholder="กรอกชื่อผู้ใช้">
+
+    <label class="role-login-label">รหัสผ่าน</label>
+    <input id="landingAdminPassword" class="role-login-input" type="password" placeholder="กรอกรหัสผ่าน">
+
+    <button class="role-login-submit" onclick="landingLogin('admin')">🔐 เข้าสู่ระบบแอดมิน</button>
+    <div class="role-login-help">⚙️ บัญชีตัวอย่างสำหรับทดลอง<br>แอดมิน: admin / 1234</div>
+  </div>
+</div>
+
+</section>
+
 <section id="homePage" class="page active">
 
 <div class="welcome-card card">
@@ -2963,6 +3032,49 @@ placeholder="เช่น ขี้กลัว ไม่ชอบเสีย�
 
 
 
+<!-- CUSTOMER LOGIN -->
+<section id="customerLoginPage" class="page">
+
+<div class="page-title">เข้าสู่ระบบลูกค้า 🔐</div>
+<div class="page-subtitle">เข้าสู่ระบบเพื่อดูการจอง สัตว์เลี้ยง และคำสั่งซื้อของคุณ</div>
+
+<div class="customer-login-card">
+  <div class="customer-login-icon">🐾</div>
+  <div class="customer-login-title" id="customerLoginTitle">เข้าสู่ระบบลูกค้า</div>
+  <div class="customer-login-sub" id="customerLoginSub">ใช้เบอร์โทรศัพท์และรหัสผ่านของคุณเพื่อเข้าสู่บัญชี</div>
+
+  <div class="form-group">
+    <label>เบอร์โทรศัพท์</label>
+    <input id="customerLoginPhone" type="tel" inputmode="numeric" maxlength="10" placeholder="08xxxxxxxx">
+  </div>
+
+  <div class="form-group">
+    <label>รหัสผ่าน</label>
+    <input id="customerLoginPassword" type="password" placeholder="กรอกรหัสผ่าน">
+  </div>
+
+  <div id="customerRegisterFields" class="hidden">
+    <div class="form-group">
+      <label>ชื่อ-นามสกุล</label>
+      <input id="customerRegisterName" placeholder="กรอกชื่อ-นามสกุล">
+    </div>
+    <div class="form-group">
+      <label>ยืนยันรหัสผ่าน</label>
+      <input id="customerRegisterPassword2" type="password" placeholder="กรอกรหัสผ่านอีกครั้ง">
+    </div>
+  </div>
+
+  <button class="btn btn-primary" id="customerLoginSubmit" onclick="customerLogin()">🔐 เข้าสู่ระบบ</button>
+  <div class="customer-login-switch">
+    <span id="customerSwitchText">ยังไม่มีบัญชี?</span>
+    <button class="customer-login-link" id="customerSwitchBtn" onclick="toggleCustomerRegister()">สมัครสมาชิก</button>
+  </div>
+  <div class="customer-login-demo">💡 ระบบนี้เป็นตัวอย่างสำหรับโปรเจกต์ สามารถสมัครบัญชีและเก็บข้อมูลการเข้าสู่ระบบไว้ในเครื่องด้วย localStorage</div>
+</div>
+
+</section>
+
+
 <!-- PROFILE -->
 <section id="profilePage" class="page">
 
@@ -3023,8 +3135,6 @@ placeholder="เช่น ขี้กลัว ไม่ชอบเสีย�
 </div>
 
 <button class="profile-logout-btn" onclick="profileLogout()">🚪 ออกจากระบบ</button>
-
-<button class="btn btn-secondary profile-admin-btn" onclick="showAdminLogin()">⚙️ เข้าสู่ระบบแอดมิน</button>
 
 </section>
 
@@ -3559,6 +3669,79 @@ function startShopOrderAutomation(){processSavedShopOrders();clearInterval(shopO
 
 startShopOrderAutomation();
 
+/* ===== Customer login is the first screen when the app opens ===== */
+function openCustomerLoginFirst(){
+  try{
+    document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+    const loginPage=document.getElementById('customerLoginPage');
+    if(loginPage) loginPage.classList.add('active');
+    document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+    customerRegisterMode=false;
+    const fields=document.getElementById('customerRegisterFields');
+    if(fields) fields.classList.add('hidden');
+    const title=document.getElementById('customerLoginTitle');
+    const sub=document.getElementById('customerLoginSub');
+    const submit=document.getElementById('customerLoginSubmit');
+    const switchText=document.getElementById('customerSwitchText');
+    const switchBtn=document.getElementById('customerSwitchBtn');
+    if(title) title.textContent='เข้าสู่ระบบลูกค้า';
+    if(sub) sub.textContent='ใช้เบอร์โทรศัพท์และรหัสผ่านของคุณเพื่อเข้าสู่บัญชี';
+    if(submit) submit.textContent='🔐 เข้าสู่ระบบ';
+    if(switchText) switchText.textContent='ยังไม่มีบัญชี?';
+    if(switchBtn) switchBtn.textContent='สมัครสมาชิก';
+  }catch(e){console.warn('customer login first screen',e);}
+}
+
+function switchLandingRole(role){
+    const customerTab=document.getElementById('landingCustomerTab');
+    const adminTab=document.getElementById('landingAdminTab');
+    const customerForm=document.getElementById('landingCustomerForm');
+    const adminForm=document.getElementById('landingAdminForm');
+    const isCustomer=role==='customer';
+    customerTab?.classList.toggle('active',isCustomer);
+    adminTab?.classList.toggle('active',!isCustomer);
+    customerForm?.classList.toggle('hidden',!isCustomer);
+    adminForm?.classList.toggle('hidden',isCustomer);
+}
+
+function showCustomerLoginFromLanding(registerMode=false){
+    showPage('customerLoginPage');
+    if(registerMode && !customerRegisterMode){
+        toggleCustomerRegister();
+    }
+}
+
+function landingLogin(role){
+    if(role==='customer'){
+        const phone=(document.getElementById('landingCustomerPhone')?.value||'').replace(/\D/g,'');
+        const pass=document.getElementById('landingCustomerPassword')?.value||'';
+        if(phone.length<9){showToast('กรุณากรอกเบอร์โทรศัพท์ให้ถูกต้อง');return;}
+        if(!pass){showToast('กรุณากรอกรหัสผ่าน');return;}
+        let accounts=getCustomerAccounts();
+        let account=accounts.find(a=>String(a.phone)===phone && String(a.password)===String(pass));
+        if(!account && phone==='0812345678' && pass==='123456'){
+            account={phone:'0812345678',password:'123456',name:'ลูกค้าตัวอย่าง'};
+            accounts.push({...account,createdAt:new Date().toISOString()});
+            saveCustomerAccounts(accounts);
+        }
+        if(!account){showToast('เบอร์โทรศัพท์หรือรหัสผ่านไม่ถูกต้อง');return;}
+        localStorage.setItem('pawfect_customer_session',JSON.stringify({phone:account.phone,name:account.name,loginAt:new Date().toISOString()}));
+        showPage('homePage');
+        showToast('เข้าสู่ระบบลูกค้าแล้ว');
+        return;
+    }
+
+    const phone=(document.getElementById('landingAdminPhone')?.value||'').trim().toLowerCase();
+    const pass=document.getElementById('landingAdminPassword')?.value||'';
+    if(phone==='admin' && pass==='1234'){
+        showPage('adminPage');
+        renderAdmin();
+        showToast('เข้าสู่ระบบแอดมินแล้ว');
+    }else{
+        showToast('ชื่อผู้ใช้หรือรหัสผ่านแอดมินไม่ถูกต้อง');
+    }
+}
+
 function showPage(pageId){
 
     document
@@ -3570,6 +3753,11 @@ function showPage(pageId){
 
     if(page){
         page.classList.add("active");
+    }
+
+    const bottomNav=document.querySelector(".bottom-nav");
+    if(bottomNav){
+        bottomNav.style.display = pageId === "roleLandingPage" ? "none" : "flex";
     }
 
     document
@@ -7905,7 +8093,77 @@ function openHelpCenter(){
   document.getElementById('modalContent').innerHTML='<div class="profile-modal-title">❓ ช่วยเหลือ / ติดต่อ Pawfect</div><div class="profile-modal-sub">หากมีปัญหาเกี่ยวกับการจองหรือคำสั่งซื้อ สามารถติดต่อร้านได้</div><div class="profile-info-row">📞 โทรศัพท์ <b style="float:right">ติดต่อร้าน</b></div><div class="profile-info-row">💬 สอบถามเรื่องการจอง <b style="float:right">ผ่านการแจ้งเตือน</b></div><div class="profile-info-row">🏪 รับสินค้า <b style="float:right">ที่ร้าน Pawfect</b></div>';
   document.getElementById('modalBg').classList.add('show');
 }
-function profileLogout(){showToast('ระบบตัวอย่างยังไม่มีการเข้าสู่ระบบจริง');}
+let customerRegisterMode=false;
+
+function getCustomerAccounts(){
+  try{
+    const data=JSON.parse(localStorage.getItem('pawfect_customer_accounts')||'[]');
+    return Array.isArray(data)?data:[];
+  }catch(e){return [];}
+}
+
+function saveCustomerAccounts(list){
+  localStorage.setItem('pawfect_customer_accounts',JSON.stringify(list));
+}
+
+function getCustomerSession(){
+  try{return JSON.parse(localStorage.getItem('pawfect_customer_session')||'null')||null;}catch(e){return null;}
+}
+
+function toggleCustomerRegister(){
+  customerRegisterMode=!customerRegisterMode;
+  const fields=document.getElementById('customerRegisterFields');
+  const title=document.getElementById('customerLoginTitle');
+  const sub=document.getElementById('customerLoginSub');
+  const submit=document.getElementById('customerLoginSubmit');
+  const switchText=document.getElementById('customerSwitchText');
+  const switchBtn=document.getElementById('customerSwitchBtn');
+  if(fields) fields.classList.toggle('hidden',!customerRegisterMode);
+  if(title) title.textContent=customerRegisterMode?'สมัครสมาชิกลูกค้า':'เข้าสู่ระบบลูกค้า';
+  if(sub) sub.textContent=customerRegisterMode?'สร้างบัญชีสำหรับติดตามการจอง สัตว์เลี้ยง และคำสั่งซื้อ':'ใช้เบอร์โทรศัพท์และรหัสผ่านของคุณเพื่อเข้าสู่บัญชี';
+  if(submit) submit.textContent=customerRegisterMode?'📝 สมัครสมาชิก':'🔐 เข้าสู่ระบบ';
+  if(switchText) switchText.textContent=customerRegisterMode?'มีบัญชีอยู่แล้ว?':'ยังไม่มีบัญชี?';
+  if(switchBtn) switchBtn.textContent=customerRegisterMode?'เข้าสู่ระบบ':'สมัครสมาชิก';
+}
+
+function customerLogin(){
+  const phone=(document.getElementById('customerLoginPhone')?.value||'').replace(/\D/g,'');
+  const pass=document.getElementById('customerLoginPassword')?.value||'';
+  if(phone.length<9){showToast('กรุณากรอกเบอร์โทรศัพท์ให้ถูกต้อง');return;}
+  if(!pass){showToast('กรุณากรอกรหัสผ่าน');return;}
+
+  const accounts=getCustomerAccounts();
+  if(customerRegisterMode){
+    const name=(document.getElementById('customerRegisterName')?.value||'').trim();
+    const pass2=document.getElementById('customerRegisterPassword2')?.value||'';
+    if(!name){showToast('กรุณากรอกชื่อ-นามสกุล');return;}
+    if(pass.length<4){showToast('รหัสผ่านต้องมีอย่างน้อย 4 ตัวอักษร');return;}
+    if(pass!==pass2){showToast('รหัสผ่านไม่ตรงกัน');return;}
+    if(accounts.some(a=>String(a.phone)===phone)){showToast('เบอร์โทรศัพท์นี้มีบัญชีแล้ว');return;}
+    accounts.push({phone,password:pass,name,createdAt:new Date().toISOString()});
+    saveCustomerAccounts(accounts);
+    localStorage.setItem('pawfect_customer_session',JSON.stringify({phone,name,loginAt:new Date().toISOString()}));
+    customerRegisterMode=false;
+    showPage('profilePage');
+    refreshProfilePage();
+    showToast('สมัครสมาชิกและเข้าสู่ระบบแล้ว');
+    return;
+  }
+
+  const account=accounts.find(a=>String(a.phone)===phone && String(a.password)===String(pass));
+  if(!account){showToast('เบอร์โทรศัพท์หรือรหัสผ่านไม่ถูกต้อง');return;}
+  localStorage.setItem('pawfect_customer_session',JSON.stringify({phone:account.phone,name:account.name,loginAt:new Date().toISOString()}));
+  showPage('profilePage');
+  refreshProfilePage();
+  showToast('เข้าสู่ระบบลูกค้าแล้ว');
+}
+
+function profileLogout(){
+  localStorage.removeItem('pawfect_customer_session');
+  showPage('roleLandingPage'); switchLandingRole('customer');
+  switchLandingRole('customer');
+  showToast('ออกจากระบบแล้ว');
+}
 
 function closeModal(){
 
@@ -8088,6 +8346,17 @@ setupBookingTabs();}catch(e){}
   }catch(e){}
 })();
 
+
+
+/* เปิดแอปครั้งแรกให้แสดงหน้าปกเลือกประเภทการเข้าสู่ระบบ */
+try{
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', ()=>{showPage('roleLandingPage'); switchLandingRole('customer');}, {once:true});
+  }else{
+    showPage('roleLandingPage');
+    switchLandingRole('customer');
+  }
+}catch(e){}
 </script>
 
 </div>
