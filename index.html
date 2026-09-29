@@ -4620,12 +4620,27 @@ function formatDateInput(input){
 }
 
 
+function bookingDateKey(value){
+    const v=String(value||'').trim();
+    if(!v) return '';
+    // รองรับทั้งวันที่จากฟอร์ม (YYYY-MM-DD) และข้อมูลจำลองหลังบ้าน (DD/MM/YYYY หรือ DD/MM/พ.ศ.)
+    if(/^\d{4}-\d{2}-\d{2}$/.test(v)) return v;
+    const m=v.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/);
+    if(m){
+        let y=Number(m[3]);
+        if(y>2400) y-=543;
+        return `${y}-${String(Number(m[2])).padStart(2,'0')}-${String(Number(m[1])).padStart(2,'0')}`;
+    }
+    return v;
+}
+
 function loadTimeSlots(){
 
     const date =
     document.getElementById(
         "bookingDate"
     )?.value || "";
+    const selectedDateKey=bookingDateKey(date);
 
     const grids = {
         morning:
@@ -4720,8 +4735,8 @@ function loadTimeSlots(){
             const booked =
             bookings.some(
                 b =>
-                b.date === date &&
-                b.time === time &&
+                bookingDateKey(b.date) === selectedDateKey &&
+                String(b.time||'').trim() === String(time||'').trim() &&
                 b.status !== "cancelled"
             );
 
@@ -5419,8 +5434,8 @@ function submitBooking(){
     const duplicate =
     bookings.some(
         b =>
-        b.date === date &&
-        b.time === selectedTime &&
+        bookingDateKey(b.date) === bookingDateKey(date) &&
+        String(b.time||'').trim() === String(selectedTime||'').trim() &&
         b.status !== "cancelled"
     );
 
@@ -7110,7 +7125,9 @@ function canChangeBookingStatus(from,to){
 
 function hasBookingConflict(target, ignoreId){
     if(!target || !target.date || !target.time || target.status==='cancelled') return false;
-    return bookings.some(x=>String(x.id)!==String(ignoreId) && x.status!=='cancelled' && String(x.date)===String(target.date) && String(x.time)===String(target.time));
+    const targetDate=bookingDateKey(target.date);
+    const targetTime=String(target.time||'').trim();
+    return bookings.some(x=>String(x.id)!==String(ignoreId) && x.status!=='cancelled' && bookingDateKey(x.date)===targetDate && String(x.time||'').trim()===targetTime);
 }
 
 window.confirmBooking = function confirmBooking(id){
