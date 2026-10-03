@@ -3782,6 +3782,11 @@ function openBooking(type){
     /* ประเภทสัตว์ถูกกำหนดจากบริการที่ลูกค้าเลือกจากหน้าหลัก */
     selectPetType(type);
 
+    document.getElementById("serviceCardTitle").textContent = "3. เลือกบริการ";
+    document.getElementById("behavior").closest(".card").querySelector(".card-title").textContent = "4. นิสัยและพฤติกรรม";
+    document.getElementById("petPhoto").closest(".card").querySelector(".card-title").textContent = "5. รูปสัตว์เลี้ยงปัจจุบัน";
+    document.querySelector("#bookingPage .booking-date-head").closest(".card").querySelector(".card-title").textContent = "6. วันและเวลาที่ต้องการจอง";
+
     document
     .getElementById("boardingPetTypeWrap")
     .classList.add("hidden");
@@ -3839,7 +3844,7 @@ function openBoarding(){
     document
     .getElementById("serviceCardTitle")
     .textContent =
-    "3. เลือกประเภทการรับฝากและบริการเสริม";
+    "4. เลือกประเภทการรับฝากและบริการเสริม";
 
     document
     .getElementById("boardingPetTypeWrap")
@@ -3848,6 +3853,11 @@ function openBoarding(){
     document
     .getElementById("boardingPetType")
     .value = "";
+
+    document.getElementById("serviceCardTitle").textContent = "4. เลือกประเภทการรับฝากและบริการเสริม";
+    document.getElementById("behavior").closest(".card").querySelector(".card-title").textContent = "5. นิสัยและพฤติกรรม";
+    document.getElementById("petPhoto").closest(".card").querySelector(".card-title").textContent = "6. รูปสัตว์เลี้ยงปัจจุบัน";
+    document.querySelector("#bookingPage .booking-date-head").closest(".card").querySelector(".card-title").textContent = "7. วันและเวลาที่ต้องการจอง";
 
 }
 
@@ -5932,7 +5942,7 @@ function resetForm(){
     document
     .getElementById("serviceCardTitle")
     .textContent =
-    "4. เลือกบริการ";
+    "3. เลือกบริการ";
 
 
     document
