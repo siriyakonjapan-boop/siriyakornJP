@@ -5717,8 +5717,18 @@ function submitBooking(){
     // อัปเดตบัญชีของฉันให้ใช้ข้อมูลจากการจองล่าสุดทันที
     renderBookings();
     refreshProfilePage();
+
+    // ไปหน้าการจองทันทีหลังยืนยันสำเร็จ
+    // ใช้ทั้ง showPage และบังคับ active อีกครั้งเพื่อให้ทำงานสม่ำเสมอบนมือถือ/GitHub Pages
     showPage("trackingPage");
-    setTimeout(()=>window.scrollTo({top:0,behavior:"smooth"}),50);
+    requestAnimationFrame(()=>{
+        document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+        const trackingPage = document.getElementById("trackingPage");
+        if(trackingPage) trackingPage.classList.add("active");
+        document.querySelector(".app")?.scrollTo({top:0,behavior:"smooth"});
+        window.scrollTo({top:0,behavior:"smooth"});
+        renderBookings();
+    });
     showToast("✅ จองเรียบร้อยแล้ว โปรดรอยืนยันการจองจากทางร้าน");
 
     // ล้างฟอร์มหลังจากย้ายไปหน้าการจองแล้ว เพื่อไม่ให้ข้อมูลที่บันทึกหาย
