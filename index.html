@@ -440,6 +440,15 @@ textarea{
     font-weight:600;
 }
 
+
+.boarding-stay-box{margin-top:14px;padding:12px;background:#fffaf4;border:1px solid #f2dfcc;border-radius:15px;}
+.boarding-stay-title{font-size:11px;font-weight:700;color:#7f5d45;margin-bottom:8px;}
+.boarding-stay-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.boarding-stay-box input{width:100%;border:1px solid #dfd5cc;background:#fff;border-radius:11px;padding:9px 10px;font-family:inherit;font-size:10px;color:var(--brown);outline:none;}
+.boarding-stay-box input:focus{border-color:var(--orange);}
+.boarding-stay-result{margin-top:8px;padding:8px 10px;border-radius:10px;background:#fff0df;color:#c76608;font-size:10px;font-weight:700;text-align:center;}
+@media(max-width:390px){.boarding-stay-grid{grid-template-columns:1fr;}}
+
 .boarding-extra-grid{
     display:grid;
     grid-template-columns:1fr 1fr;
@@ -2175,7 +2184,6 @@ placeholder="เช่น เวลาให้อาหาร อาหาร�
 
 </div>
 
-
 <!-- BOARDING EXTRAS -->
 <div id="boardingExtraSection"
      class="hidden"
@@ -2609,6 +2617,44 @@ placeholder="เช่น ขี้กลัว ไม่ชอบเสีย�
 
 <input type="hidden"
        id="bookingDate">
+
+<div id="boardingReturnDateBox" class="boarding-stay-box" style="display:none;">
+    <div class="boarding-stay-title" style="font-size:13px;">📅 กำหนดวันรับกลับ</div>
+    <div style="font-size:10px;color:#8a7568;margin-bottom:10px;">เลือกวันที่รับกลับจากตาราง เช่นเดียวกับวันที่นำสัตว์เลี้ยงมาฝาก</div>
+    <div class="boarding-date-head" style="margin-bottom:10px;">
+        <div>
+            <div class="booking-date-head-label">วันที่นำมาฝาก</div>
+            <div class="booking-date-head-value" id="boardingStartDate">ยังไม่ได้เลือกวันที่</div>
+        </div>
+        <button type="button" class="booking-calendar-btn" onclick="focusBoardingReturnCalendar()">📅 เลือกวันรับกลับ</button>
+    </div>
+    <div class="calendar-box" style="margin-bottom:8px;">
+        <div class="calendar-top">
+            <button type="button" class="calendar-nav" onclick="changeBoardingReturnCalendarMonth(-1)">‹</button>
+            <div class="calendar-month-title">
+                <span class="calendar-month" id="boardingReturnCalendarMonthTitle">-</span>
+                <span class="calendar-year" id="boardingReturnCalendarYearTitle">-</span>
+            </div>
+            <button type="button" class="calendar-nav" onclick="changeBoardingReturnCalendarMonth(1)">›</button>
+        </div>
+        <div class="calendar-weekdays">
+            <span>อา.</span><span>จ.</span><span>อ.</span><span>พ.</span><span>พฤ.</span><span>ศ.</span><span>ส.</span>
+        </div>
+        <div class="calendar-grid" id="boardingReturnDateChoices"></div>
+        <div class="calendar-hint">
+            <span>แตะวันที่ต้องการเพื่อเลือกวันรับกลับ</span>
+            <button type="button" class="calendar-today-btn" onclick="goToBoardingReturnToday()">วันนี้</button>
+        </div>
+    </div>
+    <input type="date" id="boardingPickupDate" class="custom-date-input" style="display:none" onchange="selectBoardingReturnDate(this.value)">
+    <div class="boarding-stay-grid">
+        <div>
+            <label for="boardingStayDays">ฝากทั้งหมด</label>
+            <input type="text" id="boardingStayDays" value="-" readonly>
+        </div>
+    </div>
+    <div class="boarding-stay-result" id="boardingStayResult">กรุณาเลือกวันที่รับกลับ</div>
+</div>
 
 <div class="time-heading">
     <div class="time-heading-title">⏰ เวลาที่ต้องการจอง</div>
@@ -3223,6 +3269,8 @@ let selectedTime = "";
 let uploadedPhoto = "";
 let uploadedDepositSlip = "";
 let bookingMode = "service";
+let boardingStayDays = 1;
+let boardingReturnCalendarViewDate = new Date();
 
 let bankInfo = JSON.parse(localStorage.getItem("pawfect_bank_info") || "null") || {
     bankName: "ธนาคารกสิกรไทย",
@@ -3786,6 +3834,8 @@ function openBooking(type){
     document.getElementById("behavior").closest(".card").querySelector(".card-title").textContent = "4. นิสัยและพฤติกรรม";
     document.getElementById("petPhoto").closest(".card").querySelector(".card-title").textContent = "5. รูปสัตว์เลี้ยงปัจจุบัน";
     document.querySelector("#bookingPage .booking-date-head").closest(".card").querySelector(".card-title").textContent = "6. วันและเวลาที่ต้องการจอง";
+    document.querySelector("#bookingPage .booking-date-head-label").textContent = "วันที่เลือก";
+    document.getElementById("boardingReturnDateBox")?.style.setProperty("display", "none");
 
     document
     .getElementById("boardingPetTypeWrap")
@@ -3857,7 +3907,12 @@ function openBoarding(){
     document.getElementById("serviceCardTitle").textContent = "4. เลือกประเภทการรับฝากและบริการเสริม";
     document.getElementById("behavior").closest(".card").querySelector(".card-title").textContent = "5. นิสัยและพฤติกรรม";
     document.getElementById("petPhoto").closest(".card").querySelector(".card-title").textContent = "6. รูปสัตว์เลี้ยงปัจจุบัน";
-    document.querySelector("#bookingPage .booking-date-head").closest(".card").querySelector(".card-title").textContent = "7. วันและเวลาที่ต้องการจอง";
+    document.querySelector("#bookingPage .booking-date-head").closest(".card").querySelector(".card-title").textContent = "7. วันที่และเวลานำสัตว์เลี้ยงมาฝาก";
+    document.querySelector("#bookingPage .booking-date-head-label").textContent = "วันที่นำมาฝาก";
+    document.getElementById("boardingReturnDateBox")?.style.setProperty("display", "block");
+    const currentBookingDate = document.getElementById("bookingDate")?.value || "";
+    if(currentBookingDate){ const p=currentBookingDate.split("-").map(Number); boardingReturnCalendarViewDate=new Date(p[0],p[1]-1,1); }
+    updateBoardingStay();
 
 }
 
@@ -3997,6 +4052,8 @@ function selectMainService(button,service){
     button.classList.add("selected");
 
     selectedMainService = service;
+
+    if(bookingMode === "boarding") updateBoardingStay();
 
     const groomingCard = document.getElementById("groomingInfoCard");
     if(groomingCard){
@@ -4140,6 +4197,11 @@ function calculatePrice(){
         const boardingPetType = selectedPetType || document.getElementById("petType")?.value || "dog";
         if(selectedMainService === "boarding-day"){ base = boardingPrices.day[boardingPetType] || boardingPrices.day.dog; note = `รับฝากชั่วคราว • ไม่เกิน 8 ชั่วโมง • ${boardingPetType === "cat" ? "แมว" : "สุนัข"}`; }
         if(selectedMainService === "boarding-night"){ base = boardingPrices.night[boardingPetType] || boardingPrices.night.dog; note = `รับฝากค้างคืน • ${boardingPetType === "cat" ? "แมว" : "สุนัข"}`; }
+        const stay = Number(boardingStayDays) || 0;
+        if(base && stay > 0) base = String(Number(base) * stay);
+        else base = "";
+        if(selectedMainService === "boarding-night" && stay > 0) note += ` • ${stay} คืน`;
+        if(selectedMainService === "boarding-day" && stay > 0) note += ` • ${stay} วัน`;
     }
     else if(selectedPetType === "dog"){
         const weight = document.getElementById("weight").value;
@@ -4169,7 +4231,10 @@ function calculatePrice(){
     });
     selectedBoardingExtras.forEach(x=>{
         const p = boardingExtraPrices[x];
-        if(p){ extraMin += p.min; extraMax += p.max; }
+        if(!p) return;
+        const multiplier = (x === "walk" && bookingMode === "boarding" && Number(boardingStayDays) > 0) ? Number(boardingStayDays) : 1;
+        extraMin += p.min * multiplier;
+        extraMax += p.max * multiplier;
     });
     const summary = document.getElementById("depositSummary");
     if(base){
@@ -4189,11 +4254,13 @@ function calculatePrice(){
         if(d) d.textContent = moneyRange(depositMin,depositMax);
         if(bal) bal.textContent = moneyRange(balanceMin,balanceMax);
         updateDepositPaymentBox();
+        return {min, max};
     }else{
         document.getElementById("priceText").textContent = "กรุณาเลือกข้อมูล";
         document.getElementById("priceNote").textContent = bookingMode === "boarding" ? "เลือกประเภทการรับฝากเพื่อดูราคาประเมิน" : "เลือกข้อมูลสัตว์เลี้ยงและบริการเพื่อดูราคา";
         if(summary) summary.style.display = "none";
         updateDepositPaymentBox();
+        return null;
     }
     updateSummary();
 }
@@ -4696,11 +4763,165 @@ function selectBookingDate(iso){
     }
 
     renderDateChoices();
+    if(bookingMode === "boarding"){
+        const pickup=document.getElementById("boardingPickupDate");
+        if(pickup && pickup.value && selectedMainService === "boarding-night" && pickup.value <= iso) pickup.value="";
+        if(pickup && pickup.value && selectedMainService === "boarding-day" && pickup.value !== iso) pickup.value="";
+        const p=iso.split("-").map(Number); boardingReturnCalendarViewDate=new Date(p[0],p[1]-1,1);
+    }
+    updateBoardingStay();
     loadTimeSlots();
     updateSummary();
 
 }
 
+
+function renderBoardingReturnDateChoices(){
+    const container = document.getElementById("boardingReturnDateChoices");
+    if(!container) return;
+    const monthNames = ["มกราคม","กุมภาพันธ์","มีนาคม","เมษายน","พฤษภาคม","มิถุนายน","กรกฎาคม","สิงหาคม","กันยายน","ตุลาคม","พฤศจิกายน","ธันวาคม"];
+    const start = document.getElementById("bookingDate")?.value || "";
+    const selected = document.getElementById("boardingPickupDate")?.value || "";
+    const today = new Date();
+    today.setHours(0,0,0,0);
+    const startDate = start ? new Date(start + "T00:00:00") : null;
+    boardingReturnCalendarViewDate.setDate(1);
+    const year = boardingReturnCalendarViewDate.getFullYear();
+    const month = boardingReturnCalendarViewDate.getMonth();
+    const title = document.getElementById("boardingReturnCalendarMonthTitle");
+    const yearTitle = document.getElementById("boardingReturnCalendarYearTitle");
+    if(title) title.textContent = monthNames[month];
+    if(yearTitle) yearTitle.textContent = "พ.ศ. " + (year + 543);
+    container.innerHTML = "";
+    const firstDay = new Date(year, month, 1).getDay();
+    const daysInMonth = new Date(year, month + 1, 0).getDate();
+    const prevDays = new Date(year, month, 0).getDate();
+    for(let i=0;i<42;i++){
+        const cell=document.createElement("button");
+        cell.type="button";
+        cell.className="calendar-day";
+        let dayNumber, cellDate;
+        if(i<firstDay){
+            dayNumber=prevDays-firstDay+i+1;
+            cellDate=new Date(year,month-1,dayNumber);
+            cell.classList.add("other-month");
+        }else if(i>=firstDay+daysInMonth){
+            dayNumber=i-firstDay-daysInMonth+1;
+            cellDate=new Date(year,month+1,dayNumber);
+            cell.classList.add("other-month");
+        }else{
+            dayNumber=i-firstDay+1;
+            cellDate=new Date(year,month,dayNumber);
+        }
+        const iso=getLocalISODate(cellDate);
+        cell.textContent=dayNumber;
+        if(cellDate.getTime()===today.getTime()) cell.classList.add("today");
+        if(iso===selected) cell.classList.add("selected");
+        let disabled = cellDate < today;
+        if(startDate){
+            if(selectedMainService === "boarding-day") disabled = disabled || cellDate.getTime() !== startDate.getTime();
+            else disabled = disabled || cellDate.getTime() <= startDate.getTime();
+        }else disabled = true;
+        if(disabled){ cell.disabled=true; cell.classList.add("booked-day"); }
+        else cell.onclick=()=>selectBoardingReturnDate(iso);
+        container.appendChild(cell);
+    }
+}
+
+function changeBoardingReturnCalendarMonth(step){
+    const next=new Date(boardingReturnCalendarViewDate);
+    next.setMonth(next.getMonth()+step,1);
+    const today=new Date(); today.setHours(0,0,0,0);
+    const start=document.getElementById("bookingDate")?.value||"";
+    const minDate=start?new Date(start+"T00:00:00"):today;
+    const minMonth=new Date(minDate.getFullYear(),minDate.getMonth(),1);
+    if(next<minMonth) return;
+    boardingReturnCalendarViewDate=next;
+    renderBoardingReturnDateChoices();
+}
+
+function goToBoardingReturnToday(){
+    const start=document.getElementById("bookingDate")?.value||"";
+    const base=start?new Date(start+"T00:00:00"):new Date();
+    boardingReturnCalendarViewDate=new Date(base.getFullYear(),base.getMonth(),1);
+    renderBoardingReturnDateChoices();
+    if(selectedMainService === "boarding-day") selectBoardingReturnDate(start);
+}
+
+function focusBoardingReturnCalendar(){
+    const selected=document.getElementById("boardingPickupDate")?.value||"";
+    const start=document.getElementById("bookingDate")?.value||"";
+    const base=selected||start||getLocalISODate(new Date());
+    const p=base.split("-").map(Number);
+    boardingReturnCalendarViewDate=new Date(p[0],p[1]-1,1);
+    renderBoardingReturnDateChoices();
+    document.getElementById("boardingReturnDateBox")?.scrollIntoView({behavior:"smooth",block:"center"});
+}
+
+function selectBoardingReturnDate(iso){
+    if(!iso) return;
+    const start=document.getElementById("bookingDate")?.value||"";
+    if(!start){ showToast("กรุณาเลือกวันที่นำมาฝากก่อน"); return; }
+    const d=new Date(iso+"T00:00:00");
+    const s=new Date(start+"T00:00:00");
+    if(selectedMainService === "boarding-day" && d.getTime()!==s.getTime()){
+        showToast("รับฝากชั่วคราวต้องรับกลับภายในวันเดียวกัน");
+        return;
+    }
+    if(selectedMainService === "boarding-night" && d.getTime()<=s.getTime()){
+        showToast("รับฝากค้างคืนต้องเลือกวันรับกลับหลังวันที่ฝาก");
+        return;
+    }
+    const input=document.getElementById("boardingPickupDate");
+    if(input){ input.value=iso; input.min=start; }
+    const parts=iso.split("-").map(Number);
+    boardingReturnCalendarViewDate=new Date(parts[0],parts[1]-1,1);
+    renderBoardingReturnDateChoices();
+    updateBoardingStay();
+}
+
+function updateBoardingStay(){
+    if(bookingMode !== "boarding") return;
+    const start = document.getElementById("bookingDate")?.value || "";
+    const startEl = document.getElementById("boardingStartDate");
+    const pickup = document.getElementById("boardingPickupDate");
+    const daysEl = document.getElementById("boardingStayDays");
+    const result = document.getElementById("boardingStayResult");
+    if(!pickup || !daysEl || !result) return;
+    if(startEl) startEl.textContent = start ? formatThaiDateFromISO(start) : "ยังไม่ได้เลือกวันที่";
+    if(start) pickup.min = start;
+    if(start){
+        const p=start.split("-").map(Number);
+        if(!document.getElementById("boardingReturnDateChoices")?.children.length){
+            boardingReturnCalendarViewDate=new Date(p[0],p[1]-1,1);
+        }
+    }
+    renderBoardingReturnDateChoices();
+    if(!start || !pickup.value){
+        boardingStayDays=0;
+        daysEl.value="-";
+        result.textContent="กรุณาเลือกวันที่รับกลับ";
+        return;
+    }
+    const startDate=new Date(start+"T00:00:00");
+    const pickupDate=new Date(pickup.value+"T00:00:00");
+    const diff=Math.round((pickupDate-startDate)/86400000);
+    if(diff<0 || (selectedMainService === "boarding-night" && diff===0) || (selectedMainService === "boarding-day" && diff!==0)){
+        pickup.value="";
+        boardingStayDays=0;
+        daysEl.value="-";
+        result.textContent=selectedMainService === "boarding-day" ? "รับฝากชั่วคราวไม่เกิน 8 ชั่วโมง ต้องรับกลับภายในวันเดียวกัน" : "รับฝากค้างคืนต้องเลือกวันที่รับกลับหลังวันที่ฝาก";
+        renderBoardingReturnDateChoices();
+        calculatePrice();
+        return;
+    }
+    boardingStayDays=Math.max(1,diff);
+    daysEl.value=selectedMainService === "boarding-night" ? `${boardingStayDays} คืน` : `${boardingStayDays} วัน`;
+    result.textContent=selectedMainService === "boarding-night"
+        ? `ฝากวันที่ ${formatThaiDateFromISO(start)} · รับกลับวันที่ ${formatThaiDateFromISO(pickup.value)} · รวม ${boardingStayDays} คืน`
+        : `ฝากวันที่ ${formatThaiDateFromISO(start)} · รับกลับวันที่ ${formatThaiDateFromISO(pickup.value)} · รวม ${boardingStayDays} วัน`;
+    calculatePrice();
+}
 
 function selectDateFromPicker(iso){
 
@@ -5209,6 +5430,16 @@ function updateSummary(){
     📅 วันที่:
     ${escapeHTML(date)}
 
+    ${bookingMode === "boarding" ? `
+    <br>
+    📅 วันที่รับกลับ:
+    ${escapeHTML(document.getElementById("boardingPickupDate")?.value || "-")}
+
+    <br>
+    🏠 ระยะเวลาฝาก:
+    ${escapeHTML(String(boardingStayDays || 1))} ${selectedMainService === "boarding-night" ? "คืน" : "วัน"}
+    ` : ""}
+
     <br>
 
     ⏰ เวลา:
@@ -5548,6 +5779,17 @@ function submitBooking(){
 
     }
 
+    let boardingPickupDate = "";
+    let boardingDays = 1;
+    if(bookingMode === "boarding"){
+        boardingPickupDate = document.getElementById("boardingPickupDate")?.value || "";
+        if(!boardingPickupDate){
+            return showToast("กรุณาเลือกวันที่รับกลับ");
+        }
+        updateBoardingStay();
+        boardingDays = Math.max(1, Number(boardingStayDays) || 1);
+    }
+
 
     if(!selectedTime){
 
@@ -5625,6 +5867,13 @@ function submitBooking(){
     ?.value || "";
 
 
+    // คำนวณราคาใหม่จากข้อมูลปัจจุบันทุกครั้งก่อนบันทึกการจอง
+    // เพื่อป้องกันยอดเก่าค้างจากการเปลี่ยนบริการ น้ำหนัก วันรับกลับ หรือบริการเสริม
+    const finalPrice = calculatePrice();
+    if(!finalPrice){
+        return showToast("กรุณาเลือกข้อมูลให้ครบเพื่อคำนวณราคา");
+    }
+
     const booking = {
 
         id:id,
@@ -5689,16 +5938,17 @@ function submitBooking(){
 
         time:selectedTime,
 
-        price:
-        document
-        .getElementById("priceText")
-        .textContent,
+        pickupDate:boardingPickupDate,
 
-        totalMin: getPriceRange(document.getElementById("priceText")?.textContent)?.min || 0,
-        totalMax: getPriceRange(document.getElementById("priceText")?.textContent)?.max || 0,
+        boardingDays:boardingDays,
+
+        price: moneyRange(finalPrice.min, finalPrice.max),
+
+        totalMin: finalPrice.min,
+        totalMax: finalPrice.max,
         depositPercent: 40,
-        depositMin: Math.round((getPriceRange(document.getElementById("priceText")?.textContent)?.min || 0) * 0.40),
-        depositMax: Math.round((getPriceRange(document.getElementById("priceText")?.textContent)?.max || 0) * 0.40),
+        depositMin: Math.round(finalPrice.min * 0.40),
+        depositMax: Math.round(finalPrice.max * 0.40),
         depositStatus: "submitted",
         depositSlip: uploadedDepositSlip,
         depositSlipSubmittedAt: new Date().toISOString(),
@@ -5775,6 +6025,8 @@ function resetForm(){
         "medical",
         "emergencyPhone",
         "boardingNote",
+        "boardingPickupDate",
+        "boardingStayDays",
         "bookingDate",
         "bookingDatePicker",
         "foodType",
@@ -5844,6 +6096,18 @@ function resetForm(){
     selectedBoardingExtras = [];
 
     selectedTime = "";
+    boardingStayDays = 1;
+
+    const boardingPickupDate = document.getElementById("boardingPickupDate");
+    const boardingStartDate = document.getElementById("boardingStartDate");
+    if(boardingPickupDate) { boardingPickupDate.min = ""; boardingPickupDate.value = ""; }
+    if(boardingStartDate) boardingStartDate.textContent = "ยังไม่ได้เลือกวันที่";
+    const boardingReturnChoices=document.getElementById("boardingReturnDateChoices");
+    if(boardingReturnChoices) boardingReturnChoices.innerHTML = "";
+    const boardingStayDaysEl = document.getElementById("boardingStayDays");
+    if(boardingStayDaysEl) boardingStayDaysEl.value = "-";
+    const boardingStayResult = document.getElementById("boardingStayResult");
+    if(boardingStayResult) boardingStayResult.textContent = "กรุณาเลือกวันที่ฝากและวันที่รับกลับ";
 
     const bookingDatePicker =
     document.getElementById("bookingDatePicker");
@@ -5977,6 +6241,7 @@ function resetForm(){
 
 
     renderDateChoices();
+renderBoardingReturnDateChoices();
 
     loadTimeSlots();
 
@@ -6351,6 +6616,7 @@ function renderBookings(){
             <div class="booking-schedule">
               <div><small>📅 วันที่ใช้บริการ</small><b>${formatDate(b.date)}</b><em>${isTodayDate(b.date)?'(วันนี้)':''}</em></div>
               <div><small>◷ เวลา</small><b>${escapeHTML(b.time||'-')}</b></div>
+              ${b.bookingType==='boarding'&&b.pickupDate?`<div><small>🏠 รับกลับ</small><b>${formatDate(b.pickupDate)}</b><em>${b.boardingDays||1} ${b.mainService==='boarding-night'?'คืน':'วัน'}</em></div>`:''}
             </div>
           </div>
           <div class="customer-backend-link">🔗 <b>สถานะจากระบบหลังบ้าน</b><span>${statusText(b.status)}</span></div>
@@ -6491,6 +6757,18 @@ function viewBooking(id){
 
 
         boardingDetails = `
+
+        <b>📅 วันที่นำมาฝาก:</b>
+        ${escapeHTML(formatDate(b.date))}
+        <br>
+
+        <b>🏠 วันที่รับกลับ:</b>
+        ${b.pickupDate ? escapeHTML(formatDate(b.pickupDate)) : "ยังไม่ได้ระบุ"}
+        <br>
+
+        <b>⏳ ระยะเวลาฝาก:</b>
+        ${b.boardingDays ? `${escapeHTML(String(b.boardingDays))} ${b.mainService === "boarding-night" ? "คืน" : "วัน"}` : "ยังไม่ได้ระบุ"}
+        <br>
 
         <b>บริการเสริมรับฝาก:</b>
         ${escapeHTML(extraLabels || "ไม่มี")}
@@ -7183,7 +7461,7 @@ function renderAdmin(){
       const statusTextMap={pending:"🟠 รอยืนยัน",confirmed:"🟢 ยืนยันแล้ว",progress:"🔵 กำลังให้บริการ",completed:"✅ เสร็จสิ้น",cancelled:"🔴 ยกเลิก"};
       return `<div class="booking-card ${statusClass(b.status)}">
         <div class="booking-card-top"><div style="display:flex;gap:10px;align-items:center;min-width:0"><img class="admin-pet-photo" src="${bookingPetImage(b.petType,b.photo,b.breed)}" alt="รูป ${escapeHTML(b.petName||'สัตว์เลี้ยง')}" onerror="this.onerror=null;this.src=bookingPetImage('${b.petType}','', '${b.breed||''}')"><div><div class="booking-id">รหัส #${escapeHTML(String(b.id||"-"))}</div><div class="booking-pet">${b.petType==="dog"?"🐶":"🐱"} ${escapeHTML(b.petName||"ไม่ระบุ")}</div><div class="booking-owner">👤 ${escapeHTML(b.owner||"-")} · ☎️ ${escapeHTML(b.phone||"-")}</div></div></div><span class="booking-status-pill" style="${statusColors[b.status]||statusColors.pending}">${statusTextMap[b.status]||b.status}</span></div>
-        <div class="booking-info-grid"><div class="booking-info">📅 <b>${formatDate(b.date)}</b>⏰ ${escapeHTML(b.time||"-")}</div><div class="booking-info">🛁 <b>${serviceText(b.mainService)}</b>${escapeHTML(getBookingExtrasText(b).replace(/<[^>]*>/g," "))}</div></div>
+        <div class="booking-info-grid"><div class="booking-info">📅 <b>${formatDate(b.date)}</b>⏰ ${escapeHTML(b.time||"-")}${b.bookingType==='boarding'&&b.pickupDate?`<br>🏠 รับกลับ <b>${formatDate(b.pickupDate)}</b> · ${b.boardingDays||1} ${b.mainService==='boarding-night'?'คืน':'วัน'}`:''}</div><div class="booking-info">🛁 <b>${serviceText(b.mainService)}</b>${escapeHTML(getBookingExtrasText(b).replace(/<[^>]*>/g," "))}</div></div>
         <div style="display:flex;justify-content:space-between;align-items:center;gap:8px"><span class="booking-price">💰 ${escapeHTML(b.price||"-")}</span><span style="font-size:8px;color:#9a8e86">${b.createdAt?new Date(b.createdAt).toLocaleString("th-TH"):""}</span></div>
         ${(()=>{const f=financialsFromBooking(b); const slip=b.depositSlip?`<div class="deposit-slip-admin"><img src="${b.depositSlip}" alt="สลิปมัดจำ" onclick="openDepositSlip('${b.id}')"><div class="deposit-slip-meta">🧾 แนบสลิปแล้ว${b.depositSlipSubmittedAt?` · ${new Date(b.depositSlipSubmittedAt).toLocaleString('th-TH')}`:''}</div>${f.depositStatus==='submitted'?`<div class="deposit-review-actions"><button type="button" class="deposit-verify-btn" onclick="window.verifyDeposit('${b.id}')">✅ ตรวจสอบผ่าน</button><button type="button" class="deposit-reject-btn" onclick="window.rejectDeposit('${b.id}')">❌ สลิปไม่ผ่าน</button></div>`:''}</div>`:`<div style="margin-top:8px;font-size:8px;color:#a58f84;background:#fff8f2;padding:8px;border-radius:10px">🧾 ยังไม่มีสลิปการโอนเงิน</div>`; return `<div class="deposit-admin-box"><div class="deposit-admin-grid"><div class="deposit-admin-item"><span>💳 มัดจำ ${f.percent}%</span><b>${moneyRange(f.depositMin,f.depositMax)}</b></div><div class="deposit-admin-item"><span>💰 คงเหลือ</span><b>${moneyRange(f.balanceMin,f.balanceMax)}</b></div></div><div style="margin-top:7px"><span class="deposit-status-pill ${depositStatusClass(f.depositStatus)}">${depositStatusText(f.depositStatus)}</span></div><select class="deposit-status-select" onchange="window.updateDepositStatus('${b.id}',this.value)">${depositStatusOptions(f.depositStatus)}</select>${slip}</div>`})()}
         ${pending?`<div class="booking-actions"><button type="button" class="btn primary" onclick="return window.confirmBooking('${b.id}')">✅ ยืนยันการจอง</button><button type="button" class="btn danger" onclick="return window.rejectBooking('${b.id}')">❌ ปฏิเสธ</button></div>`:`<div class="booking-next"><select ${['completed','cancelled'].includes(b.status)?'disabled':''} onchange="window.changeStatus('${b.id}',this.value)">${bookingStatusOptions(b.status)}</select></div>`}
